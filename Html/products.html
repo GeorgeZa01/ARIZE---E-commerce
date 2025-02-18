@@ -159,57 +159,56 @@
         }
 
         #card {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 200px;
-            text-align: center;
-            padding: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .product-card h4 {
-            color: #333;
-            font-size: 18px;
-            margin: 10px 0;
-        }
-
-        .product-card p {
-            font-size: 14px;
-            color: #777;
-        }
-
-        .product-card .price {
-            font-size: 16px;
-            font-weight: bold;
-            color: #007BFF;
-        }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+.product-card {
+    background: #EEEEE9;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #E0E0E0;
+}
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+.product-card h4 {
+    color: #14332F;
+    font-size: 20px;
+    margin: 15px 0;
+    font-weight: 600;
+}
+.product-card p {
+    font-size: 14px;
+    color: #516559;
+    margin-bottom: 10px;
+}
+.product-card .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #424242;
+}
     </style>
 
 <body>
-    <body>
+    
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="../Html/Assets/imgs/arize.png" alt="" class="img-fluid" style="max-width: 150px;">
+                    <img src="../Assets/imgs/arize.png" alt="" class="img-fluid" style="max-width: 150px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -229,7 +228,7 @@
                                 More
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">About Us</a></li>
+                                <li><a class="dropdown-item" href="../Html/about.html">About Us</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Contact Us</a></li>
                             </ul>
@@ -321,55 +320,55 @@
         <div id="card">
             <!-- Laptop Cards -->
             <div class="product-card">
-                <img src="./Assets/products/laptops/ASUS TUF Gaming A16 (2024) FA608.png" alt="Laptop 1">
+                <img src="../Assets/products/laptops/ASUS TUF Gaming A16 (2024) FA608.png" alt="Laptop 1">
                 <h4>Laptop 1</h4>
                 <p>A powerful laptop for work and play.</p>
                 <div class="price">$999.99</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/laptops/ASUS TUF Gaming F15 (2022).png" alt="Laptop 2">
+                <img src="../Assets/products/laptops/ASUS TUF Gaming F15 (2022).png" alt="Laptop 2">
                 <h4>Laptop 2</h4>
                 <p>Lightweight and high-performance laptop.</p>
                 <div class="price">$899.99</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/laptops/ASUS Zenbook Pro 16X OLED (UX7602).png" alt="Laptop 3">
+                <img src="../Assets/products/laptops/ASUS Zenbook Pro 16X OLED (UX7602).png" alt="Laptop 3">
                 <h4>Laptop 3</h4>
                 <p>Ideal for students and professionals.</p>
                 <div class="price">$799.99</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/laptops/HP EliteBook 830 13 inch G11 Notebook PC.png" alt="Laptop 1">
+                <img src="../Assets/products/laptops/HP EliteBook 830 13 inch G11 Notebook PC.png" alt="Laptop 1">
                 <h4>Laptop 1</h4>
                 <p>A powerful laptop for work and play.</p>
                 <div class="price">$999.99</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/laptops/HP Pavilion Laptop 16-af0015ni, Windows 11 Home Single Language.jpg" alt="Laptop 2">
+                <img src="../Assets/products/laptops/HP Pavilion Laptop 16-af0015ni, Windows 11 Home Single Language.jpg" alt="Laptop 2">
                 <h4>Laptop 2</h4>
                 <p>Lightweight and high-performance laptop.</p>
                 <div class="price">$899.99</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/laptops/HP ZBOOK FIREFLY 14 G11 U7-155H 32GB 1TB 3.3.3 WIN11 PRO 64.jpg" alt="Laptop 3">
+                <img src="../Assets/products/laptops/HP ZBOOK FIREFLY 14 G11 U7-155H 32GB 1TB 3.3.3 WIN11 PRO 64.jpg" alt="Laptop 3">
                 <h4>Laptop 3</h4>
                 <p>Ideal for students and professionals.</p>
                 <div class="price">$799.99</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/laptops/Lenovo ThinkBook 14-inch WUXGA Intel Core Ultra 7.webp" alt="Laptop 1">
+                <img src="../Assets/products/laptops/Lenovo ThinkBook 14-inch WUXGA Intel Core Ultra 7.webp" alt="Laptop 1">
                 <h4>Laptop 1</h4>
                 <p>A powerful laptop for work and play.</p>
                 <div class="price">$999.99</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/laptops/Lenovo ThinkPad L14 G5 14-inch WUXGA Intel Core Ultra 5.webp" alt="Laptop 2">
+                <img src="../Assets/products/laptops/Lenovo ThinkPad L14 G5 14-inch WUXGA Intel Core Ultra 5.webp" alt="Laptop 2">
                 <h4>Laptop 2</h4>
                 <p>Lightweight and high-performance laptop.</p>
                 <div class="price">$899.99</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/laptops/Lenovo V15 G2 ITL 15.6-inch FHD Intel Core i5.webp" alt="Laptop 3">
+                <img src="../Assets/products/laptops/Lenovo V15 G2 ITL 15.6-inch FHD Intel Core i5.webp" alt="Laptop 3">
                 <h4>Laptop 3</h4>
                 <p>Ideal for students and professionals.</p>
                 <div class="price">$799.99</div>
@@ -383,55 +382,55 @@
         <div id="card">
             <!-- Monitors Cards -->
             <div class="product-card">
-                <img src="./Assets/products/desktops/HP 23.8 inch All-in-One 24-cr1002ni PC, Windows 11.jpg" alt="Desktop 1">
+                <img src="../Assets/products/desktops/HP 23.8 inch All-in-One 24-cr1002ni PC, Windows 11.jpg" alt="Desktop 1">
                 <h4>Desktop 1</h4>
                 <p>High-end desktop for workstations.</p>
                 <div class="price">$1500.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/desktops/HP All-in-One Desktop 22-dg0001ni, Windows 11 .jpg" alt="Desktop 2">
+                <img src="../Assets/products/desktops/HP All-in-One Desktop 22-dg0001ni, Windows 11 .jpg" alt="Desktop 2">
                 <h4>Desktop 2</h4>
                 <p>Great for gaming and multimedia.</p>
                 <div class="price">$1200.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/desktops/HP OmniStudio X AiO 27-cs0000ni DT PC.jpg" alt="Desktop 1">
+                <img src="../Assets/products/desktops/HP OmniStudio X AiO 27-cs0000ni DT PC.jpg" alt="Desktop 1">
                 <h4>Desktop 1</h4>
                 <p>High-end desktop for workstations.</p>
                 <div class="price">$1500.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/desktops/Lenovo ThinkCentre M70a G3 21.5-inch FHD Intel Core i5.png" alt="Desktop 2">
+                <img src="../Assets/products/desktops/Lenovo ThinkCentre M70a G3 21.5-inch FHD Intel Core i5.png" alt="Desktop 2">
                 <h4>Desktop 2</h4>
                 <p>Great for gaming and multimedia.</p>
                 <div class="price">$1200.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/desktops/Lenovo ThinkCentre Neo 50a G5 23.8-inch FHD Intel Core i7.webp" alt="Desktop 1">
+                <img src="../Assets/products/desktops/Lenovo ThinkCentre Neo 50a G5 23.8-inch FHD Intel Core i7.webp" alt="Desktop 1">
                 <h4>Desktop 1</h4>
                 <p>High-end desktop for workstations.</p>
                 <div class="price">$1500.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/desktops/Lenovo ThinkCentre neo 50a G5 27-inch FHD Intel Core i7.webp" alt="Desktop 2">
+                <img src="../Assets/products/desktops/Lenovo ThinkCentre neo 50a G5 27-inch FHD Intel Core i7.webp" alt="Desktop 2">
                 <h4>Desktop 2</h4>
                 <p>Great for gaming and multimedia.</p>
                 <div class="price">$1200.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/desktops/TUF Gaming VG27VQM Curved.png" alt="Desktop 1">
+                <img src="../Assets/products/desktops/TUF Gaming VG27VQM Curved.png" alt="Desktop 1">
                 <h4>Desktop 1</h4>
                 <p>High-end desktop for workstations.</p>
                 <div class="price">$1500.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/desktops/TUF GAMING VG289Q.png" alt="Desktop 2">
+                <img src="../Assets/products/desktops/TUF GAMING VG289Q.png" alt="Desktop 2">
                 <h4>Desktop 2</h4>
                 <p>Great for gaming and multimedia.</p>
                 <div class="price">$1200.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/desktops/TUF Gaming VG28UQL1A.png" alt="Desktop 2">
+                <img src="../Assets/products/desktops/TUF Gaming VG28UQL1A.png" alt="Desktop 2">
                 <h4>Desktop 2</h4>
                 <p>Great for gaming and multimedia.</p>
                 <div class="price">$1200.00</div>
@@ -446,19 +445,19 @@
         <div id="card">
             <!-- Desktops Cards -->
             <div class="product-card">
-                <img src="./Assets/product/monitors/TUF Gaming VG27VQM Curved.png" alt="Monitor 1">
+                <img src="../Assets/product/monitors/TUF Gaming VG27VQM Curved.png" alt="Monitor 1">
                 <h4>Monitor 1</h4>
                 <p>4K resolution for clear, vibrant display.</p>
                 <div class="price">$499.99</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/product/monitors/TUF GAMING VG289Q.png" alt="Monitor 2">
+                <img src="../Assets/product/monitors/TUF GAMING VG289Q.png" alt="Monitor 2">
                 <h4>Monitor 2</h4>
                 <p>Perfect for gaming and design work.</p>
                 <div class="price">$350.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/product/monitors/TUF Gaming VG28UQL1A.png" alt="Monitor 2">
+                <img src="../Assets/product/monitors/TUF Gaming VG28UQL1A.png" alt="Monitor 2">
                 <h4>Monitor 2</h4>
                 <p>Perfect for gaming and design work.</p>
                 <div class="price">$350.00</div>
@@ -473,37 +472,37 @@
         <div id="card">
             <!-- Accessory Cards -->
             <div class="product-card">
-                <img src="./Assets/products/accessories/HP 4K USB Type C® Multiport Hub - Black.jpg" alt="Accessory 1">
+                <img src="../Assets/products/accessories/HP 4K USB Type C® Multiport Hub - Black.jpg" alt="Accessory 1">
                 <h4>Accessory 1</h4>
                 <p>Stylish and functional laptop bag.</p>
                 <div class="price">$40.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/accessories/HP 950 4K Webcam.jpg" alt="Accessory 2">
+                <img src="../Assets/products/accessories/HP 950 4K Webcam.jpg" alt="Accessory 2">
                 <h4>Accessory 2</h4>
                 <p>Wireless mouse with ergonomic design.</p>
                 <div class="price">$25.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/accessories/HP Wireless Mouse 250.jpg" alt="Accessory 1">
+                <img src="../Assets/products/accessories/HP Wireless Mouse 250.jpg" alt="Accessory 1">
                 <h4>Accessory 1</h4>
                 <p>Stylish and functional laptop bag.</p>
                 <div class="price">$40.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/accessories/Lenovo Go Wired Speakerphone 4XD1C82055.webp" alt="Accessory 2">
+                <img src="../Assets/products/accessories/Lenovo Go Wired Speakerphone 4XD1C82055.webp" alt="Accessory 2">
                 <h4>Accessory 2</h4>
                 <p>Wireless mouse with ergonomic design.</p>
                 <div class="price">$25.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/accessories/Lenovo Yoga ANC Wireless Bluetooth USB Type-C Headphones GXD1A39963.webp" alt="Accessory 1">
+                <img src="../Assets/products/accessories/Lenovo Yoga ANC Wireless Bluetooth USB Type-C Headphones GXD1A39963.webp" alt="Accessory 1">
                 <h4>Accessory 1</h4>
                 <p>Stylish and functional laptop bag.</p>
                 <div class="price">$40.00</div>
             </div>
             <div class="product-card">
-                <img src="./Assets/products/accessories/Lenovo Yoga Sleeve 14-inch Notebook Case Black GX40X02932.webp" alt="Accessory 2">
+                <img src="../Assets/products/accessories/Lenovo Yoga Sleeve 14-inch Notebook Case Black GX40X02932.webp" alt="Accessory 2">
                 <h4>Accessory 2</h4>
                 <p>Wireless mouse with ergonomic design.</p>
                 <div class="price">$25.00</div>
