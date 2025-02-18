@@ -47,8 +47,14 @@
 
     /* Set the color for navbar background and text */
     .navbar {
+        position: sticky;
         background-color: #14332F;
-        /* Dark green background */
+        top: 0;
+        z-index: 1000; /* Ensure it stays on top of other content */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for effect */
+    }
+    .navbar.navbar-expand-lg {
+    padding: 10px 0; /* Optional: Adjust padding for spacing */
     }
 
     .navbar .navbar-brand,
@@ -146,7 +152,7 @@
     footer .container {
         max-width: 1200px;
         /* Limit the maximum width of the footer */
-
+    }
 /* Hero Section */
 .hero {
     background-color: #14332F;
@@ -198,33 +204,33 @@
 }
 
 /* Features Section */
-.features {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 40px;
-    background: white;
+.feature-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.feature {
-    background: #f9fafb; /* Tailwind's gray-50 */
-    padding: 20px;
-    width: 250px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Tailwind's shadow-lg */
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 32px rgba(0, 0, 0, 0.12);
 }
 
-.feature h3 {
-    color: #2563eb; /* Tailwind's blue-600 */
-    font-size: 1.5rem; /* Tailwind's text-2xl */
-    font-weight: bold;
+.feature-card h3 {
+    color: #007bff;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 /* CTA Section */
 .cta {
-    background: #2563eb; /* Tailwind's blue-600 */
+    background: #14332F; /* Tailwind's blue-600 */
     color: white;
     padding: 50px 20px;
 }
@@ -369,16 +375,16 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="relative bg-cover bg-center h-[50vh] flex items-center justify-center text-white"
-        style="background-image: url('https://source.unsplash.com/1600x900/?technology');">
-        <div class="bg-black bg-opacity-60 p-10 rounded-lg text-center">
-            <h1 class="text-4xl font-bold uppercase">About Arize</h1>
-            <p class="mt-2 text-lg">Awaken the power of technology with cutting-edge innovation.</p>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>About Arize</h1>
+            <p>Awaken the power of technology with cutting-edge innovation.</p>
         </div>
     </section>
 
+
     <!-- Content Section -->
-    <section class="max-w-4xl mx-auto py-12 px-6">
+    <section class="content">
         <h2 class="text-3xl font-semibold text-center mb-6">Who We Are</h2>
         <p class="text-lg text-gray-700 text-center mb-6">
             At <strong>Arize</strong>, we believe that technology is more than just hardware—it’s a gateway to
@@ -392,36 +398,44 @@
     </section>
 
     <!-- Features Section -->
-    <section class="bg-white py-12 px-6">
-        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-            <div class="p-6 shadow-lg rounded-lg bg-gray-50">
-                <h3 class="text-2xl font-bold text-blue-600">🔹 Quality Products</h3>
-                <p class="text-gray-700 mt-2">We curate only the best, rigorously tested technology from trusted brands.
-                </p>
+    <section class="features container text-center py-5">
+        <h2 class="fw-bold text-primary mb-4">Why Choose ARIZE?</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-lg-4 mb-4">
+                <div class="feature-card p-4">
+                    <h3>🔹 Quality Products</h3>
+                    <p>We curate only the best, rigorously tested technology from trusted brands.</p>
+                </div>
             </div>
-            <div class="p-6 shadow-lg rounded-lg bg-gray-50">
-                <h3 class="text-2xl font-bold text-blue-600">💰 Affordable Pricing</h3>
-                <p class="text-gray-700 mt-2">Competitive deals without compromising on performance.</p>
+            <div class="col-md-5 col-lg-4 mb-4">
+                <div class="feature-card p-4">
+                    <h3>💰 Affordable Pricing</h3>
+                    <p>Competitive deals without compromising on performance.</p>
+                </div>
             </div>
-            <div class="p-6 shadow-lg rounded-lg bg-gray-50">
-                <h3 class="text-2xl font-bold text-blue-600">🤝 Customer Experience</h3>
-                <p class="text-gray-700 mt-2">Enjoy a seamless, personalized shopping journey with dedicated support.
-                </p>
+            <div class="col-md-5 col-lg-4 mb-4">
+                <div class="feature-card p-4">
+                    <h3>🤝 Customer Experience</h3>
+                    <p>Enjoy a seamless, personalized shopping journey with dedicated support.</p>
+                </div>
             </div>
-            <div class="p-6 shadow-lg rounded-lg bg-gray-50">
-                <h3 class="text-2xl font-bold text-blue-600">🚀 Future-Ready Tech</h3>
-                <p class="text-gray-700 mt-2">Stay ahead with the latest innovations in gaming, PCs, and accessories.
-                </p>
+            <div class="col-md-5 col-lg-4 mb-4">
+                <div class="feature-card p-4">
+                    <h3>🚀 Future-Ready Tech</h3>
+                    <p>Stay ahead with the latest innovations in gaming, PCs, and accessories.</p>
+                </div>
             </div>
         </div>
     </section>
 
+
+
     <!-- CTA Section -->
-    <section class="text-center py-12 bg-blue-600 text-white">
+    <section class="cta">
         <h2 class="text-3xl font-bold">Join Us in Shaping the Future of Tech</h2>
         <p class="text-lg mt-2">Shop with us today and awaken your potential!</p>
         <a href="shop.html"
-            class="mt-4 inline-block bg-white text-blue-600 font-semibold py-2 px-6 rounded-lg shadow-lg hover:bg-gray-100 transition">Shop
+            class="cta-button">Shop
             Now</a>
     </section>
 
@@ -447,7 +461,7 @@
                 <div class="col-md-4">
                     <h5>Follow Us</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white"><i class="bi bi-facebook"></i> Facebook</a></li>
+                        <li><a href="#" class="text-white"><i class="bi bi-facebook"></i> Discord</a></li>
                         <li><a href="#" class="text-white"><i class="bi bi-twitter"></i> Twitter</a></li>
                         <li><a href="#" class="text-white"><i class="bi bi-instagram"></i> Instagram</a></li>
                     </ul>

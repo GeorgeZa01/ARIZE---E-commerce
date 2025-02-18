@@ -37,9 +37,15 @@
 
         /* Set the color for navbar background and text */
         .navbar {
-            background-color: #14332F;
-            /* Dark green background */
-        }
+        position: sticky;
+        background-color: #14332F;
+        top: 0;
+        z-index: 1000; /* Ensure it stays on top of other content */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for effect */
+    }
+    .navbar.navbar-expand-lg {
+    padding: 10px 0; /* Optional: Adjust padding for spacing */
+    }
 
         .navbar .navbar-brand,
         .navbar .nav-link,
