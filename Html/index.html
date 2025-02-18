@@ -13,21 +13,75 @@
 
 </head>
 <style>
-    .section {
-        background-image: url("./Assets/imgs/hero.jpg");
-        height: 100vh;
-        background-size: cover;
-        background-repeat: none;
-        width: 100%;
+      .card {
+        width: 100%; /* Full width for responsiveness */
+        max-width: 320px; /* Larger cards */
+        margin: 20px auto;
+        border: none;
+        border-radius: 12px; /* Smooth rounded corners */
+        overflow: hidden;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        background: #eeeee9;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
     }
 
-    #hero {
+
+    .card img {
         width: 100%;
-        height: calc(100svh - 45);
+        height: 220px; /* Larger images */
         object-fit: cover;
-        display: flex;
-        justify-content: flex-end
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
     }
+
+    .card-body {
+        padding: 15px;
+        text-align: center;
+    }
+    .card-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #14332F;
+    }
+
+
+    .card-text {
+        font-size: 0.95rem;
+        color: #424242;
+        margin-bottom: 15px;
+    }
+
+    .btn-button {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 8px;
+        background: #14332F;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background 0.3s;
+    }
+
+    .btn-button:hover {
+        background: #1a4d46;
+    }
+
+    .product-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 40px 0;
+        background-color: #516559;
+        width: 100%;
+    }
+   
 
     body {
         background-color: #eeeee9;
@@ -151,7 +205,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="./Assets/imgs/arize.png" alt="" class="img-fluid" style="max-width: 150px;">
+                <img src="../Html/Assets/imgs/arize.png" alt="" class="img-fluid" style="max-width: 150px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -161,10 +215,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
+                        <a class="nav-link" href="./products.html">Products</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -256,21 +310,97 @@
         </div>
     </div>
 
-    <section class="section">
-        <div class="card text-center">
-            <div class="card-header">
-              Featured
+  <!-- Carousel Section -->
+<div id="productCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="./Assets/imgs/Banner.jpg" class="d-block mx-auto" style="width: 1550px; ; height: 500px; ;" alt="Laptops">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>High-Performance Laptops</h5>
+                <p>Discover the latest in computing power.</p>
             </div>
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+        <div class="carousel-item active">
+            <img src="./Assets/imgs/banner2.jpg" class="d-block mx-auto" style="width: 1550px; ; height: 500px; ;" alt="Laptops">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>High-Performance Laptops</h5>
+                <p>Discover the latest in computing power.</p>
             </div>
-            <div class="card-footer text-muted">
-              2 days ago
+        </div>
+        <div class="carousel-item active">
+            <img src="./Assets/imgs/discord.jpg" class="d-block mx-auto" style="width: 1550px; ; height: 500px; ;" alt="Laptops">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>High-Performance Laptops</h5>
+                <p>Discover the latest in computing power.</p>
             </div>
-          </div>
-    </section>
+        </div>
+    </div>
+    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button> -->
+</div>
+
+
+
+   <!-- Cards Section -->
+<section class="product-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-3 d-flex">
+                <div class="card">
+                    <img src="./Assets/products/laptops/ASUS TUF Gaming F15 (2022).png" class="card-img-top" alt="Laptops">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Laptops</h5>
+                        <p class="card-text">Discover the latest high-performance laptops.</p>
+                        <a href="#" class="btn btn-button">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex">
+                <div class="card">
+                    <img src="./Assets/products/desktops/Lenovo ThinkCentre M70a G3 21.5-inch FHD Intel Core i5.png" class="card-img-top" alt="Desktops">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Desktops</h5>
+                        <p class="card-text">Powerful and reliable desktops.</p>
+                        <a href="#" class="btn btn-button">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex">
+                <div class="card">
+                    <img src="./Assets/products/accessories/HP 950 4K Webcam.jpg
+                    " class="card-img-top" alt="Accessories">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Accessories</h5>
+                        <p class="card-text">Upgrade your setup with accessories.</p>
+                        <a href="#" class="btn btn-button">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex">
+                <div class="card">
+                    <img src="./Assets/products/desktops/TUF GAMING VG289Q.png" class="card-img-top" alt="Monitors">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Monitors</h5>
+                        <p class="card-text">High-resolution monitors.</p>
+                        <a href="#" class="btn btn-button">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 
     <!-- Footer -->
