@@ -1,338 +1,550 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <!-- Bootstrap Icons CDN -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-</head>
-<style>
-    .section{
-        background-image: url("./Assets/imgs/hero.jpg"); 
-        height: 100vh;
-        background-repeat: none; 
-        width: 100%;          
-    }
-    #hero {
-        width: 100%;
-        height: calc(100svh - 45);
-        object-fit: cover;
-        display:flex;  
-        justify-content: flex-end       
-    }
-    body {
-        background-color: #eeeee9;
-    }
-    /* Set the color for navbar background and text */
-    .navbar {
-        background-color: #14332F; /* Dark green background */
-    }
-
-    .navbar .navbar-brand,
-    .navbar .nav-link,
-    .navbar .navbar-toggler-icon {
-        color: white !important; /* White text color for all navbar items */
-    }
-
-    .navbar .navbar-toggler-icon {
-        background-color: white; /* Change hamburger icon color to white */
-    }
-
-    .navbar-nav .nav-link.active {
-        color: #ffd700; /* Highlight active link with a gold color */
-    }
-
-    /* Custom button styles */
-    .btn-button {
-        color: white; /* White text color for login button */
-        background-color: #14332F; /* Dark green background for login button */
-        border-color: #14332F; /* Dark green border for login button */
-    }
-
-    .btn-button:hover {
-        color: white;
-        background-color: #1a4d46; /* Slightly darker green on hover */
-        border-color: #0f2d29; /* Darker border on hover */
-    }
-
-    .modal-header {
-        background-color: #14332F; /* Dark green header for modal */
-        color: white; /* White text in modal header */
-    }
-
-    .modal-footer {
-        background-color: #f8f9fa; /* Light background for footer */
-    }
-
-    .form-label {
-        color: #14332F; /* Dark green color for form labels */
-    }
-
-    .form-control {
-        border-color: #14332F; /* Dark green border for form controls */
-    }
     
-    .form-control:focus {
-        border-color: #0f2d29; /* Darker green on focus */
-        box-shadow: 0 0 0 0.25rem rgba(20, 51, 47, 0.25); /* Green focus shadow */
-    }
-    footer {
-background-color: #1f1f1f; /* Dark background color for footer */
-color: white; /* White text color */
-}
+    </head>
+    <style>
+        .section {
+            background-image: url("./Assets/imgs/hero.jpg");
+            height: 100vh;
+            background-size: cover;
+            background-repeat: none;
+            width: 100%;
+        }
+        body h3{
+            color: #eeeee9;
+        }
 
-footer a {
-text-decoration: none; /* Remove underlines from links */
-}
+        #hero {
+            width: 100%;
+            height: calc(100svh - 45);
+            object-fit: cover;
+            display: flex;
+            justify-content: flex-end;
+        }
 
-footer a:hover {
-color: #ffd700; /* Change color to gold on hover */
-}
+        body {
+            background-color: #516559;
+        }
 
-footer .container {
-max-width: 1200px; /* Limit the maximum width of the footer */
-}
-    /* Ensure all cards have the same size */
-    .card {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
+        /* Set the color for navbar background and text */
+        .navbar {
+            background-color: #14332F;
+            /* Dark green background */
+        }
 
-    .card img {
-        height: 200px; /* Set a fixed height for images */
-        object-fit: cover; /* Ensure images fit within the space */
-    }
+        .navbar .navbar-brand,
+        .navbar .nav-link,
+        .navbar .navbar-toggler-icon {
+            color: white !important;
+            background-color: #14332F;
+            border-color: #eeeee9;
+            /* White text color for all navbar items */
+        }
 
-    .card-body {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+        .navbar .navbar-toggler-icon {
+            background-color: white;
+            background-color: #14332F;
+            border-color: #eeeee9;
+            /*Change hamburger icon color to white */
+        }
 
-    /* Hover effect */
-    .card:hover {
-        transform: scale(1.05); /* Slightly increase size on hover */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
-        transition: all 0.3s ease-in-out;
-    }
-</style>
+        .navbar-nav .nav-link.active {
+            color: #ffd700;
+            /* Highlight active link with a gold color */
+        }
+
+        button.navbar-toggler {
+            color: white;
+            /* Dark green background for hamburger icon */
+        }
+
+        span.navbar-toggler-icon {
+            color: #eeeee9 !important;
+        }
+
+        #carouselExampleIndicators {
+            width: 100vw;
+            height: 100vh;
+            object-fit: fill;
+            display: inline-block;
+            justify-content: center;
+        }
+
+        /* Custom button styles */
+        .btn-button {
+            color: white;
+            /* White text color for login button */
+            background-color: #14332F;
+            /* Dark green background for login button */
+            border-color: #14332F;
+            /* Dark green border for login button */
+        }
+
+        .btn-button:hover {
+            color: white;
+            background-color: #1a4d46;
+            /* Slightly darker green on hover */
+            border-color: #0f2d29;
+            /* Darker border on hover */
+        }
+
+        .modal-header {
+            background-color: #14332F;
+            /* Dark green header for modal */
+            color: white;
+            /* White text in modal header */
+        }
+
+        .modal-footer {
+            background-color: #f8f9fa;
+            /* Light background for footer */
+        }
+
+        .form-label {
+            color: #14332F;
+            /* Dark green color for form labels */
+        }
+
+        .form-control {
+            border-color: #14332F;
+            /* Dark green border for form controls */
+        }
+
+        .form-control:focus {
+            border-color: #0f2d29;
+            /* Darker green on focus */
+            box-shadow: 0 0 0 0.25rem rgba(20, 51, 47, 0.25);
+            /* Green focus shadow */
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            /* Dark background color for footer */
+            color: white;
+            /* White text color */
+        }
+
+        footer a {
+            text-decoration: none;
+            /* Remove underlines from links */
+        }
+
+        footer a:hover {
+            color: #ffd700;
+            /* Change color to gold on hover */
+        }
+
+        footer .container {
+            max-width: 1200px;
+            /* Limit the maximum width of the footer */
+        }
+
+        /* Basic styling for the product cards */
+        section {
+            margin: 20px;
+        }
+
+        h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        #card {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-card h4 {
+            color: #333;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .product-card .price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #007BFF;
+        }
+    </style>
+
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="./Assets/imgs/arize.png" alt="" class="img-fluid" style="max-width: 150px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="products.html">Products</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            More
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">About Us</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                <!-- Login/Signup Button -->
-                <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal">Log In</button>
-                <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1">Sign Up</button>
-                <!-- Cart Icon Button -->
-                <button class="btn btn-button ms-2">
-                    <i class="bi bi-cart"></i> Cart
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="../Html/Assets/imgs/arize.png" alt="" class="img-fluid" style="max-width: 150px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./products.html">Products</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                More
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">About Us</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                            </ul>
+                        </li>                    
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <!-- Login/Signup Button -->
+                    <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal">Log In</button>
+                    <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1">Sign Up</button>
+                    <!-- Cart Icon Button -->
+                    <button class="btn btn-button ms-2">
+                        <i class="bi bi-cart"></i> Cart
+                    </button>
+                </div>
+            </div>
+        </nav>
+    
+        <!-- Modal for Login -->
+        <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="authModalLabel">Log In</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form content for login/signup -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-button">Log In</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+    
+        <!-- Sign Up -->
+        <div class="modal fade" id="authModal1" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="authModalLabel">Sign Up</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form content for login/signup -->
+                        <div class="mb-3">
+                            <label for="text" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="eg.Mike ">
+                        </div>
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="eg. Oxlong">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="eg. mikeoxlong69@gmail.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Confirm your password">
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-button">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+    
+    <!-- product Page -->
+    <!-- laptops -->
+    <h3>Laptops</h3>
+    <section>
+        <div id="card">
+            <!-- Laptop Cards -->
+            <div class="product-card">
+                <img src="./Assets/products/laptops/ASUS TUF Gaming A16 (2024) FA608.png" alt="Laptop 1">
+                <h4>Laptop 1</h4>
+                <p>A powerful laptop for work and play.</p>
+                <div class="price">$999.99</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/laptops/ASUS TUF Gaming F15 (2022).png" alt="Laptop 2">
+                <h4>Laptop 2</h4>
+                <p>Lightweight and high-performance laptop.</p>
+                <div class="price">$899.99</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/laptops/ASUS Zenbook Pro 16X OLED (UX7602).png" alt="Laptop 3">
+                <h4>Laptop 3</h4>
+                <p>Ideal for students and professionals.</p>
+                <div class="price">$799.99</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/laptops/HP EliteBook 830 13 inch G11 Notebook PC.png" alt="Laptop 1">
+                <h4>Laptop 1</h4>
+                <p>A powerful laptop for work and play.</p>
+                <div class="price">$999.99</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/laptops/HP Pavilion Laptop 16-af0015ni, Windows 11 Home Single Language.jpg" alt="Laptop 2">
+                <h4>Laptop 2</h4>
+                <p>Lightweight and high-performance laptop.</p>
+                <div class="price">$899.99</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/laptops/HP ZBOOK FIREFLY 14 G11 U7-155H 32GB 1TB 3.3.3 WIN11 PRO 64.jpg" alt="Laptop 3">
+                <h4>Laptop 3</h4>
+                <p>Ideal for students and professionals.</p>
+                <div class="price">$799.99</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/laptops/Lenovo ThinkBook 14-inch WUXGA Intel Core Ultra 7.webp" alt="Laptop 1">
+                <h4>Laptop 1</h4>
+                <p>A powerful laptop for work and play.</p>
+                <div class="price">$999.99</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/laptops/Lenovo ThinkPad L14 G5 14-inch WUXGA Intel Core Ultra 5.webp" alt="Laptop 2">
+                <h4>Laptop 2</h4>
+                <p>Lightweight and high-performance laptop.</p>
+                <div class="price">$899.99</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/laptops/Lenovo V15 G2 ITL 15.6-inch FHD Intel Core i5.webp" alt="Laptop 3">
+                <h4>Laptop 3</h4>
+                <p>Ideal for students and professionals.</p>
+                <div class="price">$799.99</div>
+            </div>
 
-    <!-- Modal for Login -->
-    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="authModalLabel">Log In</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Form content for login/signup -->
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-button">Log In</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sign Up -->
-    <div class="modal fade" id="authModal1" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="authModalLabel">Sign Up</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Form content for login/signup -->
-                    <div class="mb-3">
-                        <label for="text" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="eg.Mike ">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Last Name</label>
-                        <input type="email" class="form-control" id="lastName" placeholder="eg. Oxlong">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="eg. mikeoxlong69@gmail.com">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Confirm your password">
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-button">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <section class="container py-5">
-        <div class="row">
-            <!-- Laptops Card -->
-            <div class="col-md-3 d-flex">
-                <div class="card w-100">
-                    <img src="./Assets/products/laptops/HP EliteBook 830 13 inch G11 Notebook PC.png" class="card-img-top" alt="Laptops">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Laptops</h5>
-                        <p class="card-text">Discover the latest high-performance laptops for work and play.</p>
-                        <a href="#" class="btn btn-button">Shop Now</a>
-                    </div>
-                </div>
-            </div>
+    </section>
     
-            <!-- Desktops Card -->
-            <div class="col-md-3 d-flex">
-                <div class="card w-100">
-                    <img src="./Assets/products/desktops/CC-9011270-WW.jpg" class="card-img-top" alt="Desktops">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Desktops</h5>
-                        <p class="card-text">Powerful and reliable desktops for your professional needs.</p>
-                        <a href="#" class="btn btn-button">Shop Now</a>
-                    </div>
-                </div>
+    <!-- Monitors Section -->
+    <h3>Monitors</h3>
+    <section>
+        <div id="card">
+            <!-- Monitors Cards -->
+            <div class="product-card">
+                <img src="./Assets/products/desktops/HP 23.8 inch All-in-One 24-cr1002ni PC, Windows 11.jpg" alt="Desktop 1">
+                <h4>Desktop 1</h4>
+                <p>High-end desktop for workstations.</p>
+                <div class="price">$1500.00</div>
             </div>
-    
-            <!-- Accessories Card -->
-            <div class="col-md-3 d-flex">
-                <div class="card w-100">
-                    <img src="./Assets/products/accessories/HP Wireless Mouse 250.jpg" class="card-img-top" alt="Accessories">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Accessories</h5>
-                        <p class="card-text">Upgrade your setup with top-quality accessories.</p>
-                        <a href="#" class="btn btn-button">Shop Now</a>
-                    </div>
-                </div>
+            <div class="product-card">
+                <img src="./Assets/products/desktops/HP All-in-One Desktop 22-dg0001ni, Windows 11 .jpg" alt="Desktop 2">
+                <h4>Desktop 2</h4>
+                <p>Great for gaming and multimedia.</p>
+                <div class="price">$1200.00</div>
             </div>
-    
-            <!-- Monitors Card -->
-            <div class="col-md-3 d-flex">
-                <div class="card w-100">
-                    <img src="./Assets/products/desktops/HP 23.8 inch All-in-One 24-cr1002ni PC, Windows 11.jpg" class="card-img-top" alt="Monitors">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Monitors</h5>
-                        <p class="card-text">High-resolution monitors for an immersive experience.</p>
-                        <a href="#" class="btn btn-button">Shop Now</a>
-                    </div>
-                </div>
+            <div class="product-card">
+                <img src="./Assets/products/desktops/HP OmniStudio X AiO 27-cs0000ni DT PC.jpg" alt="Desktop 1">
+                <h4>Desktop 1</h4>
+                <p>High-end desktop for workstations.</p>
+                <div class="price">$1500.00</div>
             </div>
+            <div class="product-card">
+                <img src="./Assets/products/desktops/Lenovo ThinkCentre M70a G3 21.5-inch FHD Intel Core i5.png" alt="Desktop 2">
+                <h4>Desktop 2</h4>
+                <p>Great for gaming and multimedia.</p>
+                <div class="price">$1200.00</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/desktops/Lenovo ThinkCentre Neo 50a G5 23.8-inch FHD Intel Core i7.webp" alt="Desktop 1">
+                <h4>Desktop 1</h4>
+                <p>High-end desktop for workstations.</p>
+                <div class="price">$1500.00</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/desktops/Lenovo ThinkCentre neo 50a G5 27-inch FHD Intel Core i7.webp" alt="Desktop 2">
+                <h4>Desktop 2</h4>
+                <p>Great for gaming and multimedia.</p>
+                <div class="price">$1200.00</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/desktops/TUF Gaming VG27VQM Curved.png" alt="Desktop 1">
+                <h4>Desktop 1</h4>
+                <p>High-end desktop for workstations.</p>
+                <div class="price">$1500.00</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/desktops/TUF GAMING VG289Q.png" alt="Desktop 2">
+                <h4>Desktop 2</h4>
+                <p>Great for gaming and multimedia.</p>
+                <div class="price">$1200.00</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/desktops/TUF Gaming VG28UQL1A.png" alt="Desktop 2">
+                <h4>Desktop 2</h4>
+                <p>Great for gaming and multimedia.</p>
+                <div class="price">$1200.00</div>
+            </div>
+           
         </div>
     </section>
     
+    <!-- Desktops Section -->
+    <h3>Desktops</h3>
+    <section>
+        <div id="card">
+            <!-- Desktops Cards -->
+            <div class="product-card">
+                <img src="./Assets/product/monitors/TUF Gaming VG27VQM Curved.png" alt="Monitor 1">
+                <h4>Monitor 1</h4>
+                <p>4K resolution for clear, vibrant display.</p>
+                <div class="price">$499.99</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/product/monitors/TUF GAMING VG289Q.png" alt="Monitor 2">
+                <h4>Monitor 2</h4>
+                <p>Perfect for gaming and design work.</p>
+                <div class="price">$350.00</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/product/monitors/TUF Gaming VG28UQL1A.png" alt="Monitor 2">
+                <h4>Monitor 2</h4>
+                <p>Perfect for gaming and design work.</p>
+                <div class="price">$350.00</div>
+            </div>
+           
+        </div>
+    </section>
+    
+    <!-- Accessories Section -->
+    <h3>Accessories</h3>
+    <section>
+        <div id="card">
+            <!-- Accessory Cards -->
+            <div class="product-card">
+                <img src="./Assets/products/accessories/HP 4K USB Type C® Multiport Hub - Black.jpg" alt="Accessory 1">
+                <h4>Accessory 1</h4>
+                <p>Stylish and functional laptop bag.</p>
+                <div class="price">$40.00</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/accessories/HP 950 4K Webcam.jpg" alt="Accessory 2">
+                <h4>Accessory 2</h4>
+                <p>Wireless mouse with ergonomic design.</p>
+                <div class="price">$25.00</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/accessories/HP Wireless Mouse 250.jpg" alt="Accessory 1">
+                <h4>Accessory 1</h4>
+                <p>Stylish and functional laptop bag.</p>
+                <div class="price">$40.00</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/accessories/Lenovo Go Wired Speakerphone 4XD1C82055.webp" alt="Accessory 2">
+                <h4>Accessory 2</h4>
+                <p>Wireless mouse with ergonomic design.</p>
+                <div class="price">$25.00</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/accessories/Lenovo Yoga ANC Wireless Bluetooth USB Type-C Headphones GXD1A39963.webp" alt="Accessory 1">
+                <h4>Accessory 1</h4>
+                <p>Stylish and functional laptop bag.</p>
+                <div class="price">$40.00</div>
+            </div>
+            <div class="product-card">
+                <img src="./Assets/products/accessories/Lenovo Yoga Sleeve 14-inch Notebook Case Black GX40X02932.webp" alt="Accessory 2">
+                <h4>Accessory 2</h4>
+                <p>Wireless mouse with ergonomic design.</p>
+                <div class="price">$25.00</div>
+            </div>
+            
+        </div>
+    </section>
 
-    <!-- <img src="./Assets/imgs/hero.jpg" alt="" id="hero"> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Footer -->
-        <footer class="bg-dark text-white py-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h5>Contact Us</h5>
-                        <p>123 Business St, Suite 456</p>
-                        <p>City, Country, 12345</p>
-                        <p>Email: contact@yourcompany.com</p>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Quick Links</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white">Home</a></li>
-                            <li><a href="#" class="text-white">Products</a></li>
-                            <li><a href="#" class="text-white">About Us</a></li>
-                            <li><a href="#" class="text-white">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Follow Us</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white"><i class="bi bi-facebook"></i> Facebook</a></li>
-                            <li><a href="#" class="text-white"><i class="bi bi-twitter"></i> Twitter</a></li>
-                            <li><a href="#" class="text-white"><i class="bi bi-instagram"></i> Instagram</a></li>
-                        </ul>
-                    </div>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>123 Business St, Suite 456</p>
+                    <p>City, Country, 12345</p>
+                    <p>Email: contact@yourcompany.com</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Home</a></li>
+                        <li><a href="#" class="text-white">Products</a></li>
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white"><i class="bi bi-facebook"></i> Facebook</a></li>
+                        <li><a href="#" class="text-white"><i class="bi bi-twitter"></i> Twitter</a></li>
+                        <li><a href="#" class="text-white"><i class="bi bi-instagram"></i> Instagram</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="text-center py-3">
-                <p>&copy; 2025 Your Company Name. All rights reserved.</p>
-            </div>
-        </footer>
-    
-
-   
-</body>
-</html>
+        </div>
+        <div class="text-center py-3">
+            <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
