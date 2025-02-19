@@ -21,11 +21,14 @@
                 <a class="navbar-brand" href="#">
                     <img src="../Assets/imgs/arize.png" alt="" class="img-fluid" style="max-width: 150px;">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <label class="toggle" for="checkbox"class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <div id="bar1" class="bars"></div>
+                <div id="bar2" class="bars"></div>
+                <div id="bar3" class="bars"></div>
+                <!-- <span class="navbar-toggler-icon"></span> -->
+            </label>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -54,7 +57,7 @@
                     <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1">Sign Up</button>
                     <!-- Cart Icon Button -->
                     <button class="btn btn-button ms-2">
-                        <i class="bi bi-cart"></i> Cart
+                        <i class="bi bi-cart"></i> Cart (<span id="cart-count">0</span>)
                     </button>
                 </div>
             </div>
@@ -128,7 +131,22 @@
     <div>
         <strong>Join our Discord Community!</strong> Click here to connect with others.
     </div>
-    <a href="https://discord.com" target="_blank" class="btn btn-outline-light ms-3">Join Now</a>
+    <a href="#" class="playstore-button">
+        <svg
+          viewBox="0 -28.5 256 256"
+          class="icon"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z"
+          ></path>
+        </svg>
+        <span class="texts">
+          <span class="text-1">JOIN THE</span>
+          <span class="text-2">DISCORD</span>
+        </span>
+      </a>
 </div>
 <br>
     <!-- product Page -->
@@ -142,31 +160,47 @@
                 <h4>Laptop 1</h4>
                 <p>A powerful laptop for work and play.</p>
                 <div class="price">$999.99</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>            
+                </div>
             <div class="product-card">
                 <img src="../Assets/products/laptops/ASUS TUF Gaming F15 (2022).png" alt="Laptop 2">
                 <h4>Laptop 2</h4>
                 <p>Lightweight and high-performance laptop.</p>
                 <div class="price">$899.99</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                </div>
             <div class="product-card">
                 <img src="../Assets/products/laptops/ASUS Zenbook Pro 16X OLED (UX7602).png" alt="Laptop 3">
                 <h4>Laptop 3</h4>
                 <p>Ideal for students and professionals.</p>
                 <div class="price">$799.99</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                </div>
             <div class="product-card">
                 <img src="../Assets/products/laptops/HP EliteBook 830 13 inch G11 Notebook PC.png" alt="Laptop 1">
                 <h4>Laptop 4</h4>
                 <p>A powerful laptop for work and play.</p>
                 <div class="price">$999.99</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                </div>
             <div class="product-card">
                 <img src="../Assets/products/laptops/HP Pavilion Laptop 16-af0015ni, Windows 11 Home Single Language.jpg" alt="Laptop 2">
                 <h4>Laptop 5</h4>
                 <p>Lightweight and high-performance laptop.</p>
                 <div class="price">$899.99</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                </div>
     </section>
     
     <!-- Monitors Section -->
@@ -179,31 +213,51 @@
                 <h4>Desktop 1</h4>
                 <p>High-end desktop for workstations.</p>
                 <div class="price">$1500.00</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
             <div class="product-card">
                 <img src="../Assets/products/desktops/HP All-in-One Desktop 22-dg0001ni, Windows 11 .jpg" alt="Desktop 2">
                 <h4>Desktop 2</h4>
                 <p>Great for gaming and multimedia.</p>
                 <div class="price">$1200.00</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
             <div class="product-card">
                 <img src="../Assets/products/desktops/HP OmniStudio X AiO 27-cs0000ni DT PC.jpg" alt="Desktop 1">
                 <h4>Desktop 3</h4>
                 <p>High-end desktop for workstations.</p>
                 <div class="price">$1500.00</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
             <div class="product-card">
                 <img src="../Assets/products/desktops/Lenovo ThinkCentre M70a G3 21.5-inch FHD Intel Core i5.png" alt="Desktop 2">
                 <h4>Desktop 4</h4>
                 <p>Great for gaming and multimedia.</p>
                 <div class="price">$1200.00</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
             <div class="product-card">
                 <img src="../Assets/products/desktops/Lenovo ThinkCentre Neo 50a G5 23.8-inch FHD Intel Core i7.webp" alt="Desktop 1">
                 <h4>Desktop 5</h4>
                 <p>High-end desktop for workstations.</p>
                 <div class="price">$1500.00</div>
-            </div> 
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div> 
         </div>
     </section>
     
@@ -213,23 +267,55 @@
         <div id="card">
             <!-- Desktops Cards -->
             <div class="product-card">
-                <img src="../Assets/product/monitors/TUF Gaming VG27VQM Curved.png" alt="Monitor 1">
+                <img src="../Assets/products/PC towers/011 Dynamic MINI snow edition.jpg" alt="Monitor 1">
                 <h4>Monitor 1</h4>
                 <p>4K resolution for clear, vibrant display.</p>
                 <div class="price">$499.99</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
             <div class="product-card">
-                <img src="../Assets/product/monitors/TUF GAMING VG289Q.png" alt="Monitor 2">
+                <img src="../Assets/products/PC towers/Apevia Predator.jpg" alt="Monitor 2">
                 <h4>Monitor 2</h4>
                 <p>Perfect for gaming and design work.</p>
                 <div class="price">$350.00</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
             <div class="product-card">
-                <img src="../Assets/product/monitors/TUF Gaming VG28UQL1A.png" alt="Monitor 2">
+                <img src="../Assets/products/PC towers/H5 Flow ATX Mid .jpg" alt="Monitor 2">
                 <h4>Monitor 2</h4>
                 <p>Perfect for gaming and design work.</p>
                 <div class="price">$350.00</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
+            <div class="product-card">
+                <img src="../Assets/products/PC towers/PC Gamer AMD AM5 Ryzen 5 8500G.jpg" alt="Monitor 2">
+                <h4>Monitor 2</h4>
+                <p>Perfect for gaming and design work.</p>
+                <div class="price">$350.00</div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
+            <div class="product-card">
+                <img src="../Assets/products/PC towers/Infomax PC Gamer .jpg" alt="Monitor 2">
+                <h4>Monitor 2</h4>
+                <p>Perfect for gaming and design work.</p>
+                <div class="price">$350.00</div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
            
         </div>
     </section>
@@ -244,41 +330,74 @@
                 <h4>Accessory 1</h4>
                 <p>Stylish and functional laptop bag.</p>
                 <div class="price">$40.00</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
             <div class="product-card">
                 <img src="../Assets/products/accessories/HP 950 4K Webcam.jpg" alt="Accessory 2">
                 <h4>Accessory 2</h4>
                 <p>Wireless mouse with ergonomic design.</p>
                 <div class="price">$25.00</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
             <div class="product-card">
                 <img src="../Assets/products/accessories/HP Wireless Mouse 250.jpg" alt="Accessory 1">
                 <h4>Accessory 1</h4>
                 <p>Stylish and functional laptop bag.</p>
                 <div class="price">$40.00</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
             <div class="product-card">
                 <img src="../Assets/products/accessories/Lenovo Go Wired Speakerphone 4XD1C82055.webp" alt="Accessory 2">
                 <h4>Accessory 2</h4>
                 <p>Wireless mouse with ergonomic design.</p>
                 <div class="price">$25.00</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
             <div class="product-card">
                 <img src="../Assets/products/accessories/Lenovo Yoga ANC Wireless Bluetooth USB Type-C Headphones GXD1A39963.webp" alt="Accessory 1">
                 <h4>Accessory 1</h4>
                 <p>Stylish and functional laptop bag.</p>
                 <div class="price">$40.00</div>
-            </div>
-            <div class="product-card">
-                <img src="../Assets/products/accessories/Lenovo Yoga Sleeve 14-inch Notebook Case Black GX40X02932.webp" alt="Accessory 2">
-                <h4>Accessory 2</h4>
-                <p>Wireless mouse with ergonomic design.</p>
-                <div class="price">$25.00</div>
-            </div>
+                <button class="button" type="button">
+                    <span class="button__text">Add Item</span>
+                    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+                  </button>                
+                </div>
             
         </div>
     </section>
     
+    <script>
+        // Initialize cart counter
+    let cartCount = 0;
+    // Select all "Add to Cart" buttons
+    const addToCartButtons = document.querySelectorAll('.button');
+    // Select the cart count element
+    const cartCountElement = document.getElementById('cart-count');
+    // Add event listeners to each "Add to Cart" button
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Increment the cart count
+        cartCount++;
+        // Update the cart count on the cart button
+        cartCountElement.textContent = cartCount;
+        // Optional: Show a notification that an item was added to the cart
+        alert('Item added to cart!');
+      });
+    });
+    </script>
 
 
     <footer class="bg-dark text-white py-4">
