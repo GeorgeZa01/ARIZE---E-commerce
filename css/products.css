@@ -195,6 +195,8 @@ text-align: center;
 padding: 20px;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 border: 1px solid #E0E0E0;
+align-items: center;
+
 }
 .product-card img {
 max-width: 100%;
@@ -221,6 +223,7 @@ font-size: 18px;
 font-weight: bold;
 color: #424242;
 }
+
 /* From Uiverse.io by vinodjangid07 */
 #checkbox {
     display: none;
@@ -236,7 +239,15 @@ color: #424242;
     justify-content: center;
     gap: 10px;
     transition-duration: .3s;
+    display: none;
   }
+/* Show the hamburger menu on smaller screens (below 768px) */
+@media (max-width: 1000px) {
+  .toggle {
+      display: flex; /* Change from block to flex for proper alignment */
+  }
+}
+
   .bars {
     width: 100%;
     height: 4px;
@@ -311,3 +322,59 @@ color: #424242;
 .text-2 {
   font-weight: 600;
 }
+.button {
+    --main-focus: #2D8CF0;
+    --font-color: #323232;
+    --bg-color-sub: #DEDEDE;
+    --bg-color: #eee;
+    --main-color: #323232;
+    position: relative;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 30px;
+  }
+  .button, .button__icon, .button__text {
+    transition: all 0.3s;
+  }
+  .button .button__text {
+    transform: translateX(22px);
+    color: var(--font-color);
+    font-weight: 600;
+  }
+  .button .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: var(--bg-color-sub);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .button .svg {
+    width: 20px;
+    fill: var(--main-color);
+  }
+  .button:hover {
+    background: var(--bg-color);
+  }
+  .button:hover .button__text {
+    color: transparent;
+  }
+  .button:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+  }
+  .button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px var(--main-color);
+  }
+  
