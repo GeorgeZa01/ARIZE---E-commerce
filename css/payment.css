@@ -1,0 +1,199 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    align-items: center;
+    justify-content: center;
+}
+
+h2, h4 {
+    font-weight: 600;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+h4 {
+    color: #34495e;
+}
+
+/* Navbar */
+.navbar {
+    position: sticky;
+    background-color: #14332F;
+    top: 0;
+    z-index: 1000; /* Ensure it stays on top of other content */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for effect */
+}
+.navbar.navbar-expand-lg {
+padding: 10px 0; /* Optional: Adjust padding for spacing */
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .navbar-toggler-icon {
+    color: white !important;
+    background-color: #14332F;
+    border-color: #eeeee9;
+    /* White text color for all navbar items */
+}
+
+.navbar .navbar-toggler-icon {
+    background-color: white;
+    background-color: #14332F;
+    border-color: #eeeee9;
+   /*Change hamburger icon color to white */
+}
+
+.navbar-nav .nav-link.active {
+    color: #ffd700;
+    /* Highlight active link with a gold color */
+}
+
+button.navbar-toggler {
+    color: white;
+    /* Dark green background for hamburger icon */
+}
+span.navbar-toggler-icon {
+    color: #eeeee9 !important;
+}
+
+
+/* Page Header */
+.container.py-5 {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+/* Payment Section */
+.payment-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+.payment-method-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+.payment-method-section h4 {
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    color: #2c3e50;
+}
+
+.payment-method-section .form-group {
+    margin-bottom: 15px;
+}
+
+.payment-method-section .form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.payment-method-section .form-control:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+.payment-method-section button {
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.payment-method-section button:hover {
+    background-color: #1f6f99;
+}
+
+/* Payment Method Dropdown */
+.select-wrapper {
+    margin-bottom: 20px;
+    
+}
+
+#payment-method {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1.1rem;
+}
+
+#payment-method:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+/* Footer */
+footer {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 30px 0;
+}
+
+footer h5 {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+footer .list-unstyled li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    display: block;
+    padding: 5px 0;
+}
+
+footer .list-unstyled li a:hover {
+    color: #2980b9;
+}
+
+footer .social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-right: 15px;
+    display: inline-block;
+}
+
+footer .social-icons a:hover {
+    color: #2980b9;
+}
+
+footer .text-center p {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #ecf0f1;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .payment-method-section {
+        padding: 15px;
+    }
+    .container.py-5 {
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+}

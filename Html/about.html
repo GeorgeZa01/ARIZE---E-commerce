@@ -36,16 +36,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="./products.html">Products</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            More
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../Html/about.html">About Us</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Contact Us</a></li>
-                        </ul>
-                    </li>                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about.html">About Us</a>
+                    </li>
+                                      
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -54,10 +48,28 @@
                 <!-- Login/Signup Button -->
                 <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal">Log In</button>
                 <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1">Sign Up</button>
+                 
                  <!-- Cart Icon Button -->
-                 <button class="btn btn-button ms-2">
+                
+                    <button class="btn btn-button ms-2" id="cart-toggle">
                     <i class="bi bi-cart"></i> Cart (<span id="cart-count">0</span>)
                 </button>
+
+                <!-- cart dropdown -->
+                <div class="cart-dropdown">
+                    <h2>Cart</h2>
+                    <p class="free-shipping">Free standard shipping</p>
+                    
+                    <div id="cart-items"></div>
+                
+                    <div class="cart-footer">
+                        <div class="total-section">
+                            <p>Subtotal: <span id="subtotal">R 0.00</span></p>
+                            <h3>Total: <span id="total">R 0.00</span></h3>
+                        </div>
+                       <a href="./checkout.html"><button class="checkout-btn">Checkout</button></a> 
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -184,12 +196,85 @@
 
     <!-- CTA Section -->
     <section class="cta">
-        <h2 class="text-3xl font-bold">Join Us in Shaping the Future of Tech</h2>
-        <p class="text-lg mt-2">Chat with us today and awaken your potential!</p>
+        <h2 class="text-3xl font-bold text-center">Join Us in Shaping the Future of Tech</h2>
+        <p class="text-lg mt-2 text-center">Chat with us today and awaken your potential!</p>
         <a href="shop.html"
             class="cta-button">Join Now
         </a>
     </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const cartItemsContainer = document.getElementById("cart-items");
+        const subtotalEl = document.getElementById("subtotal");
+        const totalEl = document.getElementById("total");
+        const cartDropdown = document.querySelector(".cart-dropdown");
+        const cartToggleBtn = document.getElementById("cart-toggle");
+    
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+        function updateCartDisplay() {
+            cartItemsContainer.innerHTML = "";
+            let subtotal = 0;
+    
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = "<p class='empty-cart'>Your cart is empty</p>";
+            } else {
+                cart.forEach((item, index) => {
+                    subtotal += item.price * item.quantity;
+    
+                    const cartItem = document.createElement("div");
+                    cartItem.classList.add("cart-item");
+    
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="item-details">
+                            <h3>${item.name}</h3>
+                            <p>${item.size ? "Size: " + item.size : ""} ${item.color ? "Color: " + item.color : ""}</p>
+                            <p class="item-price">R ${item.price.toFixed(2)}</p>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(${index}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn" onclick="changeQuantity(${index}, 1)">+</button>
+                        </div>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">🗑️</button>
+                    `;
+    
+                    cartItemsContainer.appendChild(cartItem);
+                });
+            }
+    
+            subtotalEl.textContent = `R ${subtotal.toFixed(2)}`;
+            // Apply any additional fees/taxes if needed
+            const tax = subtotal * 0.15; // Example 15% tax
+            const total = subtotal + tax;
+            totalEl.textContent = `R ${total.toFixed(2)}`;
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+    
+        window.changeQuantity = function (index, change) {
+            if (cart[index].quantity + change > 0) {
+                cart[index].quantity += change;
+            } else {
+                cart.splice(index, 1);
+            }
+            updateCartDisplay();
+        };
+    
+        window.removeFromCart = function (index) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+        };
+    
+        // Toggle cart dropdown visibility
+        cartToggleBtn.addEventListener("click", function () {
+            cartDropdown.style.display = cartDropdown.style.display === "none" || cartDropdown.style.display === "" ? "block" : "none";
+        });
+    
+        updateCartDisplay();
+    });
+    </script>
 
      <!-- Footer -->
      <footer class="bg-dark text-white py-4">

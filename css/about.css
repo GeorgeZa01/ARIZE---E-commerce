@@ -218,6 +218,8 @@
     background: #14332F; /* Tailwind's blue-600 */
     color: white;
     padding: 50px 20px;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .cta h2 {
@@ -232,6 +234,8 @@
 
 .cta-button {
     display: inline-block;
+    margin: 0 auto;
+    text-align: center;
     background: white;
     color: #14332F; /* Tailwind's blue-600 */
     padding: 10px 20px;
@@ -299,3 +303,121 @@
     transition-duration: .3s;
     transform-origin:right;
   } */
+  .cart-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 350px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 1000;
+    display: none; /* Initially hidden */
+}
+
+.cart-dropdown h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.free-shipping {
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+    background: #f4f4f4;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+}
+
+.item-details {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.item-details h3 {
+    font-size: 14px;
+    margin: 0;
+}
+
+.item-details p {
+    font-size: 12px;
+    color: #777;
+}
+
+.item-price {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-btn {
+    background: #ddd;
+    border: none;
+    padding: 5px 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.quantity-btn:hover {
+    background: #bbb;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: red;
+}
+
+.cart-footer {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.total-section p, .total-section h3 {
+    margin: 5px 0;
+}
+
+.checkout-btn {
+    width: 100%;
+    background: #0066ff;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.checkout-btn:hover {
+    background: #004fcc;
+}
+
+
+
+#cart-toggle:hover {
+    background-color: #004fcc;
+}

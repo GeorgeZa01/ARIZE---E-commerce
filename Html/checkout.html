@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Arize</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="../Css/checkout.css" rel="stylesheet">
+</head>
+
+<body>
+
+     <!-- Navbar -->
+     <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../Assets/imgs/arize.png" alt="" class="img-fluid" style="max-width: 150px;">
+            </a>
+            
+            <label class="toggle" for="checkbox"class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <div id="bar1" class="bars"></div>
+            <div id="bar2" class="bars"></div>
+            <div id="bar3" class="bars"></div>
+
+            <!-- <span class="navbar-toggler-icon"></span> -->
+        </label>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about.html">About Us</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout Page Content -->
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Checkout</h2>
+        <div class="row">
+            <!-- Order Summary -->
+            <div class="col-md-8">
+                <h4>Your Order</h4>
+                <div id="cart-items-summary"></div>
+
+                <div class="total-section mt-4">
+                    <p>Subtotal: <span id="subtotal">R 0.00</span></p>
+                    <p>Shipping: <span id="shipping">Free</span></p>
+                    <h3>Total: <span id="total">R 0.00</span></h3>
+                </div>
+            </div>
+
+            <!-- Billing Details -->
+            <div class="col-md-4">
+                <h4>Billing Details</h4>
+                <form id="checkout-form">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Shipping Address</label>
+                        <textarea class="form-control" id="address" rows="4" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="payment-method" class="form-label">Payment Method</label>
+                        <select class="form-select" id="payment-method" required>
+                            <option value="credit-card">Credit Card</option>
+                            <option value="paypal">PayPal</option>
+                        </select>
+                    </div>
+                    <a onclick="redirectToPayment()"><button type="submit" class="btn btn-primary w-100">Complete Order</button></a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>123 Business St, Suite 456</p>
+                    <p>City, Country, 12345</p>
+                    <p>Email: contact@yourcompany.com</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Home</a></li>
+                        <li><a href="#" class="text-white">Products</a></li>
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white"><i class="bi bi-facebook"></i> Facebook</a></li>
+                        <li><a href="#" class="text-white"><i class="bi bi-twitter"></i> Twitter</a></li>
+                        <li><a href="#" class="text-white"><i class="bi bi-instagram"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center py-3">
+            <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartItemsSummary = document.getElementById("cart-items-summary");
+            const subtotalEl = document.getElementById("subtotal");
+            const totalEl = document.getElementById("total");
+
+            let subtotal = 0;
+
+            if (cart.length === 0) {
+                cartItemsSummary.innerHTML = "<p>Your cart is empty</p>";
+            } else {
+                cart.forEach((item) => {
+                    subtotal += item.price * item.quantity;
+                    const cartItemSummary = document.createElement("div");
+                    cartItemSummary.classList.add("cart-item-summary");
+                    cartItemSummary.innerHTML = `
+                        <p>${item.name} (${item.quantity} x R ${item.price.toFixed(2)})</p>
+                    `;
+                    cartItemsSummary.appendChild(cartItemSummary);
+                });
+            }
+
+            subtotalEl.textContent = `R ${subtotal.toFixed(2)}`;
+            totalEl.textContent = `R ${subtotal.toFixed(2)}`;
+        });
+    </script>
+     
+</body>
+<script>
+    function redirectToPayment() {
+    // Get the selected payment method
+    const paymentMethod = document.getElementById('payment-method').value;
+
+    // Check the selected payment method and redirect accordingly
+    if (paymentMethod === "credit-card") {
+        window.location.href = "payment.html"; // Redirect to the credit card payment page
+    } else if (paymentMethod === "paypal") {
+        window.location.href = "payment.html"; // Redirect to the PayPal payment page
+    } else {
+        alert("Please select a payment method.");
+    }
+}
+
+</script>
+</html>
