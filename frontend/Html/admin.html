@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Store Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1 class="mt-4">Tech Store Dashboard</h1>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body" id="total-sales">Total Sales: Loading...</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-body" id="new-orders">New Orders: Loading...</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body" id="best-seller">Best Seller: Loading...</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-danger mb-3">
+                    <div class="card-body" id="low-stock">Low Stock: Loading...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <canvas id="salesChart"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="orderChart"></canvas>
+            </div>
+        </div>
+
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody id="product-list">
+                <tr><td colspan="4">Loading products...</td></tr>
+            </tbody>
+        </table>
+
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody id="user-list">
+                <tr><td colspan="2">Loading users...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function fetchProducts() {
+            try {
+                const response = await fetch('http://localhost:3030/products');
+                const products = await response.json();
+                const productList = document.getElementById('product-list');
+                productList.innerHTML = ''; // Clear placeholder text
+
+                products.forEach(product => {
+                    productList.innerHTML += `
+                        <tr>
+                            <td>${product.product_id}</td>
+                            <td>${product.Name}</td>
+                            <td>${product.Category}</td>
+                            <td>${product.Price}</td>
+                            <td>${product.Quantity}</td>
+                        </tr>
+                    `;
+                });
+
+                // Update dashboard summary
+                document.getElementById('total-sales').innerHTML = `Total Sales: $${products.reduce((sum, p) => sum + p.price * p.stock, 0)}`;
+                document.getElementById('new-orders').innerHTML = `New Orders: ${products.length}`;
+                document.getElementById('best-seller').innerHTML = `Best Seller: ${products[0]?.name || 'N/A'}`;
+                document.getElementById('low-stock').innerHTML = `Low Stock: ${products.sort((a, b) => a.stock - b.stock)[0]?.name || 'N/A'}`;
+
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        async function fetchUsers() {
+            try {
+                const response = await fetch('http://localhost:3030/users');
+                const users = await response.json();
+                const userList = document.getElementById('user-list');
+                userList.innerHTML = ''; // Clear placeholder text
+
+                users.forEach(user => {
+                    userList.innerHTML += `
+                        <tr>
+                            <td>${user.user_id}</td>
+                            <td>${user.full_name}</td>
+                            <td>${user.email}</td>
+                            <td>${user.address}</td>
+                        </tr>
+                    `;
+                });
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        }
+
+        window.onload = () => {
+            fetchProducts();
+            fetchUsers();
+        };
+    </script>
+</body>
+</html>
