@@ -6,7 +6,7 @@ config();
 const pool = mysql.createPool({
     host: process.env.HOST || "localhost",
     user: process.env.USER || "root",
-    password: process.env.PASSWORD || "Ursw!nF@r0",
+    password: process.env.PASSWORD || "Shafwan@1",
     database: process.env.DATABASE || "arize_db",
 });
 
