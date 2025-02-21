@@ -8,6 +8,9 @@ const pool = mysql.createPool({
     user: process.env.USER || "root",
     password: process.env.PASSWORD || "Ursw!nF@r0",
     database: process.env.DATABASE || "arize_db",
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0,
 });
 
 export { pool };
