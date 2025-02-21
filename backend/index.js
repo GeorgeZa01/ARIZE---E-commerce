@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 import cors from 'cors';
 import productsRouter from './routes/productsRoutes.js';
 import userRouter from './routes/userRoutes.js';
+import authRoutes from './routes/forgotRouter.js';
 
 config(); // Load environment variables
 
@@ -15,6 +16,7 @@ app.use(express.json());
 // Routes
 app.use('/products', productsRouter);
 app.use('/users', userRouter);
+app.use("/api/auth", authRoutes); //forgotpassword Route
 
 // Root Route (Optional)
 app.get('/', (req, res) => {
