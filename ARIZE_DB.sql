@@ -32,12 +32,12 @@ INSERT INTO `arize_db`.`products` (`product_id`, `Name`, `Discription`, `Categor
 INSERT INTO `arize_db`.`products` (`product_id`, `Name`, `Discription`, `Category`, `Price`, `Quantity`) VALUES ('20', 'Lenovo Yoga ANC Wireless USB Type-C Headphones', 'The Lenovo Yoga ANC Wireless Bluetooth USB Type-C Headphones (GXD1A39963) are designed to deliver high-quality audio with active noise cancellation (ANC) for an immersive listening experience.\n\nKey Features:\n\nActive Noise Cancellation (ANC): Reduces ambient noise, allowing for clearer audio during calls and music playback.\n\nConnectivity: Supports both Bluetooth and USB Type-C connections, offering flexibility across various devices.\n\nDesign: On-ear headphones with a lightweight and comfortable build, suitable for extended use.\n\nBattery Life: Provides up to 14 hours of continuous use on a single charge.\n\nCompatibility: Compatible with laptops, smartphones, and other devices supporting Bluetooth or USB Type-C connectivity.', 'Accessories', 'R2,000', '12');
 
 CREATE TABLE `arize_db`.`users` (
-  `user id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL AUTO_INCREMENT,
   `full_name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `address` VARCHAR(300) NOT NULL,
-  PRIMARY KEY (`user id`));
+  PRIMARY KEY (`user_id`));
 
 INSERT INTO `arize_db`.`users` (`full_name`, `email`, `password`, `address`) VALUES ('Urswin Faro', 'urswinf@gmail.com', 'urswinfaro', '53 Giants Castle street');
 
