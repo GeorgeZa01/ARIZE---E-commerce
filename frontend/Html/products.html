@@ -66,7 +66,7 @@
                     <div class="cart-footer">
                         <div class="total-section">
                             <p>Subtotal: <span id="subtotal">R 0.00</span></p>
-                            <h3>Total: <span id="total">R 0.00</span></h3>
+                            <h1>Total: <span id="total">R 0.00</span></h1>
                         </div>
                         <a href="./checkout.html">
 
@@ -164,7 +164,7 @@
       </a>
 </div>
 <br>
-<h3>Laptops</h3>
+<h1>Laptops</h1>
 <div class="row mt-4" id="product-cards-laptops">
     <!-- Product cards will be inserted here -->
     <div class="col-md-4">
@@ -175,7 +175,7 @@
         </div>
     </div>
 </div>
-<h3>Monitors</h3>
+<h1>Monitors</h1>
 <div class="row mt-4" id="product-cards-monitors">
     <!-- Product cards will be inserted here -->
     <div class="col-md-4">
@@ -187,7 +187,7 @@
     </div>
 </div>
 
-<h3>PC Towers</h3>
+<h1>PC Towers</h1>
 <div class="row mt-4" id="product-cards-pctower">
     <!-- Product cards will be inserted here -->
     <div class="col-md-4">
@@ -199,7 +199,7 @@
     </div>
 </div>
 
-<h3>Accessories</h3>
+<h1>Accessories</h1>
 <div class="row mt-4" id="product-cards-accessories">
     <!-- Product cards will be inserted here -->
     <div class="col-md-4">
@@ -227,9 +227,9 @@ async function fetchlaptops() {
                         <div class="card-body-laptops">
                             <img src="../Assets/products/laptops/${product.image}">
                             <h5 class="card-title">${product.Name}</h5>
-                            <p class="card-text">Category: ${product.Category}</p>
+             
                             <p class="card-text">Price: ${product.Price}</p>
-                            <p class="card-text">Quantity: ${product.Quantity}</p>
+                            <p class="card-text">Only ${product.Quantity} left in Stock</p>
                         </div>
                     </div>
                 </div>
@@ -253,9 +253,9 @@ async function fetchmonitors() {
                         <div class="card-body-monitors">
                             <img src="../Assets/products/desktops/${product.image}">
                             <h5 class="card-title">${product.Name}</h5>
-                            <p class="card-text">Category: ${product.Category}</p>
+             
                             <p class="card-text">Price: ${product.Price}</p>
-                            <p class="card-text">Quantity: ${product.Quantity}</p>
+                            <p class="card-text">Only ${product.Quantity} left in Stock</p>
                         </div>
                     </div>
                 </div>
@@ -279,9 +279,9 @@ async function fetchPCtowers() {
                         <div class="card-body-monitors">
                             <img src="../Assets/products/PC towers/${product.image}" >
                             <h5 class="card-title">${product.Name}</h5>
-                            <p class="card-text">Category: ${product.Category}</p>
+             
                             <p class="card-text">Price: ${product.Price}</p>
-                            <p class="card-text">Quantity: ${product.Quantity}</p>
+                            <p class="card-text">Only ${product.Quantity} left in Stock</p>
                         </div>
                     </div>
                 </div>
@@ -305,9 +305,9 @@ async function fetchaccessories() {
                         <div class="card-body-monitors">
                             <img src="../Assets/products/accessories/${product.image}" >
                             <h5 class="card-title">${product.Name}</h5>
-                            <p class="card-text">Category: ${product.Category}</p>
+             
                             <p class="card-text">Price: ${product.Price}</p>
-                            <p class="card-text">Quantity: ${product.Quantity}</p>
+                            <p class="card-text">Only ${product.Quantity} left in Stock</p>
                         </div>
                     </div>
                 </div>
