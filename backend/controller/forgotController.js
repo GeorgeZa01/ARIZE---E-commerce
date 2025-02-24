@@ -37,7 +37,7 @@ export const forgotPassword = async (req, res) => {
 
     await storeResetToken(email, token, expiresAt);
 
-    const resetURL = `http://127.0.0.1:5500/reset-password.html?token=${token}`;
+    const resetURL = `http://127.0.0.1:5501/frontend/Html/reset-password.html?token=${token}`;
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
@@ -53,6 +53,7 @@ export const forgotPassword = async (req, res) => {
     res.status(500).json({ error: "Server error" });
     console.error(error);
   }
+
 };
 
 // 📌 Reset Password Controller

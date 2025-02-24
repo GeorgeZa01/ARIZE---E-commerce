@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,16 +11,16 @@
 
 <body>
     <section>
-            <img class="logo" src="../Assets/imgs/arize.png" alt="">
+        <img class="logo" src="../Assets/imgs/arize.png" alt="">
         <h1>Forgot Password</h1>
         <form id="forgotPasswordForm">
             <input type="email" id="email" placeholder="Enter your email" required>
             <button type="submit">Submit</button>
         </form>
-        
+
     </section>
     <script>
-        document.getElementById("forgotPasswordForm").addEventListener("submit", async function(event) {
+        document.getElementById("forgotPasswordForm").addEventListener("submit", async function (event) {
             event.preventDefault();
 
             const email = document.getElementById("email").value;
@@ -35,6 +36,7 @@
                     body: JSON.stringify({ email })
                 });
 
+
                 const data = await response.json();
 
                 if (response.ok) {
@@ -49,4 +51,5 @@
         });
     </script>
 </body>
+
 </html>
