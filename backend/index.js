@@ -3,7 +3,7 @@ import { config } from 'dotenv';
 import cors from 'cors';
 import productsRouter from './routes/productsRoutes.js';
 import userRouter from './routes/userRoutes.js';
-import authRoutes from './routes/forgotRouter.js';
+import authRoutes from './routes/forgotRouter.js'; 
 
 config(); // Load environment variables
 
@@ -11,6 +11,7 @@ const app = express();
 
 // Middleware
 app.use(cors());
+
 app.use(express.json());
 
 // Routes
