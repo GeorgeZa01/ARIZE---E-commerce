@@ -232,23 +232,59 @@ span.navbar-toggler-icon {
     /* Green focus shadow */
 }
 footer {
-    background-color: #1F1F1F;
-    /* Dark background color for footer */
-    color: white;
-    /* White text color */
+  background-color: #1f1f1f;
+  color: white;
+  padding: 20px 0; /* Added padding for spacing */
 }
-footer a {
-    text-decoration: none;
-    /* Remove underlines from links */
-}
-footer a:hover {
-    color: #FFD700;
-    /* Change color to gold on hover */
-}
+
 footer .container {
-    max-width: 1200px;
-    /* Limit the maximum width of the footer */
+  max-width: 1200px;
+  margin: 0 auto; /* Center the container */
+  padding: 0 15px; /* Add horizontal padding */
 }
+
+footer a {
+  text-decoration: none;
+  color: white; /* Ensure links are white */
+  margin-right: 15px; /* Space out the links */
+}
+
+footer a:hover {
+  color: #ffd700; /* Gold color on hover */
+}
+
+footer .social-links {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center; /* Center the social media links */
+}
+
+footer .social-links a {
+  margin: 0 10px; /* Space between social media links */
+  font-size: 20px;
+}
+
+footer .social-links a:hover {
+  color: #ffd700; /* Hover effect for social media links */
+}
+
+/* Ensure footer content is responsive */
+@media (max-width: 768px) {
+  footer .container {
+    padding: 0 10px;
+  }
+
+  footer .social-links {
+    flex-direction: column; /* Stack social media links vertically */
+    margin-top: 20px;
+  }
+
+  footer .social-links a {
+    margin-bottom: 10px; /* Add some space between stacked links */
+  }
+}
+
+
 
 h1 {
     text-align: center;
