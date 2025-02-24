@@ -50,4 +50,17 @@ CREATE TABLE `arize_db`.`admin` (
   
   INSERT INTO `arize_db`.`admin` (`email`, `password`) VALUES ('admin@gmail.com', 'admin123');
 
-  
+  CREATE TABLE users_cred (
+    user_cred_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT, 
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    reset_token VARCHAR(255) DEFAULT NULL,
+    reset_expires DATETIME DEFAULT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+Insert into users_cred (email,password)
+Values
+('urswinf@gmail.com','urswinfaro'),
+('jemail75@gmail.com','Macaws01');
