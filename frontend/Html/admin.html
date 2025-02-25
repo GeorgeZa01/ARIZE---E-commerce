@@ -44,71 +44,82 @@
     </div>
 
     <!-- Add Product Modal -->
-<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="mb-3">
+                    <form id="addProductForm">
+                        <div class="mb-3">
+                            <label for="productimage" class="form-label">Paste Image URL</label>
+                            <input type="text" class="form-control" id="productImage" required>
+                        </div>
+                <div class="modal-body">
+                    <form id="addProductForm">
+                        <div class="mb-3">
+                            <label for="productName" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" id="productName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productCategory" class="form-label">Category</label>
+                            <input type="text" class="form-control" id="productCategory" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productDescription" class="form-label">Description</label>
+                            <input type="text" class="form-control" id="productDescription" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productPrice" class="form-label">Price</label>
+                            <input type="number" class="form-control" id="productPrice" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productQuantity" class="form-label">Quantity</label>
+                            <input type="number" class="form-control" id="productQuantity" required>
+                        </div>
+                        <button type="submit" class="btn custom-btn" onclick="addProduct()">Add Product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- Edit Product Modal -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+                <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="addProductForm">
+                <form id="editProductForm">
                     <div class="mb-3">
-                        <label for="productName" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" id="productName" required>
+                        <label for="editProductName" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="editProductName" required>
                     </div>
                     <div class="mb-3">
-                        <label for="productCategory" class="form-label">Category</label>
-                        <input type="text" class="form-control" id="productCategory" required>
+                        <label for="editProductCategory" class="form-label">Category</label>
+                        <input type="text" class="form-control" id="editProductCategory" required>
                     </div>
                     <div class="mb-3">
-                        <label for="productPrice" class="form-label">Price</label>
-                        <input type="number" class="form-control" id="productPrice" required>
+                        <label for="editProductPrice" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="editProductPrice" required>
                     </div>
                     <div class="mb-3">
-                        <label for="productQuantity" class="form-label">Quantity</label>
-                        <input type="number" class="form-control" id="productQuantity" required>
+                        <label for="editProductQuantity" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="editProductQuantity" required>
                     </div>
-                    <button type="submit" class="btn custom-btn">Add Product</button>
+                    <button type="submit" class="btn btn-primary" onclick="updateProduct()">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-
-    <!-- Edit Product Modal -->
-    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="editProductForm">
-                        <div class="mb-3">
-                            <label for="editProductName" class="form-label">Product Name</label>
-                            <input type="text" class="form-control" id="editProductName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editProductCategory" class="form-label">Category</label>
-                            <input type="text" class="form-control" id="editProductCategory" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editProductPrice" class="form-label">Price</label>
-                            <input type="number" class="form-control" id="editProductPrice" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editProductQuantity" class="form-label">Quantity</label>
-                            <input type="number" class="form-control" id="editProductQuantity" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
         // Fetch and display products
@@ -130,6 +141,7 @@
                                     <p class="card-text"><strong>Price:</strong> $${product.Price}</p>
                                     <p class="card-text"><strong>Quantity:</strong> ${product.Quantity}</p>
                                     <button class="btn btn-sm btn-outline-primary edit-btn" onclick="editProduct(${product.product_id}, '${product.Name}', '${product.Category}', '${product.Price}', '${product.Quantity}')">Edit</button>
+                                    <button class="btn btn-sm btn-outline-danger delete-btn" onclick="deleteProduct(${product.product_id})">Delete</button>
                                 </div>
                             </div>
                         </div>`;
@@ -143,8 +155,10 @@
         const addProductForm = document.getElementById('addProductForm');
         addProductForm.onsubmit = async (e) => {
             e.preventDefault();
+            const image = document.getElementById('productImage').value;
             const name = document.getElementById('productName').value;
             const category = document.getElementById('productCategory').value;
+            const description = document.getElementById('productDescription').value;
             const price = document.getElementById('productPrice').value;
             const quantity = document.getElementById('productQuantity').value;
 
@@ -155,8 +169,10 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
+                        image: image,
                         Name: name,
                         Category: category,
+                        Description: description,
                         Price: price,
                         Quantity: quantity
                     })
@@ -168,7 +184,10 @@
                 const modal = bootstrap.Modal.getInstance(document.getElementById('addProductModal'));
                 modal.hide();
 
-                // Optionally, you can refresh the product list
+                // Optionally, clear the form fields
+                addProductForm.reset();
+
+                // Optionally, refresh the product list
                 fetchProducts();
             } catch (error) {
                 console.error('Error adding product:', error);
@@ -177,61 +196,76 @@
 
         // Edit product function that opens the modal and populates data
         function editProduct(productId, name, category, price, quantity) {
-            // Fill the modal form with current data
-            document.getElementById('editProductName').value = name;
-            document.getElementById('editProductCategory').value = category;
-            document.getElementById('editProductPrice').value = price;
-            document.getElementById('editProductQuantity').value = quantity;
+    // Fill the modal form with current data
+    document.getElementById('editProductName').value = name;
+    document.getElementById('editProductCategory').value = category;
+    document.getElementById('editProductPrice').value = price;
+    document.getElementById('editProductQuantity').value = quantity;
 
-            // Handle form submission
-            const editForm = document.getElementById('editProductForm');
-            editForm.onsubmit = async (e) => {
-                e.preventDefault();
-                const updatedName = document.getElementById('editProductName').value;
-                const updatedCategory = document.getElementById('editProductCategory').value;
-                const updatedPrice = document.getElementById('editProductPrice').value;
-                const updatedQuantity = document.getElementById('editProductQuantity').value;
-
-                try {
-                    // Send updated data to the backend
-                    const response = await fetch(`http://localhost:3030/products/${productId}`, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            Name: updatedName,
-                            Category: updatedCategory,
-                            Price: updatedPrice,
-                            Quantity: updatedQuantity
-                        })
-                    });
-                    const data = await response.json();
-                    console.log('Updated product:', data);
-
-                    // Close the modal after submitting
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('editProductModal'));
-                    modal.hide();
-
-                    // Optionally, you can refresh the product list
-                    fetchProducts();
-                } catch (error) {
-                    console.error('Error updating product:', error);
-                }
-            };
-
-            // Show the modal
+    // Handle form submission
+    const editForm = document.getElementById('editProductForm');
+    editForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const updatedName = document.getElementById('editProductName').value;
+        const updatedCategory = document.getElementById('editProductCategory').value;
+        const updatedPrice = document.getElementById('editProductPrice').value;
+        const updatedQuantity = document.getElementById('editProductQuantity').value;
+        try {
+            // Send updated data to the backend
+            const response = await fetch(`http://localhost:3030/products/${productId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    Name: updatedName,
+                    Category: updatedCategory,
+                    Price: updatedPrice,
+                    Quantity: updatedQuantity
+                })
+            });
+            const data = await response.json();
+            console.log('Updated product:', data);
+            // Close the modal after submitting
             const modal = new bootstrap.Modal(document.getElementById('editProductModal'));
-            modal.show();
+            modal.hide();
+            // Optionally, you can refresh the product list
+            fetchProducts();
+        } catch (error) {
+            console.error('Error updating product:', error);
+        }
+    };
+
+    // Ensure modal shows after filling in the data
+    const modal = new bootstrap.Modal(document.getElementById('editProductModal'));
+    modal.show();
+}
+
+        // Handle Deleting a Product
+        async function deleteProduct(productId) {
+            try {
+                const response = await fetch(`http://localhost:3030/products/${productId}`, {
+                    method: 'DELETE',
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    console.log('Product deleted:', data);
+                    fetchProducts(); // Refresh the product list
+                } else {
+                    console.error('Failed to delete product:', data.error);
+                }
+            } catch (error) {
+                console.error('Error deleting product:', error);
+            }
         }
 
-        window.onload = () => {
-            fetchProducts();
-        };
+        // Initial Fetch of Products on page load
+        window.onload = 
+        fetchProducts;
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-   
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
