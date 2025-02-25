@@ -3,7 +3,7 @@ USE `arize_db`;
 
 CREATE TABLE `arize_db`.`products` (
   `product_id` INT NOT NULL,
-  `image` varchar(80),
+  `image` varchar(300),
   `Name` VARCHAR(65) NOT NULL,
   `Description` VARCHAR(2000) NOT NULL,
   `Category` VARCHAR(45) NOT NULL,
