@@ -4,6 +4,7 @@ import cors from 'cors';
 import productsRouter from './routes/productsRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import authRoutes from './routes/forgotRouter.js'; 
+import authRouters from './routes/authRouter.js';
 
 config(); // Load environment variables
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use('/products', productsRouter);
 app.use('/users', userRouter);
 app.use("/api/auth", authRoutes); //forgotpassword Route
+app.use('/api/auth', authRoutes); //Signup & Login
 
 // Root Route (Optional)
 app.get('/', (req, res) => {
