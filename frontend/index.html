@@ -88,11 +88,11 @@
                     <!-- Form content for login/signup -->
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        <input type="email" class="form-control" id="u_email" placeholder="Enter your email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                        <input type="password" class="form-control" id="U_password" placeholder="Enter your password">
                     </div>
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-button" id="loginButton">Log In</button>
@@ -131,7 +131,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Confirm your password">
+                        <input type="password" class="form-control" id="u_password" placeholder="Confirm your password">
                     </div>
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-button">Submit</button>
@@ -333,7 +333,39 @@
         fetchlaptops();
         }
 
-        
+        document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("loginButton").addEventListener("click", function () {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        if (!email || !password) {
+            alert("Please enter both email and password.");
+            return;
+        }
+
+        fetch("http://localhost:3030/login", { 
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Login successful!");
+                localStorage.setItem("user", JSON.stringify(data.user)); // Store user data
+                window.location.href = "./index.html"; // Redirect if needed
+            } else {
+                alert(data.message || "Invalid credentials");
+            }
+        })
+        .catch(error => {
+            console.error("Error logging in:", error);
+            alert("An error occurred while logging in.");
+        });
+    });
+});
 </script>
 
 </body>
