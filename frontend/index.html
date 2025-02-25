@@ -19,18 +19,19 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/arize.png?raw=true" alt="" class="img-fluid" style="max-width: 150px;">
+                <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/arize.png?raw=true" alt=""
+                    class="img-fluid" style="max-width: 150px;">
             </a>
             <input id="checkbox" type="checkbox">
-            <label class="toggle" for="checkbox"class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <div id="bar1" class="bars"></div>
-            <div id="bar2" class="bars"></div>
-            <div id="bar3" class="bars"></div>
+            <label class="toggle" for="checkbox" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <div id="bar1" class="bars"></div>
+                <div id="bar2" class="bars"></div>
+                <div id="bar3" class="bars"></div>
 
-            <!-- <span class="navbar-toggler-icon"></span> -->
-        </label>
+                <!-- <span class="navbar-toggler-icon"></span> -->
+            </label>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -41,7 +42,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../frontend/Html/about.html">About Us</a>
-                    </li>                  
+                    </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -52,7 +53,7 @@
                 <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal">Log In</button>
                 <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1">Sign Up</button>
 
-                 <!-- Cart Icon Button -->
+                <!-- Cart Icon Button -->
                 <button class="btn btn-button ms-2" id="cart-toggle">
                     <i class="bi bi-cart"></i> Cart (<span id="cart-count">0</span>)
                 </button>
@@ -61,9 +62,9 @@
                 <div class="cart-dropdown">
                     <h2>Cart</h2>
                     <p class="free-shipping">Free standard shipping</p>
-                    
+
                     <div id="cart-items"></div>
-                
+
                     <div class="cart-footer">
                         <div class="total-section">
                             <p>Subtotal: <span id="subtotal">R 0.00</span></p>
@@ -95,7 +96,7 @@
                         <input type="password" class="form-control" id="password" placeholder="Enter your password">
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button class="btn btn-button">Log In</button>
+                        <button class="btn btn-button" id="loginButton">Log In</button>
                     </div>
                     <a href="../frontend/Html/forgot.html">forgot password</a>
                 </div>
@@ -141,147 +142,157 @@
         </div>
     </div>
 
-  <!-- Carousel Section -->
-<div id="productCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <!-- Only one "active" class here -->
-        <div class="carousel-item active">
-            <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/welcom.jpg?raw=true" class="d-block w-100" style="height: 500px; object-fit: cover;" alt="Laptops">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
+    <!-- Carousel Section -->
+    <div id="productCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-        <div class="carousel-item">
-           <a href="https://discord.gg/8reCZG5C"> <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/discord%20(2).jpg?raw=true" class="d-block w-100" style="height: 500px; object-fit: cover;" alt="Laptops"></a>
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/Banner.jpg?raw=true" class="d-block w-100" style="height: 500px; object-fit: cover;" alt="Laptops">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-
-
-   <!-- Cards Section -->
-<section class="product-section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-3 d-flex">
-                <div class="card">
-                    <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/products/laptops/Laptop%20Home.jpg?raw=true" class="card-img-top" alt="Laptops">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Laptops</h5>
-                        <p class="card-text">Discover the latest high-performance laptops.</p>
-                        <a href="./Html/laptop.html" class="btn btn-button">Shop Now</a>
-                    </div>
+        <div class="carousel-inner">
+            <!-- Only one "active" class here -->
+            <div class="carousel-item active">
+                <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/welcom.jpg?raw=true"
+                    class="d-block w-100" style="height: 500px; object-fit: cover;" alt="Laptops">
+                <div class="carousel-caption d-none d-md-block">
                 </div>
             </div>
-            <div class="col-md-3 d-flex">
-                <div class="card">
-                    <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/products/desktops/home%20desktop.jpg?raw=true" class="card-img-top" alt="Desktops">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Monitors</h5>
-                        <p class="card-text">High-resolution monitors.</p>
-                        <a href="./Html/monitors.html" class="btn btn-button">Shop Now</a>
-                    </div>
+            <div class="carousel-item">
+                <a href="https://discord.gg/8reCZG5C"> <img
+                        src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/discord%20(2).jpg?raw=true"
+                        class="d-block w-100" style="height: 500px; object-fit: cover;" alt="Laptops"></a>
+                <div class="carousel-caption d-none d-md-block">
                 </div>
             </div>
-            <div class="col-md-3 d-flex">
-                <div class="card">
-                    <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/products/accessories/home%20page%20accessories.jpg?raw=true" class="card-img-top" alt="Accessories">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Accessories</h5>
-                        <p class="card-text">Upgrade your setup with accessories.</p>
-                        <a href="./Html/accessories.html" class="btn btn-button">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex">
-                <div class="card">
-                    <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/products/PC%20towers/home%20pc%20tower.jpg?raw=true" class="card-img-top" alt="Monitors">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Desktops</h5>
-                        <p class="card-text">Powerful and reliable desktops.</p>
-                        <a href="./Html/PcTowers.html" class="btn btn-button">Shop Now</a>
-                    </div>
+            <div class="carousel-item">
+                <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/Banner.jpg?raw=true"
+                    class="d-block w-100" style="height: 500px; object-fit: cover;" alt="Laptops">
+                <div class="carousel-caption d-none d-md-block">
                 </div>
             </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-</section>
 
-<footer class="bg-dark text-white py-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h5>Contact Us</h5>
-                <p>123 Business St, Suite 456</p>
-                <p>City, Country, 12345</p>
-                <p>Email: contact@yourcompany.com</p>
-            </div>
-            <div class="col-md-4">
-                <h5>Quick Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="../index.html" class="text-white">Home</a></li>
-                    <li><a href="./products.html" class="text-white">Products</a></li>
-                    <li><a href="./about.html" class="text-white">About Us</a></li>
-                    <li><a href="#" class="text-white">Contact</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h5>Follow Us</h5>
-                <ul class="list-unstyled">
-                    <li><a href="https://discord.gg/8reCZG5C" class="text-white"><i class="fab fa-discord"></i>Discord</a></li>
-                </ul>
+
+    <!-- Cards Section -->
+    <section class="product-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-3 d-flex">
+                    <div class="card">
+                        <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/products/laptops/Laptop%20Home.jpg?raw=true"
+                            class="card-img-top" alt="Laptops">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Laptops</h5>
+                            <p class="card-text">Discover the latest high-performance laptops.</p>
+                            <a href="./Html/laptop.html" class="btn btn-button">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex">
+                    <div class="card">
+                        <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/products/desktops/home%20desktop.jpg?raw=true"
+                            class="card-img-top" alt="Desktops">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Monitors</h5>
+                            <p class="card-text">High-resolution monitors.</p>
+                            <a href="./Html/monitors.html" class="btn btn-button">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex">
+                    <div class="card">
+                        <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/products/accessories/home%20page%20accessories.jpg?raw=true"
+                            class="card-img-top" alt="Accessories">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Accessories</h5>
+                            <p class="card-text">Upgrade your setup with accessories.</p>
+                            <a href="./Html/accessories.html" class="btn btn-button">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex">
+                    <div class="card">
+                        <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/products/PC%20towers/home%20pc%20tower.jpg?raw=true"
+                            class="card-img-top" alt="Monitors">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Desktops</h5>
+                            <p class="card-text">Powerful and reliable desktops.</p>
+                            <a href="./Html/PcTowers.html" class="btn btn-button">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="text-center py-3">
-        <p>&copy; 2025 Your Company Name. All rights reserved.</p>
-    </div>
-</footer>
+    </section>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>123 Business St, Suite 456</p>
+                    <p>City, Country, 12345</p>
+                    <p>Email: contact@yourcompany.com</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="./index.html" class="text-white">Home</a></li>
+                        <li><a href="./Html/products.html" class="text-white">Products</a></li>
+                        <li><a href="./Html/about.html" class="text-white">About Us</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://discord.gg/8reCZG5C" class="text-white"><i
+                                    class="fab fa-discord"></i>Discord</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center py-3">
+            <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+        </div>
+    </footer>
 
 
-<script>
-     
-    document.addEventListener("DOMContentLoaded", function () {
-        const cartItemsContainer = document.getElementById("cart-items");
-        const subtotalEl = document.getElementById("subtotal");
-        const totalEl = document.getElementById("total");
-        const cartDropdown = document.querySelector(".cart-dropdown");
-        const cartToggleBtn = document.getElementById("cart-toggle");
-    
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    
-        function updateCartDisplay() {
-            cartItemsContainer.innerHTML = "";
-            let subtotal = 0;
-    
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = "<p class='empty-cart'>Your cart is empty</p>";
-            } else {
-                cart.forEach((item, index) => {
-                    subtotal += item.price * item.quantity;
-    
-                    const cartItem = document.createElement("div");
-                    cartItem.classList.add("cart-item");
-    
-                    cartItem.innerHTML = `
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const cartItemsContainer = document.getElementById("cart-items");
+            const subtotalEl = document.getElementById("subtotal");
+            const totalEl = document.getElementById("total");
+            const cartDropdown = document.querySelector(".cart-dropdown");
+            const cartToggleBtn = document.getElementById("cart-toggle");
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            function updateCartDisplay() {
+                cartItemsContainer.innerHTML = "";
+                let subtotal = 0;
+
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = "<p class='empty-cart'>Your cart is empty</p>";
+                } else {
+                    cart.forEach((item, index) => {
+                        subtotal += item.price * item.quantity;
+
+                        const cartItem = document.createElement("div");
+                        cartItem.classList.add("cart-item");
+
+                        cartItem.innerHTML = `
                         <img src="${item.image}" alt="${item.name}">
                         <div class="item-details">
                             <h3>${item.name}</h3>
@@ -295,44 +306,75 @@
                         </div>
                         <button class="remove-btn" onclick="removeFromCart(${index})">🗑️</button>
                     `;
-    
-                    cartItemsContainer.appendChild(cartItem);
-                });
+
+                        cartItemsContainer.appendChild(cartItem);
+                    });
+                }
+
+                subtotalEl.textContent = `R ${subtotal.toFixed(2)}`;
+                // Apply any additional fees/taxes if needed
+                const tax = subtotal * 0.15; // Example 15% tax
+                const total = subtotal + tax;
+                totalEl.textContent = `R ${total.toFixed(2)}`;
+                localStorage.setItem("cart", JSON.stringify(cart));
             }
-    
-            subtotalEl.textContent = `R ${subtotal.toFixed(2)}`;
-            // Apply any additional fees/taxes if needed
-            const tax = subtotal * 0.15; // Example 15% tax
-            const total = subtotal + tax;
-            totalEl.textContent = `R ${total.toFixed(2)}`;
-            localStorage.setItem("cart", JSON.stringify(cart));
-        }
-    
-        window.changeQuantity = function (index, change) {
-            if (cart[index].quantity + change > 0) {
-                cart[index].quantity += change;
-            } else {
+
+            window.changeQuantity = function (index, change) {
+                if (cart[index].quantity + change > 0) {
+                    cart[index].quantity += change;
+                } else {
+                    cart.splice(index, 1);
+                }
+                updateCartDisplay();
+            };
+
+            window.removeFromCart = function (index) {
                 cart.splice(index, 1);
-            }
+                updateCartDisplay();
+            };
+
+            // Toggle cart dropdown visibility
+            cartToggleBtn.addEventListener("click", function () {
+                cartDropdown.style.display = cartDropdown.style.display === "none" || cartDropdown.style.display === "" ? "block" : "none";
+            });
+
             updateCartDisplay();
-        };
-    
-        window.removeFromCart = function (index) {
-            cart.splice(index, 1);
-            updateCartDisplay();
-        };
-    
-        // Toggle cart dropdown visibility
-        cartToggleBtn.addEventListener("click", function () {
-            cartDropdown.style.display = cartDropdown.style.display === "none" || cartDropdown.style.display === "" ? "block" : "none";
         });
-    
-        updateCartDisplay();
-    });
-    window.onload = () => {
-        fetchlaptops();
-        }
-</script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("loginButton").addEventListener("click", function () {
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                if (!email || !password) {
+                    alert("Please enter both email and password.");
+                    return;
+                }
+
+                fetch("http://127.0.0.1:3030/api/auth/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ email, password }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert("Login successful!");
+                            localStorage.setItem("user", JSON.stringify(data.user)); // Store user data
+                            window.location.href = "./index.html"; // Redirect if needed
+                        } else {
+                            alert(data.message || "Invalid credentials");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error logging in:", error);
+                        alert("An error occurred while logging in.");
+                    });
+            });
+        });
+    </script>
 
 </body>
 
