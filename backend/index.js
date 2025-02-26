@@ -8,7 +8,7 @@ import cartRouter from './routes/cartRouter.js'
 
 
 config(); // Load environment variables
-
+ 
 const app = express();
 
 // Middleware
@@ -26,6 +26,7 @@ app.use('/products', productsRouter); //laptops,monitors,PCtower,accessories
 app.use("/api/auth", authRoutes); //login & register
 app.use("/api/authentication", forgotRouters); //forgotpassword Route
 app.use('/cart', cartRouter); //cart
+app.use('/signup', authRoutes);
 
 // Root Route (Optional)
 app.get('/', (req, res) => {

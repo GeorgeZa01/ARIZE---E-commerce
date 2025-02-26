@@ -1,19 +1,26 @@
-import {getUsers, deleteUser, updateUser} from '../model/userModel.js';
+import {deleteUser, updateUser, createUser, getusers} from '../model/userModel.js';
 
+export const getuserscon = async (req, res) => {
     try {
-        if (await findUserByEmail(email)) {
-            return res.status(400).json({ message: "Email already registered!" });
-        }
-
-        await createUser(fullName, email, password);
-        res.status(201).json({ message: "User registered successfully!" });
+        const users = await getusers();
+        res.json(users);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Server error" });
-    };
+        res.status(500).json({ error: "Server error" });
+    }
+}
+export const createUserCon = async (req, res) => {
+    try {
+        const userData = req.body;
+        const result = await createUser(userData);
+        res.json(result);
+    } catch (error) {
+        console.error('Error in createUser:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
 
-    
-const deleteUserCon = async (req, res) => {
+export const deleteUserCon = async (req, res) => {
     try {
         const userId = req.params.id;
 
@@ -34,7 +41,7 @@ const deleteUserCon = async (req, res) => {
     }
 };
 
-const updateUserCon = async (req, res) => {
+export const updateUserCon = async (req, res) => {
     try {
         const userId = req.params.id;
         const userData = req.body;
@@ -55,4 +62,4 @@ const updateUserCon = async (req, res) => {
         res.status(500).json({ error: "Internal Server Error in controller" });
     }
 };
-export { getUserCon, deleteUserCon, updateUserCon };
+
