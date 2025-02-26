@@ -1,7 +1,7 @@
 import { pool } from '../config/config.js';
 import bcrypt from 'bcryptjs';
 
-export const getUsers = async () => {
+ const getUsers = async () => {
     try {
         const [rows] = await pool.query('SELECT * FROM users');
         return rows;
@@ -10,28 +10,32 @@ export const getUsers = async () => {
         throw error; // Let the controller handle the error response
     }
 };
+const deleteUser = async (userId) => {
+    try {
+        const [result] = await pool.query('DELETE FROM arize_db.users WHERE user_id = ?', [userId]);
 
-// Create a new user
-export const createUser = async (firstName, lastName, email, password, token) => {
-    const hashedPassword = await bcrypt.hash(password, 10); // Hash the password before saving
-    const query = `
-        INSERT INTO users (firstName, lastName, email, password, verificationToken, isVerified) 
-        VALUES (?, ?, ?, ?, ?, ?)
-    `;
-    const [result] = await pool.query(query, [firstName, lastName, email, hashedPassword, token, false]);
-    return result;
+        if (result.affectedRows === 0) {
+            throw new Error(`No user found with ID: ${userId}`);
+        }
+
+        return { message: `User with ID: ${userId} deleted successfully.` };
+    } catch (error) {
+        console.error('Database error:', error);
+        throw error;
+    }
 };
 
-// Find a user by email
-export const findUserByEmail = async (email) => {
-    const [user] = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
-    return user.length ? user[0] : null;
+const updateUser = async (userId, userData) => {
+    try {
+        const [result] = await pool.query('UPDATE arize_db.users SET ? WHERE user_id = ?', [userData, userId]);
+        if (result.affectedRows === 0) {
+            throw new Error(`No user found with ID: ${userId}`);
+        }
+        return { message: `User with ID: ${userId} updated successfully.` };
+    } catch (error) {
+        console.error('Database error:', error);
+        throw error;
+    }
 };
 
-// Verify user by token
-export const verifyUser = async (token) => {
-    const query = "UPDATE users SET isVerified = true WHERE verificationToken = ?";
-    const [result] = await pool.query(query, [token]);
-    return result;
-};
-
+export { getUsers, deleteUser, updateUser };

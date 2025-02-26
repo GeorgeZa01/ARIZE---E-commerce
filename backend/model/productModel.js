@@ -61,6 +61,8 @@ const deleteProduct = async (productId) => {
         throw error;
     }
 };
+
+
 const addProduct = async (product) => {
     try {
         const [result] = await pool.query('INSERT INTO arize_db.products SET ?', [product]);

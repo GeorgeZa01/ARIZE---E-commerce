@@ -66,7 +66,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="productPrice" class="form-label">Price</label>
-                            <input type="number" class="form-control" id="productPrice" required>
+                            <input type="text" class="form-control" id="productPrice" required>
                         </div>
                         <div class="mb-3">
                             <label for="productQuantity" class="form-label">Quantity</label>
@@ -134,29 +134,42 @@
     }
 
     document.getElementById('editProductForm').onsubmit = async (e) => {
-        e.preventDefault();
-        const productId = document.getElementById('editProductId').value;
-        const image = document.getElementById('editProductImage').value;
-        const name = document.getElementById('editProductName').value;
-        const category = document.getElementById('editProductCategory').value;
-        const description = document.getElementById('editProductDescription').value;
-        const price = document.getElementById('editProductPrice').value;
-        const quantity = document.getElementById('editProductQuantity').value;
+    e.preventDefault();
+    const productId = document.getElementById('editProductId').value;
+    const image = document.getElementById('editProductImage').value;
+    const name = document.getElementById('editProductName').value;
+    const category = document.getElementById('editProductCategory').value;
+    const description = document.getElementById('editProductDescription').value;
+    const price = document.getElementById('editProductPrice').value;
+    const quantity = document.getElementById('editProductQuantity').value;
 
-        try {
-            const response = await fetch(`http://localhost:3030/products/${productId}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ image, Name: name, Category: category, Description: description, Price: price, Quantity: quantity })
-            });
-            if (response.ok) {
-                bootstrap.Modal.getInstance(document.getElementById('editProductModal')).hide();
-                fetchProducts();
-            }
-        } catch (error) {
-            console.error('Error updating product:', error);
+    try {
+        // Make a PATCH request to update the product
+        const response = await fetch(`http://localhost:3030/products/${productId}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                image, 
+                Name: name, 
+                Category: category, 
+                Description: description, 
+                Price: price, 
+                Quantity: quantity 
+            })
+        });
+
+        if (response.ok) {
+            bootstrap.Modal.getInstance(document.getElementById('editProductModal')).hide();
+            fetchProducts(); // Fetch the updated list of products
+        } else {
+            const error = await response.json();
+            alert(`Error: ${error.message}`);
         }
-    };
+    } catch (error) {
+        console.error('Error updating product:', error);
+    }
+};
+
 
     async function fetchProducts() {
         try {
@@ -173,8 +186,8 @@
                                 <p class="card-text"><strong>Category:</strong> ${product.Category}</p>
                                 <p class="card-text"><strong>Price:</strong> $${product.Price}</p>
                                 <p class="card-text"><strong>Quantity:</strong> ${product.Quantity}</p>
-                                <button class="btn btn-sm btn-outline-primary" onclick='openEditModal(${JSON.stringify(product)})'>Edit</button>
-                                <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct(${product.product_id})">Delete</button>
+                                <button class="edit-btn" onclick='openEditModal(${JSON.stringify(product)})'>Edit</button>
+                                <button class="delete-btn" onclick="deleteProduct(${product.product_id})">Delete</button>
                             </div>
                         </div>
                     </div>`;
