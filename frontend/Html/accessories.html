@@ -273,24 +273,6 @@
     }
 }
 
-
-        // Populate modal with product details
-        const modalBody = document.getElementById('productDetails');
-        modalBody.innerHTML = `
-            <img src="${product.image}" class="img-fluid mb-3" alt="${product.Name}">
-            <h5>${product.Name}</h5>
-            <p><strong>Price:</strong> ${product.Price}</p>
-            <p><strong>Stock:</strong> ${product.Quantity} left</p>
-            <p><strong>Description:</strong> ${product.Description}</p>
-        `;
-
-        // Show the modal
-        const productModal = new bootstrap.Modal(document.getElementById('productModal'));
-        productModal.show();
-    } catch (error) {
-        console.error('Error fetching product details:', error);
-    }
-}
 async function fetchaccessories() {
     try {
         const response = await fetch('http://localhost:3030/products/accessories');
