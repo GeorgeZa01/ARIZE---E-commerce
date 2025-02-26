@@ -10,7 +10,7 @@
   transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  min-height: 450px;
+  min-height: 500px;
 }
 
 
@@ -21,7 +21,8 @@
 
 .card img {
   width: 100%;
-
+  aspect-ratio: 5/5 ;
+  object-fit: contain;
   object-fit: cover;
   border-bottom: 2px solid #516559; /* Slightly thinner border */
 }
