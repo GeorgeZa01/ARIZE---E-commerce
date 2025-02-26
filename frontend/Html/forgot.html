@@ -30,7 +30,7 @@
             }
 
             try {
-                const response = await fetch("http://localhost:3030/api/auth/forgot-password", {
+                const response = await fetch("http://localhost:3030/api/authentication/forgot-password", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email })
