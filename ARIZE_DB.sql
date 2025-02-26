@@ -74,3 +74,21 @@ Insert into users_cred (email,password)
 Values
 ('urswinf@gmail.com','urswinfaro'),
 ('jemail75@gmail.com','Macaws01');
+
+CREATE TABLE orders (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL,
+    payment_method ENUM('Mastercard', 'PayPal') NOT NULL,
+    status ENUM('Pending', 'Completed', 'Failed') DEFAULT 'Pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE order_items (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);
