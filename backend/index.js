@@ -20,7 +20,7 @@ app.use(express.json());
 // Routes
 app.use('/products', productsRouter);
 app.use('/users', userRouter);
-app.use("/api/auth", authRoutes); //forgotpassword Route
+app.use("/api/auth", authRouters); //forgotpassword Route
 app.use('/api/auth', authRoutes); //Signup & Login
 app.use('/cart', cartRouter);
 app.use('/api/auth', signuploginRoute); //Signup & Login
