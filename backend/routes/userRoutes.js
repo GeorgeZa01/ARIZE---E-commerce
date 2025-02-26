@@ -3,8 +3,9 @@ import { getUserCon, deleteUserCon, updateUserCon } from '../controller/userCont
 
 const router = express.Router();
 
-// GET all users
-router.get('/', getUserCon);
+router.post("/signup", signup);
+router.post("/login", login);
+router.post("/logout", login);
 
 // DELETE user by ID
 router.delete('/:id', deleteUserCon);

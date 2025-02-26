@@ -1,3 +1,5 @@
 backend/node_modules
 backend/routes/authRouter.js
 backend/.env
+backend/config/config.js
+backend/.env

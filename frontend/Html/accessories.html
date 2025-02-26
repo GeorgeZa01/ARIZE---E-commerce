@@ -77,7 +77,24 @@
             </div>
         </div>
         </nav>
-    
+        <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="productDetails">
+                  <!-- Product details will be dynamically inserted here -->
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+           
         <!-- Modal for Login -->
         <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -257,6 +274,23 @@
 }
 
 
+        // Populate modal with product details
+        const modalBody = document.getElementById('productDetails');
+        modalBody.innerHTML = `
+            <img src="${product.image}" class="img-fluid mb-3" alt="${product.Name}">
+            <h5>${product.Name}</h5>
+            <p><strong>Price:</strong> ${product.Price}</p>
+            <p><strong>Stock:</strong> ${product.Quantity} left</p>
+            <p><strong>Description:</strong> ${product.Description}</p>
+        `;
+
+        // Show the modal
+        const productModal = new bootstrap.Modal(document.getElementById('productModal'));
+        productModal.show();
+    } catch (error) {
+        console.error('Error fetching product details:', error);
+    }
+}
 async function fetchaccessories() {
     try {
         const response = await fetch('http://localhost:3030/products/accessories');
