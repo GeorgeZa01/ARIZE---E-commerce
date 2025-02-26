@@ -13,12 +13,14 @@ router.get('/accessories', getAccessoriesCon);
 // DELETE a product by ID
 router.delete('/:id', deleteProductCon);
 
+
 // POST a new product
 router.post('/', addProductCon);
 
 // PATCH a product by ID
 router.patch("/:id", updateProductCon); 
 
+// GET single product
 router.get('/:productId', getSingleProductCon);
 
 

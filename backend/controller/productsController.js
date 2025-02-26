@@ -67,6 +67,10 @@ const getAccessoriesCon = async (req,res) => {
             res.status(500).json({ error: 'Internal Server Error in controller' });
         }
     };
+
+   
+    
+
 const addProductCon = async (req, res) => {
     try {
         const product = req.body;
@@ -99,6 +103,7 @@ const updateProductCon = async (req, res) => {
         res.status(500).json({ error: "Internal Server Error in controller" });
     }
 };
+
 
 const getSingleProductCon = async (req, res) => {
     try {
