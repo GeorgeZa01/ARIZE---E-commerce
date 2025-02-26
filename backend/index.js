@@ -2,7 +2,7 @@ import express from 'express';
 import { config } from 'dotenv';
 import cors from 'cors';
 import productsRouter from './routes/productsRoutes.js';
-import userRouter from './routes/userRoutes.js';
+import authRoutes from './routes/userRoutes.js';
 import forgotRouters from './routes/forgotRouter.js';
 import cartRouter from './routes/cartRouter.js'
 
@@ -23,7 +23,7 @@ app.use(express.json());
 
 // Routes
 app.use('/products', productsRouter); //laptops,monitors,PCtower,accessories
-app.use('/users', userRouter); //login & register
+app.use("/api/auth", authRoutes); //login & register
 app.use("/api/authentication", forgotRouters); //forgotpassword Route
 app.use('/cart', cartRouter); //cart
 

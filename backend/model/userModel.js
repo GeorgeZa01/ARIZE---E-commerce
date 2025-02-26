@@ -1,37 +1,20 @@
-import { pool } from '../config/config.js';
-import bcrypt from 'bcryptjs';
+import { pool } from "../config/config.js";
+import bcrypt from "bcrypt";
+
+export const findUserByEmail = async (email) => {
+    const [users] = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
+    return users.length > 0 ? users[0] : null;
+};
 
 export const getUsers = async () => {
-    try {
-        const [rows] = await pool.query('SELECT * FROM users');
-        return rows;
-    } catch (error) {
-        console.error('Database error:', error);
-        throw error; // Let the controller handle the error response
-    }
+    const [users] = await pool.query("SELECT * FROM users");
+    return users;
 };
 
-// Create a new user
-export const createUser = async (firstName, lastName, email, password, token) => {
-    const hashedPassword = await bcrypt.hash(password, 10); // Hash the password before saving
-    const query = `
-        INSERT INTO users (firstName, lastName, email, password, verificationToken, isVerified) 
-        VALUES (?, ?, ?, ?, ?, ?)
-    `;
-    const [result] = await pool.query(query, [firstName, lastName, email, hashedPassword, token, false]);
-    return result;
+export const createUser = async (full_name, email, password) => {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await pool.query(
+        "INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)",
+        [full_name, email, hashedPassword]
+    );
 };
-
-// Find a user by email
-export const findUserByEmail = async (email) => {
-    const [user] = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
-    return user.length ? user[0] : null;
-};
-
-// Verify user by token
-export const verifyUser = async (token) => {
-    const query = "UPDATE users SET isVerified = true WHERE verificationToken = ?";
-    const [result] = await pool.query(query, [token]);
-    return result;
-};
-
