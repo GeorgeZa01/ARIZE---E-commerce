@@ -5,7 +5,7 @@ import productsRouter from './routes/productsRoutes.js';
 import authRoutes from './routes/userRoutes.js';
 import forgotRouters from './routes/forgotRouter.js';
 import cartRouter from './routes/cartRouter.js'
-import checkoutRouter from './routes/checkoutRouter.js';
+// import checkoutRouter from './routes/checkoutRouter.js';
 
 
 config(); // Load environment variables
@@ -27,8 +27,8 @@ app.use('/products', productsRouter); //laptops,monitors,PCtower,accessories
 app.use("/api/auth", authRoutes); //login & register
 app.use("/api/authentication", forgotRouters); //forgotpassword Route
 app.use('/cart', cartRouter); //cart
-app.use('/payment', checkoutRouter)//payment gateway
-app.use('/checkout', checkoutRouter)//checkout
+// app.use('/payment', checkoutRouter)//payment gateway
+// app.use('/checkout', checkoutRouter)//checkout
 
 
 // Root Route (Optional)
