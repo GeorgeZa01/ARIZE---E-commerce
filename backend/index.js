@@ -3,10 +3,8 @@ import { config } from 'dotenv';
 import cors from 'cors';
 import productsRouter from './routes/productsRoutes.js';
 import userRouter from './routes/userRoutes.js';
-import authRoutes from './routes/forgotRouter.js'; 
-import authRouters from './routes/authRouter.js';
+import forgotRouters from './routes/forgotRouter.js';
 import cartRouter from './routes/cartRouter.js'
-import signuploginRoute from './routes/authRouter.js';
 
 
 config(); // Load environment variables
@@ -14,17 +12,20 @@ config(); // Load environment variables
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: "*", // Allow all origins (for development)
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"]
+}));
+
 
 app.use(express.json());
 
 // Routes
-app.use('/products', productsRouter);
-app.use('/users', userRouter);
-app.use("/api/auth", authRouters); //forgotpassword Route
-app.use('/api/auth', authRoutes); //Signup & Login
-app.use('/cart', cartRouter);
-app.use('/api/auth', signuploginRoute); //Signup & Login
+app.use('/products', productsRouter); //laptops,monitors,PCtower,accessories
+app.use('/users', userRouter); //login & register
+app.use("/api/authentication", forgotRouters); //forgotpassword Route
+app.use('/cart', cartRouter); //cart
 
 // Root Route (Optional)
 app.get('/', (req, res) => {
