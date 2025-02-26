@@ -1,14 +1,18 @@
 import {getUsers, deleteUser, updateUser} from '../model/userModel.js';
 
-const getUserCon = async (req, res) => {
     try {
-        const users = await getUsers(); // Call model function
-        res.json(users);
+        if (await findUserByEmail(email)) {
+            return res.status(400).json({ message: "Email already registered!" });
+        }
+
+        await createUser(fullName, email, password);
+        res.status(201).json({ message: "User registered successfully!" });
     } catch (error) {
-        console.error('Error in getUserCon:', error);
-        res.status(500).json({ error: 'Internal Server Error in controller' });
-    }
-};
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    };
+
+    
 const deleteUserCon = async (req, res) => {
     try {
         const userId = req.params.id;
