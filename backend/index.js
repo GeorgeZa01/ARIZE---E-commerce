@@ -8,6 +8,7 @@ import authRouters from './routes/authRouter.js';
 import cartRouter from './routes/cartRouter.js'
 import signuploginRoute from './routes/authRouter.js';
 
+
 config(); // Load environment variables
 
 const app = express();
