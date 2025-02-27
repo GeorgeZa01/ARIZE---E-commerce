@@ -38,6 +38,8 @@ CREATE TABLE `arize_db`.`users` (
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `address` VARCHAR(300) NOT NULL,
+  `reset_token` VARCHAR(255) DEFAULT NULL,
+  `reset_expires` DATETIME DEFAULT NULL,
   PRIMARY KEY (`user_id`));
 
 INSERT INTO `arize_db`.`users` (`full_name`, `email`, `password`, `address`)
@@ -61,19 +63,6 @@ CREATE TABLE `arize_db`.`admin` (
   `quantity` INT NOT NULL Default 1,
   PRIMARY KEY (`cart_id`));
 
-CREATE TABLE users_cred (
-    user_cred_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    reset_token VARCHAR(255) DEFAULT NULL,
-    reset_expires DATETIME DEFAULT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-);
-Insert into users_cred (email,password)
-Values
-('urswinf@gmail.com','urswinfaro'),
-('jemail75@gmail.com','Macaws01');
 
 CREATE TABLE orders (
     id INT PRIMARY KEY AUTO_INCREMENT,
