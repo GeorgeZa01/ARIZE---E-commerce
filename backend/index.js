@@ -32,6 +32,7 @@ app.use('/signup', authRoutes);
 // app.use('/checkout', checkoutRouter)//checkout
 
 
+
 // Root Route (Optional)
 app.get('/', (req, res) => {
     res.send('Welcome to Tech Store API!');
