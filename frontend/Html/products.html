@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Arize | Products</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <!-- Bootstrap Icons CDN -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-        <link href="../Css/products.css" rel="stylesheet">
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arize | Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <link href="../Css/products.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
 
 
 <body>
-    
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/arize.png?raw=true" alt="" class="img-fluid" style="max-width: 150px;">
+                <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/arize.png?raw=true" alt=""
+                    class="img-fluid" style="max-width: 150px;">
             </a>
             <input id="checkbox" type="checkbox">
-            <label class="toggle" for="checkbox"class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <div id="bar1" class="bars"></div>
-            <div id="bar2" class="bars"></div>
-            <div id="bar3" class="bars"></div>
-            <!-- <span class="navbar-toggler-icon"></span> -->
-        </label>
+            <label class="toggle" for="checkbox" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <div id="bar1" class="bars"></div>
+                <div id="bar2" class="bars"></div>
+                <div id="bar3" class="bars"></div>
+                <!-- <span class="navbar-toggler-icon"></span> -->
+            </label>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -43,10 +45,27 @@
                             <a class="nav-link" href="./about.html">About Us</a>
                         </li>               
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="d-flex" role="search" id="searchForm">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
+
+                     <!-- Modal for displaying search results -->
+<div class="modal fade" id="searchResultsModal" tabindex="-1" aria-labelledby="searchResultsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchResultsModalLabel">Search Results</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="searchResultsContainer" class="row">
+                    <!-- Dynamic product results will go here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
                     <!-- Login/Signup Button -->
                     <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal">Log In</button>
                     <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1">Sign Up</button>
@@ -70,158 +89,158 @@
                         </div>
                         <a href="./checkout.html">
 
-                        <button class="checkout-btn">Checkout</button>
+                            <button class="checkout-btn">Checkout</button>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        </nav>
+    </nav>
 
-<!-- Product Details Modal -->
-<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content shadow-lg rounded-3">
-        <div class="modal-header bg-dark text-white">
-          <h5 class="modal-title" id="productModalLabel">Product Details</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="row g-4">
-            <!-- Product Image Section -->
-            <div class="col-md-5">
-              <img src=${product.image} alt="Product Image" class="img-fluid rounded-3 shadow-sm">
+    <!-- Product Details Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content shadow-lg rounded-3">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4">
+                        <!-- Product Image Section -->
+                        <div class="col-md-5">
+                            <img src=${product.image} alt="Product Image" class="img-fluid rounded-3 shadow-sm">
+                        </div>
+
+                        <!-- Product Info Section -->
+                        <div class="col-md-7">
+                            <h4 id="productTitle" class="text-primary">Product Title</h4>
+                            <p id="productDescription" class="text-muted"></p>
+                            <p><strong class="text-dark">Price:</strong> <span id="productPrice"
+                                    class="text-success">$99.99</span></p>
+                            <p><strong class="text-dark">Category:</strong> <span
+                                    id="productCategory">Electronics</span></p>
+                            <hr>
+                            <p><strong></strong></p>
+                            <ul id="productDetails" class="list-unstyled">
+                                <li>Detail 1</li>
+                                <li>Detail 2</li>
+                                <li>Detail 3</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
-            
-            <!-- Product Info Section -->
-            <div class="col-md-7">
-              <h4 id="productTitle" class="text-primary">Product Title</h4>
-              <p id="productDescription" class="text-muted"></p>
-              <p><strong class="text-dark">Price:</strong> <span id="productPrice" class="text-success">$99.99</span></p>
-              <p><strong class="text-dark">Category:</strong> <span id="productCategory">Electronics</span></p>
-              <hr>
-              <p><strong></strong></p>
-              <ul id="productDetails" class="list-unstyled">
-                <li>Detail 1</li>
-                <li>Detail 2</li>
-                <li>Detail 3</li>
-              </ul>
-            </div>
-          </div>
         </div>
-        <div class="modal-footer border-top-0">
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
-  </div>
-  
-  <!-- Bootstrap JS (Optional) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  
-   
-        <!-- Modal for Login -->
-        <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="authModalLabel">Log In</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Form content for login/signup -->
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-button" id="loginButton">Log In</button>
-                        </div>
-                    </div>
-                    <a href="../frontend/Html/forgot.html">forgot password</a>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Modal for Login -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="authModalLabel">Log In</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <!-- Form content for login/signup -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-button" id="loginButton">Log In</button>
+                    </div>
+                </div>
+                <a href="../frontend/Html/forgot.html">forgot password</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Sign Up -->
+    <div class="modal fade" id="authModal1" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="authModalLabel">Sign Up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form content for login/signup -->
+                    <div class="mb-3">
+                        <label for="text" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="eg.Mike ">
+                    </div>
+                    <div class="mb-3">
+                        <label for="text" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="eg. Oxlong">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="eg. mikeoxlong69@gmail.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Confirm your password">
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-button">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Sign Up -->
-        <div class="modal fade" id="authModal1" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="authModalLabel">Sign Up</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Form content for login/signup -->
-                        <div class="mb-3">
-                            <label for="text" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="eg.Mike ">
-                        </div>
-                        <div class="mb-3">
-                            <label for="text" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="eg. Oxlong">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" placeholder="eg. mikeoxlong69@gmail.com">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Confirm your password">
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-button">Submit</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><br>
+    </div><br>
     <!-- Colorful Pulsing Discord Alert -->
-<div id="discordAlert" class="alert alert-info d-flex align-items-center justify-content-between text-white mb-0" role="alert">
-    <div>
-        <strong>Join our Discord Community!</strong> Click here to connect with others.
+    <div id="discordAlert" class="alert alert-info d-flex align-items-center justify-content-between text-white mb-0"
+        role="alert">
+        <div>
+            <strong>Join our Discord Community!</strong> Click here to connect with others.
+        </div>
+        <a href="https://discord.gg/8reCZG5C" class="playstore-button">
+            <svg viewBox="0 -28.5 256 256" class="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z">
+                </path>
+            </svg>
+            <span class="texts">
+                <span class="text-1">JOIN THE</span>
+                <span class="text-2">DISCORD</span>
+            </span>
+        </a>
     </div>
-    <a href="https://discord.gg/8reCZG5C" class="playstore-button">
-        <svg
-          viewBox="0 -28.5 256 256"
-          class="icon"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z"
-          ></path>
-        </svg>
-        <span class="texts">
-          <span class="text-1">JOIN THE</span>
-          <span class="text-2">DISCORD</span>
-        </span>
-      </a>
-</div>
-<br>
-<h1>Laptops</h1>
-<div class="row mt-4" id="product-cards-laptops">
-    <!-- Product cards will be inserted here -->
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body-laptops">
-                Loading products...
+    <br>
+    <h1>Laptops</h1>
+    <div class="row mt-4" id="product-cards-laptops">
+        <!-- Product cards will be inserted here -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body-laptops">
+                    Loading products...
+                </div>
             </div>
         </div>
     </div>
 </div>
 <h1>Monitors</h1>
-<div class="row mt-4" id="product-cards-monitors">
+<div class="row mt-3" id="product-cards-monitors">
     <!-- Product cards will be inserted here -->
     <div class="col-md-4">
         <div class="card">
@@ -230,10 +249,9 @@
             </div>
         </div>
     </div>
-</div>
 
 <h1>PC Towers</h1>
-<div class="row mt-4" id="product-cards-pctower">
+<div class="row mt-3" id="product-cards-pctower">
     <!-- Product cards will be inserted here -->
     <div class="col-md-4">
         <div class="card">
@@ -242,10 +260,9 @@
             </div>
         </div>
     </div>
-</div>
 
 <h1>Accessories</h1>
-<div class="row mt-4" id="product-cards-accessories">
+<div class="row mt-3" id="product-cards-accessories">
     <!-- Product cards will be inserted here -->
     <div class="col-md-4">
         <div class="card">
@@ -254,29 +271,29 @@
             </div>
         </div>
     </div>
-</div>
 
 
 <script>
-   async function viewMore(productId) {
+
+async function viewMore(productId) {
     try {
         const response = await fetch(`http://localhost:3030/products/${productId}`);
         const product = await response.json();
 
-        // Populate modal fields
-        document.getElementById('productTitle').textContent = product.Name;
-        document.getElementById('productPrice').textContent = `${product.Price}`;
-        document.getElementById('productCategory').textContent = product.Category;
+                // Populate modal fields
+                document.getElementById('productTitle').textContent = product.Name;
+                document.getElementById('productPrice').textContent = `${product.Price}`;
+                document.getElementById('productCategory').textContent = product.Category;
 
-        // Update product image
-        const productImage = document.querySelector('#productModal img');
-        productImage.src = product.image;
-        productImage.alt = product.title;
+                // Update product image
+                const productImage = document.querySelector('#productModal img');
+                productImage.src = product.image;
+                productImage.alt = product.title;
 
-        // Update details list
-        const detailsList = document.getElementById('productDetails');
-        detailsList.innerHTML = `
-             <li><strong>Description:</strong> ${product.Description }</li>
+                // Update details list
+                const detailsList = document.getElementById('productDetails');
+                detailsList.innerHTML = `
+             <li><strong>Description:</strong> ${product.Description}</li>
              <br>
              <li><strong>Stock:</strong> ${product.Quantity} left</li>
              <br>
@@ -286,13 +303,74 @@
 </button>    
         `;
 
-        // Show the modal
-        const productModal = new bootstrap.Modal(document.getElementById('productModal'));
-        productModal.show();
-    } catch (error) {
-        console.error('Error fetching product details:', error);
+                // Show the modal
+                const productModal = new bootstrap.Modal(document.getElementById('productModal'));
+                productModal.show();
+            } catch (error) {
+                console.error('Error fetching product details:', error);
+            }
+        }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
+
+    // Handle search form submission
+    searchForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const query = searchInput.value.trim();
+
+        if (query) {
+            searchProducts(query);
+        } else {
+            alert("Please enter a search term.");
+        }
+    });
+
+    // Function to search products
+    function searchProducts(query) {
+        fetch(`http://localhost:3030/products/search?query=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    displaySearchResults(data);
+                } else {
+                    alert("No products found.");
+                }
+            })
+            .catch(error => {
+                console.error("Error searching products:", error);
+                alert("An error occurred while searching.");
+            });
     }
-}
+
+    // Function to display search results in the modal
+    function displaySearchResults(products) {
+        const modal = new bootstrap.Modal(document.getElementById('searchResultsModal'));
+        const container = document.getElementById("searchResultsContainer");
+        
+        container.innerHTML = ''; // Clear previous results
+
+        products.forEach(product => {
+            const productCard = document.createElement("div");
+            productCard.classList.add("col-md-4", "mb-3");
+
+            productCard.innerHTML = `
+                <div class="card-search">
+                    <img src="${product.image}" class="card-img-top" alt="${product.Name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.Name}</h5>
+                        <p><strong>Price: </strong>${product.Price}</p>
+                        <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
+                    </div>
+                </div>
+            `;
+            container.appendChild(productCard);
+        });
+
+        modal.show(); // Show the modal
+    }
+});
 
 async function fetchlaptops() {
     try {
@@ -303,8 +381,8 @@ async function fetchlaptops() {
 
         products.forEach(product => {
             productCardsContainer.innerHTML += `
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-md-3">
+                    <div class="card mb-3">
                         <div class="card-body-laptops">
                             <img src="${product.image}">
                             <h5 class="card-title">${product.Name}</h5>
@@ -315,22 +393,22 @@ async function fetchlaptops() {
                     </div>
                 </div>
             `;
-        });
-    } catch (error) {
-        console.error('Error fetching products:', error);
-    }
-}
-async function fetchmonitors() {
-    try {
-        const response = await fetch('http://localhost:3030/products/monitors');
-        const products = await response.json();
-        const productCardsContainer = document.getElementById('product-cards-monitors');
-        productCardsContainer.innerHTML = ''; // Clear placeholder text
+                });
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+        async function fetchmonitors() {
+            try {
+                const response = await fetch('http://localhost:3030/products/monitors');
+                const products = await response.json();
+                const productCardsContainer = document.getElementById('product-cards-monitors');
+                productCardsContainer.innerHTML = ''; // Clear placeholder text
 
         products.forEach(product => {
             productCardsContainer.innerHTML += `
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-md-3">
+                    <div class="card mb-3">
                         <div class="card-body-monitors">
                             <img src="${product.image}">
                             <h5 class="card-title">${product.Name}</h5>
@@ -341,22 +419,22 @@ async function fetchmonitors() {
                     </div>
                 </div>
             `;
-        });
-    } catch (error) {
-        console.error('Error fetching products:', error);
-    }
-}
-async function fetchPCtowers() {
-    try {
-        const response = await fetch('http://localhost:3030/products/pctower');
-        const products = await response.json();
-        const productCardsContainer = document.getElementById('product-cards-pctower');
-        productCardsContainer.innerHTML = ''; // Clear placeholder text
+                });
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+        async function fetchPCtowers() {
+            try {
+                const response = await fetch('http://localhost:3030/products/pctower');
+                const products = await response.json();
+                const productCardsContainer = document.getElementById('product-cards-pctower');
+                productCardsContainer.innerHTML = ''; // Clear placeholder text
 
         products.forEach(product => {
             productCardsContainer.innerHTML += `
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-md-3">
+                    <div class="card mb-3">
                         <div class="card-body-monitors">
                             <img src="${product.image}" >
                             <h5 class="card-title">${product.Name}</h5>
@@ -367,22 +445,22 @@ async function fetchPCtowers() {
                     </div>
                 </div>
             `;
-        });
-    } catch (error) {
-        console.error('Error fetching products:', error);
-    }
-}
-async function fetchaccessories() {
-    try {
-        const response = await fetch('http://localhost:3030/products/accessories');
-        const products = await response.json();
-        const productCardsContainer = document.getElementById('product-cards-accessories');
-        productCardsContainer.innerHTML = ''; // Clear placeholder text
+                });
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+        async function fetchaccessories() {
+            try {
+                const response = await fetch('http://localhost:3030/products/accessories');
+                const products = await response.json();
+                const productCardsContainer = document.getElementById('product-cards-accessories');
+                productCardsContainer.innerHTML = ''; // Clear placeholder text
 
         products.forEach(product => {
             productCardsContainer.innerHTML += `
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-md-3">
+                    <div class="card mb-3">
                         <div class="card-body-monitors">
                             <img src="${product.image}">
                             <h5 class="card-title">${product.Name}</h5>          
@@ -393,11 +471,110 @@ async function fetchaccessories() {
                     </div>
                 </div>
             `;
+                });
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        window.onload = () => {
+            fetchlaptops();
+            fetchmonitors();
+            fetchPCtowers();
+            fetchaccessories();
+            displayProducts();
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const signupSubmitButton = document.getElementById("signupSubmitButton");
+
+            signupSubmitButton.addEventListener("click", function () {
+                const fullName = document.getElementById("signupFullName").value;
+                const email = document.getElementById("signupEmail").value;
+                const password = document.getElementById("signupPassword").value;
+                const confirmPassword = document.getElementById("signupConfirmPassword").value;
+
+                // Validation
+                if (!fullName || !email || !password || !confirmPassword) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Please fill in all fields!",
+                    });
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Passwords do not match!",
+                    });
+                    return;
+                }
+
+                const userData = {
+                    full_name: fullName,
+                    email: email,
+                    password: password
+                };
+
+                // Send data to the backend
+                fetch("http://127.0.0.1:3030/api/auth/signup", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(userData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Show success message
+                            // Show error message based on the response
+                            Swal.fire({
+                                icon: "error",
+                                title: "Signup Failed",
+                                text: data.message || "An error occurred during signup.",
+                            });
+
+                        } else {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Signup Successful!",
+                                text: "You have successfully signed up.",
+                            }).then(() => {
+                                // Optionally, redirect the user or close the modal
+                                window.location.href = "./index.html"; // Redirect if needed
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error signing up:", error);
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "An error occurred while signing up. Please try again.",
+                        });
+                    });
+            });
         });
-    } catch (error) {
-        console.error('Error fetching products:', error);
-    }
-};
+    </script>
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>123 Business St, Suite 456</p>
+                    <p>City, Country, 12345</p>
+                    <p>Email: contact@yourcompany.com</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../index.html" class="text-white">Home</a></li>
+                        <li><a href="./products.html" class="text-white">Products</a></li>
+                        <li><a href="./about.html" class="text-white">About Us</a></li>
 
 window.onload = () => {
     fetchlaptops();
@@ -441,8 +618,8 @@ async function fetchCartItems(userId) {
                     <p>${product.name}</p>
                     <p>Price: ${product.price}</p>
                     <p>Quantity: <span id="quantity-${product.id}">${product.quantity}</span></p>
-                    <button onclick="increaseQuantity(${product.id})">+</button>
-                    <button onclick="removeFromCart(${product.id})">Remove</button>
+                    <button onclick="increaseQuantity(${product.product_id})">+</button>
+                    <button onclick="removeFromCart(${product.product_id})">Remove</button>
                 </div>
             `;
         });
@@ -507,11 +684,11 @@ async function increaseQuantity(cartId) {
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="text-center py-3">
-        <p>&copy; 2025 Your Company Name. All rights reserved.</p>
-    </div>
-</footer>
+        <div class="text-center py-3">
+            <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
+
 </html>

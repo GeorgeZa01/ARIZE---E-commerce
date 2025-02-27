@@ -1,10 +1,7 @@
 import { pool } from "../config/config.js";
 import bcrypt from "bcrypt";
 
-export const getusers = async () => {
-    const [rows] = await pool.query("SELECT * FROM users");
-    return rows;
-};
+
 
 // Function to create a new user
 export const createUser = async ({full_name, email, password}) => {
@@ -25,13 +22,16 @@ export const findUserByEmail = async (email) => {
 
  const getUsers = async () => {
     try {
-        const [rows] = await pool.query('SELECT * FROM users');
+        console.log("Fetching users from DB...");
+        const [rows] = await pool.query('SELECT * FROM arize_db.users');
+        console.log("Users fetched:", rows);
         return rows;
     } catch (error) {
         console.error('Database error:', error);
-        throw error; // Let the controller handle the error response
+        throw error;
     }
 };
+
 const deleteUser = async (userId) => {
     try {
         const [result] = await pool.query('DELETE FROM arize_db.users WHERE user_id = ?', [userId]);
