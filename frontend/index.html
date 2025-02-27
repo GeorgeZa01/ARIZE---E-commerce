@@ -44,10 +44,26 @@
                         <a class="nav-link" href="../frontend/Html/about.html">About Us</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" role="search" id="searchForm">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+                <!-- Modal for displaying search results -->
+<div class="modal fade" id="searchResultsModal" tabindex="-1" aria-labelledby="searchResultsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchResultsModalLabel">Search Results</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="searchResultsContainer" class="row">
+                    <!-- Dynamic product results will go here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
                 <!-- Login/Signup Button -->
                 <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal">Log In</button>
@@ -269,6 +285,68 @@
 
 
     <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
+
+    // Handle search form submission
+    searchForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const query = searchInput.value.trim();
+
+        if (query) {
+            searchProducts(query);
+        } else {
+            alert("Please enter a search term.");
+        }
+    });
+
+    // Function to search products
+    function searchProducts(query) {
+        fetch(`http://localhost:3030/products/search?query=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    displaySearchResults(data);
+                } else {
+                    alert("No products found.");
+                }
+            })
+            .catch(error => {
+                console.error("Error searching products:", error);
+                alert("An error occurred while searching.");
+            });
+    }
+
+    // Function to display search results in the modal
+    function displaySearchResults(products) {
+        const modal = new bootstrap.Modal(document.getElementById('searchResultsModal'));
+        const container = document.getElementById("searchResultsContainer");
+        
+        container.innerHTML = ''; // Clear previous results
+
+        products.forEach(product => {
+            const productCard = document.createElement("div");
+            productCard.classList.add("col-md-4", "mb-3");
+
+            productCard.innerHTML = `
+                <div class="card">
+                    <img src="${product.image}" class="card-img-top" alt="${product.Name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.Name}</h5>
+                        <p class="card-text">${product.Description}</p>
+                        <p><strong>Price: </strong>${product.Price}</p>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+            container.appendChild(productCard);
+        });
+
+        modal.show(); // Show the modal
+    }
+});
+
 
         document.addEventListener("DOMContentLoaded", function () {
             const cartItemsContainer = document.getElementById("cart-items");
