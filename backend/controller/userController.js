@@ -1,16 +1,32 @@
-import {getUsers, deleteUser, updateUser} from '../model/userModel.js';
- 
-const getUserCon = async (req, res) => {
+import {deleteUser, updateUser, createUser, getUsers} from '../model/userModel.js';
+
+
+export const createUserCon = async (req, res) => {
     try {
-        const users = await getUsers();
-        res.json(users);
+        const userData = req.body;
+        const result = await createUser(userData);
+        res.json(result);
     } catch (error) {
-        console.error('Error in getUserCon:', error);
+        console.error('Error in createUser:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-    
-const deleteUserCon = async (req, res) => {
+
+
+ 
+export const getUsersCon = async (req, res) => {
+    try {
+        console.log("GET /user API called");  // Debugging line
+        const users = await getUsers();
+        console.log("Fetched users:", users); // Debugging line
+        res.json(users);
+    } catch (error) {
+        console.error('Error in getUsersCon:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+export const deleteUserCon = async (req, res) => {
     try {
         const userId = req.params.id;
 
@@ -31,7 +47,7 @@ const deleteUserCon = async (req, res) => {
     }
 };
 
-const updateUserCon = async (req, res) => {
+export const updateUserCon = async (req, res) => {
     try {
         const userId = req.params.id;
         const userData = req.body;
@@ -52,4 +68,4 @@ const updateUserCon = async (req, res) => {
         res.status(500).json({ error: "Internal Server Error in controller" });
     }
 };
-export { getUserCon, deleteUserCon, updateUserCon };
+

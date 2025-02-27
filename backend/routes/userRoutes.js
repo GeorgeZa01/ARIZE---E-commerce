@@ -1,10 +1,13 @@
 import express from 'express';
-import { getUserCon, deleteUserCon, updateUserCon } from '../controller/userController.js';
+import {deleteUserCon, updateUserCon, createUserCon, getUsersCon } from '../controller/userController.js';
 
 const router = express.Router();
 
 // GET all users
-router.get('/', getUserCon);
+router.get('/', getUsersCon);
+
+// CREATE new user
+router.post('/signup', createUserCon);
 
 // DELETE user by ID
 router.delete('/:id', deleteUserCon);
