@@ -20,10 +20,9 @@ export const createUserCon = async (req, res) => {
     }
 };
 
-export const deleteUserCon = async (req, res) => {
-import {getUsers, deleteUser, updateUser} from '../model/userModel.js';
+
  
-const getUserCon = async (req, res) => {
+export const getUserCon = async (req, res) => {
     try {
         const users = await getUsers();
         res.json(users);
@@ -33,7 +32,7 @@ const getUserCon = async (req, res) => {
     }
 };
     
-const deleteUserCon = async (req, res) => {
+export const deleteUserCon = async (req, res) => {
     try {
         const userId = req.params.id;
 
@@ -75,4 +74,4 @@ export const updateUserCon = async (req, res) => {
         res.status(500).json({ error: "Internal Server Error in controller" });
     }
 };
-}
+

@@ -8,7 +8,7 @@ router.get('/user', getuserscon);
 
 // CREATE new user
 router.post('/signup', createUserCon);
-router.get('/', getUserCon);
+router.get('/', getuserscon);
 
 // DELETE user by ID
 router.delete('/:id', deleteUserCon);
