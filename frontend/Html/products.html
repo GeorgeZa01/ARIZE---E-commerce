@@ -43,10 +43,27 @@
                             <a class="nav-link" href="./about.html">About Us</a>
                         </li>               
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="d-flex" role="search" id="searchForm">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
+
+                     <!-- Modal for displaying search results -->
+<div class="modal fade" id="searchResultsModal" tabindex="-1" aria-labelledby="searchResultsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchResultsModalLabel">Search Results</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="searchResultsContainer" class="row">
+                    <!-- Dynamic product results will go here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
                     <!-- Login/Signup Button -->
                     <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal">Log In</button>
                     <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1">Sign Up</button>
@@ -221,7 +238,7 @@
     </div>
 </div>
 <h1>Monitors</h1>
-<div class="row mt-4" id="product-cards-monitors">
+<div class="row mt-3" id="product-cards-monitors">
     <!-- Product cards will be inserted here -->
     <div class="col-md-4">
         <div class="card">
@@ -233,7 +250,7 @@
 </div>
 
 <h1>PC Towers</h1>
-<div class="row mt-4" id="product-cards-pctower">
+<div class="row mt-3" id="product-cards-pctower">
     <!-- Product cards will be inserted here -->
     <div class="col-md-4">
         <div class="card">
@@ -245,7 +262,7 @@
 </div>
 
 <h1>Accessories</h1>
-<div class="row mt-4" id="product-cards-accessories">
+<div class="row mt-3" id="product-cards-accessories">
     <!-- Product cards will be inserted here -->
     <div class="col-md-4">
         <div class="card">
@@ -258,7 +275,8 @@
 
 
 <script>
-   async function viewMore(productId) {
+
+async function viewMore(productId) {
     try {
         const response = await fetch(`http://localhost:3030/products/${productId}`);
         const product = await response.json();
@@ -294,6 +312,67 @@
     }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
+
+    // Handle search form submission
+    searchForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const query = searchInput.value.trim();
+
+        if (query) {
+            searchProducts(query);
+        } else {
+            alert("Please enter a search term.");
+        }
+    });
+
+    // Function to search products
+    function searchProducts(query) {
+        fetch(`http://localhost:3030/products/search?query=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    displaySearchResults(data);
+                } else {
+                    alert("No products found.");
+                }
+            })
+            .catch(error => {
+                console.error("Error searching products:", error);
+                alert("An error occurred while searching.");
+            });
+    }
+
+    // Function to display search results in the modal
+    function displaySearchResults(products) {
+        const modal = new bootstrap.Modal(document.getElementById('searchResultsModal'));
+        const container = document.getElementById("searchResultsContainer");
+        
+        container.innerHTML = ''; // Clear previous results
+
+        products.forEach(product => {
+            const productCard = document.createElement("div");
+            productCard.classList.add("col-md-4", "mb-3");
+
+            productCard.innerHTML = `
+                <div class="card-search">
+                    <img src="${product.image}" class="card-img-top" alt="${product.Name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.Name}</h5>
+                        <p><strong>Price: </strong>${product.Price}</p>
+                        <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
+                    </div>
+                </div>
+            `;
+            container.appendChild(productCard);
+        });
+
+        modal.show(); // Show the modal
+    }
+});
+
 async function fetchlaptops() {
     try {
         const response = await fetch('http://localhost:3030/products/laptops');
@@ -303,8 +382,8 @@ async function fetchlaptops() {
 
         products.forEach(product => {
             productCardsContainer.innerHTML += `
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-md-3">
+                    <div class="card mb-3">
                         <div class="card-body-laptops">
                             <img src="${product.image}">
                             <h5 class="card-title">${product.Name}</h5>
@@ -329,8 +408,8 @@ async function fetchmonitors() {
 
         products.forEach(product => {
             productCardsContainer.innerHTML += `
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-md-3">
+                    <div class="card mb-3">
                         <div class="card-body-monitors">
                             <img src="${product.image}">
                             <h5 class="card-title">${product.Name}</h5>
@@ -355,8 +434,8 @@ async function fetchPCtowers() {
 
         products.forEach(product => {
             productCardsContainer.innerHTML += `
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-md-3">
+                    <div class="card mb-3">
                         <div class="card-body-monitors">
                             <img src="${product.image}" >
                             <h5 class="card-title">${product.Name}</h5>
@@ -381,8 +460,8 @@ async function fetchaccessories() {
 
         products.forEach(product => {
             productCardsContainer.innerHTML += `
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-md-3">
+                    <div class="card mb-3">
                         <div class="card-body-monitors">
                             <img src="${product.image}">
                             <h5 class="card-title">${product.Name}</h5>          
