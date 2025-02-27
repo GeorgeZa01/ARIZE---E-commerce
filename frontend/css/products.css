@@ -627,3 +627,39 @@ h1 {
   transform: translate(3px, 3px);
   box-shadow: 0px 0px var(--main-color);
 }
+.product-btn {
+  --purple: #9B7EDA;
+  font-size: 18px;
+  padding: 0.8em 3em;
+  letter-spacing: 0.08em;
+  position: relative;
+  font-family: inherit;
+  border-radius: 0.6em;
+  overflow: hidden;
+  transition: all 0.3s;
+  line-height: 1.4em;
+  border: 2px solid var(--purple);
+  background: linear-gradient(to right, rgba(155, 126, 218, 0.1) 1%, transparent 40%, transparent 60%, rgba(155, 126, 218, 0.1) 100%);
+  color: var(--purple);
+  box-shadow: inset 0 0 10px rgba(155, 126, 218, 0.4), 0 0 9px 3px rgba(155, 126, 218, 0.1);
+}
+
+.product-btn:hover {
+  color: #BFA3F3;
+  box-shadow: inset 0 0 10px rgba(155, 126, 218, 0.6), 0 0 9px 3px rgba(155, 126, 218, 0.2);
+}
+
+.product-btn:before {
+  content: "";
+  position: absolute;
+  left: -4em;
+  width: 4em;
+  height: 100%;
+  top: 0;
+  transition: transform .4s ease-in-out;
+  background: linear-gradient(to right, transparent 1%, rgba(155, 126, 218, 0.1) 40%, rgba(155, 126, 218, 0.1) 60%, transparent 100%);
+}
+
+.product-btn:hover:before {
+  transform: translateX(15em);
+}
