@@ -1,14 +1,6 @@
-import {deleteUser, updateUser, createUser, getusers} from '../model/userModel.js';
+import {deleteUser, updateUser, createUser, getUsers} from '../model/userModel.js';
 
-export const getuserscon = async (req, res) => {
-    try {
-        const users = await getusers();
-        res.json(users);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Server error" });
-    }
-}
+
 export const createUserCon = async (req, res) => {
     try {
         const userData = req.body;
@@ -22,16 +14,18 @@ export const createUserCon = async (req, res) => {
 
 
  
-export const getUserCon = async (req, res) => {
+export const getUsersCon = async (req, res) => {
     try {
+        console.log("GET /user API called");  // Debugging line
         const users = await getUsers();
+        console.log("Fetched users:", users); // Debugging line
         res.json(users);
     } catch (error) {
-        console.error('Error in getUserCon:', error);
+        console.error('Error in getUsersCon:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-    
+
 export const deleteUserCon = async (req, res) => {
     try {
         const userId = req.params.id;
