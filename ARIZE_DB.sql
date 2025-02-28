@@ -2,7 +2,7 @@ CREATE SCHEMA `arize_db` ;
 USE `arize_db`;
 
 CREATE TABLE `arize_db`.`products` (
-  `product_id` INT NOT NULL,
+  `product_id` INT NOT NULL auto_increment,
   `image` varchar(300),
   `Name` VARCHAR(65) NOT NULL,
   `Description` VARCHAR(2000) NOT NULL,
@@ -36,10 +36,8 @@ CREATE TABLE `arize_db`.`users` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `full_name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(245) NOT NULL,
   `address` VARCHAR(300) NOT NULL,
-  `reset_token` VARCHAR(255) DEFAULT NULL,
-  `reset_expires` DATETIME DEFAULT NULL,
   PRIMARY KEY (`user_id`));
 
 INSERT INTO `arize_db`.`users` (`full_name`, `email`, `password`, `address`)
@@ -63,21 +61,16 @@ CREATE TABLE `arize_db`.`admin` (
   `quantity` INT NOT NULL Default 1,
   PRIMARY KEY (`cart_id`));
 
-
-CREATE TABLE orders (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    total_amount DECIMAL(10,2) NOT NULL,
-    payment_method ENUM('Mastercard', 'PayPal') NOT NULL,
-    status ENUM('Pending', 'Completed', 'Failed') DEFAULT 'Pending',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE users_cred (
+    user_cred_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    reset_token VARCHAR(255) DEFAULT NULL,
+    reset_expires DATETIME DEFAULT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
-
-CREATE TABLE order_items (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    order_id INT NOT NULL,
-    product_id INT NOT NULL,
-    quantity INT NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
-);
+Insert into users_cred (email,password)
+Values
+('urswinf@gmail.com','urswinfaro'),
+('jemail75@gmail.com','Macaws01');
