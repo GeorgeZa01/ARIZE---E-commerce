@@ -64,6 +64,8 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         // Fetch and display users
         async function fetchUsers() {
@@ -122,9 +124,22 @@
 
                     const modal = bootstrap.Modal.getInstance(document.getElementById('editUserModal'));
                     modal.hide();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'User updated successfully',
+                        text: 'The user details have been updated.',
+                        draggable: true
+                    });
+
                     fetchUsers();
                 } catch (error) {
                     console.error('Error updating user:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error updating user',
+                        text: error.message,
+                        draggable: true
+                    });
                 }
             };
 
@@ -134,7 +149,17 @@
 
         // Function to handle deleting user
         async function deleteUser(userId) {
-            if (!confirm("Are you sure you want to delete this user?")) return;
+            const result = await Swal.fire({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+    });
+
+    if (!result.isConfirmed) return;
             try {
                 const response = await fetch(`http://localhost:3030/users/${userId}`, {
                     method: 'DELETE'
@@ -142,12 +167,27 @@
 
                 if (response.ok) {
                     console.log('Deleted user');
+                    Swal.fire({
+                title: "User deleted successfully!",
+                icon: "success",
+                draggable: true
+            });
                     fetchUsers();
                 } else {
-                    console.error('Failed to delete user');
+                    Swal.fire({
+                title: "Failed to delete user",
+                icon: "error",
+                draggable: true
+            });
                 }
             } catch (error) {
                 console.error('Error deleting user:', error);
+                Swal.fire({
+            title: "Error deleting user",
+            text: error.message,
+            icon: "error",
+            draggable: true
+        });
             }
         }
 
@@ -155,80 +195,7 @@
             fetchUsers();
         };
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const signupSubmitButton = document.getElementById("signupSubmitButton");
-
-            signupSubmitButton.addEventListener("click", function () {
-                const fullName = document.getElementById("signupFullName").value;
-                const email = document.getElementById("signupEmail").value;
-                const password = document.getElementById("signupPassword").value;
-                const confirmPassword = document.getElementById("signupConfirmPassword").value;
-
-                // Validation
-                if (!fullName || !email || !password || !confirmPassword) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Please fill in all fields!",
-                    });
-                    return;
-                }
-
-                if (password !== confirmPassword) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Passwords do not match!",
-                    });
-                    return;
-                }
-
-                const userData = {
-                    full_name: fullName,
-                    email: email,
-                    password: password
-                };
-
-                // Send data to the backend
-                fetch("http://127.0.0.1:3030/api/auth/signup", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(userData),
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Show success message
-                            // Show error message based on the response
-                            Swal.fire({
-                                icon: "error",
-                                title: "Signup Failed",
-                                text: data.message || "An error occurred during signup.",
-                            });
-                            
-                        } else {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Signup Successful!",
-                                text: "You have successfully signed up.",
-                            }).then(() => {
-                                // Optionally, redirect the user or close the modal
-                                window.location.href = "./index.html"; // Redirect if needed
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error signing up:", error);
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "An error occurred while signing up. Please try again.",
-                        });
-                    });
-            });
-        });
+       
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -120,6 +120,8 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     function openEditModal(product) {
     document.getElementById('editProductId').value = product.product_id;
@@ -128,9 +130,6 @@
     document.getElementById('editProductCategory').value = product.Category;
     document.getElementById('editProductDescription').value = product.Description;
     
-    // Remove currency symbol (R) and comma from price
-    // let cleanPrice = product.Price.replace(/[R,]/g, '');
-    // document.getElementById('editProductPrice').value = cleanPrice;
     
     document.getElementById('editProductQuantity').value = product.Quantity;
     new bootstrap.Modal(document.getElementById('editProductModal')).show();
@@ -141,14 +140,22 @@
     document.getElementById('editProductForm').onsubmit = async (e) => {
     e.preventDefault();
     
-    alert('Edit form submitted!'); // Debugging alert
+    Swal.fire({
+            title: "Form Submitted!",
+            icon: "success",
+            draggable: true
+        });
 
     const productId = document.getElementById('editProductId').value;
     console.log("Product ID:", productId); // Debugging log
 
     if (!productId) {
-        alert("Error: No product ID found!");
-        return;
+        Swal.fire({
+                title: "Error: No product ID found!",
+                icon: "error",
+                draggable: true
+            });
+            return;
     }
 
     const image = document.getElementById('editProductImage').value;
@@ -176,16 +183,29 @@
     console.log("Server Response:", data);
 
     if (response.ok) {
-        alert("Product updated successfully!");
+        Swal.fire({
+                    title: "Product updated successfully!",
+                    icon: "success",
+                    draggable: true
+                });
         bootstrap.Modal.getInstance(document.getElementById('editProductModal')).hide();
         fetchProducts();
     } else {
         console.error("Error Response:", data);
-        alert(`Error from API: ${data.message || 'Unknown error'}`);
+        Swal.fire({
+                    title: `Error from API: ${data.message || 'Unknown error'}`,
+                    icon: "error",
+                    draggable: true
+                });
     }
 } catch (error) {
     console.error('Error updating product:', error);
-    alert("An error occurred while updating the product.\nCheck the console for details.");
+    Swal.fire({
+                title: "An error occurred while updating the product.",
+                text: "Check the console for details.",
+                icon: "error",
+                draggable: true
+            });
 }
 };
 
@@ -213,6 +233,12 @@
             });
         } catch (error) {
             console.error('Error fetching products:', error);
+            Swal.fire({
+                title: "Error fetching products",
+                text: error.message,
+                icon: "error",
+                draggable: true
+            });
         }
     }
 
@@ -231,22 +257,59 @@
                     body: JSON.stringify({image, Name: name, Category: category, Description: description, Price: price, Quantity: quantity})
                 });
                 if (response.ok) {
+                    Swal.fire({
+                    title: "Product added successfully!",
+                    icon: "success",
+                    draggable: true
+                });
+
                     bootstrap.Modal.getInstance(document.getElementById('addProductModal')).hide();
                     document.getElementById('addProductForm').reset();
                     fetchProducts();
                 }
             } catch (error) {
                 console.error('Error adding product:', error);
+                Swal.fire({
+                title: "Error adding product",
+                text: error.message,
+                icon: "error",
+                draggable: true
+            });
             }
         };
 
         async function deleteProduct(productId) {
-            if (!confirm("Are you sure you want to delete this product?")) return;
+            const result = await Swal.fire({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+    });
+
+    if (!result.isConfirmed) return;
             try {
                 const response = await fetch(`http://localhost:3030/products/${productId}`, { method: 'DELETE' });
-                if (response.ok) fetchProducts();
+                if (response.ok) {
+                    Swal.fire({
+                    title: "Product deleted successfully!",
+                    icon: "success",
+                    draggable: true
+                });
+                
+                fetchProducts();
+            }
+
             } catch (error) {
                 console.error('Error deleting product:', error);
+                Swal.fire({
+                title: "Error deleting product",
+                text: error.message,
+                icon: "error",
+                draggable: true
+            });
             }
         }
 
