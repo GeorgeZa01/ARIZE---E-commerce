@@ -4,13 +4,13 @@ import bcrypt from "bcrypt";
 
 
 // Function to create a new user
-export const createUser = async ({full_name, email, password}) => {
+export const createUser = async ({full_name, email, password, address}) => {
     const existingUser = await findUserByEmail(email);
     if (existingUser) {
         throw new Error("User already exists");
     }
     const hashedPassword = await bcrypt.hash(password, 10);
-    const [rows] = await pool.query("INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)", [full_name, email, hashedPassword]);
+    const [rows] = await pool.query("INSERT INTO users (full_name, email, password, address) VALUES (?, ?, ?,?)", [full_name, email, hashedPassword, address]);
     return rows.insertId;
 };
 

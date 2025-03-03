@@ -570,3 +570,146 @@
   .product-btn:hover:before {
     transform: translateX(15em);
   }
+
+  /* Cookie Modal styling */
+.cookie-modal {
+    display: none; /* Hide modal by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black backdrop */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Make sure it's on top */
+}
+
+/* Cookie Card Styling */
+.cookie-card {
+    width: 400px; 
+    height: 320px; 
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    padding: 20px 30px;
+    gap: 20px; 
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.062);
+    z-index: 10000;
+}
+
+
+/* Cookie Image Styling */
+.cookieImage {
+    width: 120px; 
+    height: auto; /* Keep the aspect ratio intact */
+}
+
+
+#cookieSvg {
+    width: 80px; /* Reduced width */
+}
+
+.cookieHeading {
+    font-size: 1.8em; /* Slightly smaller font */
+    font-weight: 800;
+    color: rgb(26, 26, 26);
+}
+
+.cookieDescription {
+    text-align: center;
+    font-size: 0.9em; /* Reduced font size */
+    font-weight: 600;
+    color: rgb(99, 99, 99);
+    line-height: 1.5;
+}
+
+.cookieDescription a {
+    --tw-text-opacity: 1;
+    color: rgb(59 130 246);
+}
+
+.cookieDescription a:hover {
+    -webkit-text-decoration-line: underline;
+    text-decoration-line: underline;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 15px; /* Reduced gap */
+    flex-direction: row;
+}
+
+.acceptButton, .declineButton {
+    width: 90px; /* Reduced width */
+    height: 28px; /* Reduced height */
+    border: none;
+    font-weight: 600;
+    border-radius: 20px;
+    transition: all .6s ease;
+}
+
+.acceptButton {
+    width: 95px; /* Reduced width */
+    height: 30px; /* Reduced height */
+    background-color: #7b57ff;
+    transition-duration: .2s;
+    border: none;
+    color: rgb(241, 241, 241);
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px -1px #977ef3, 0 2px 4px -1px #977ef3;
+    transition: all .6s ease;
+}
+
+.declineButton {
+    width: 95px; /* Reduced width */
+    height: 30px; /* Reduced height */
+    background-color: #dadada;
+    transition-duration: .2s;
+    color: rgb(46, 46, 46);
+    border: none;
+    cursor: not-allowed;
+    font-weight: 600;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px -1px #bebdbd, 0 2px 4px -1px #bebdbd;
+    transition: all .6s ease;
+}
+
+.acceptButton:hover {
+    background-color: #9173ff;
+    box-shadow: 0 10px 15px -3px #977ef3;
+}
+
+.declineButton:hover {
+    background-color: #ebebeb;
+    box-shadow: 0 10px 15px -3px #bebdbd;
+}
+
+/* Login & Signup Styling */
+.modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-body .mb-3 {
+    margin-bottom: 15px;
+}
+
+.modal-body a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 0.9rem;
+}
+
+.modal-body a:hover {
+    text-decoration: underline;
+}
+
+.d-flex.justify-content-between {
+    margin-top: 15px;
+}

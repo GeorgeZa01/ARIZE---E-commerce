@@ -885,3 +885,28 @@ h1 {
 .col-md-3{
   width: 20%;
 }
+
+/* Login & Signup Styling  */
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body .mb-3 {
+  margin-bottom: 15px;
+}
+
+.modal-body a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 0.9rem;
+}
+
+.modal-body a:hover {
+  text-decoration: underline;
+}
+
+.d-flex.justify-content-between {
+  margin-top: 15px;
+}
+

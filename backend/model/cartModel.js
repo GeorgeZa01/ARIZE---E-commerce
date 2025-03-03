@@ -1,4 +1,4 @@
-import { pool } from '../config/config.js';
+// import { pool } from '../config/config.js';
 
 // Get cart items for a user
 const getCartItems = async (user_id) => {
@@ -44,15 +44,15 @@ async function addToCart(userId, productId, quantity) {
 
 
 
-// Remove item from cart
-const removeFromCart = async (cartId) => {
-    try {
-        await pool.query('DELETE FROM cart WHERE id = ?', [cartId]);
-        return { success: true, message: 'Item removed from cart' };
-    } catch (error) {
-        throw error;
-    }
-};
+// // Remove item from cart
+// const removeFromCart = async (cartId) => {
+//     try {
+//         await pool.query('DELETE FROM cart WHERE id = ?', [cartId]);
+//         return { success: true, message: 'Item removed from cart' };
+//     } catch (error) {
+//         throw error;
+//     }
+// };
 
 // Increase quantity
 const increaseQuantity = async (cartId) => {
