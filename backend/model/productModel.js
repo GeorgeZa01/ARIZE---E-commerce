@@ -2,7 +2,7 @@ import { pool } from '../config/config.js';
 
 
 const searchProducts = async (searchQuery) => {
-    try {
+    try {  
         const [rows] = await pool.query(
             'SELECT * FROM arize_db.products WHERE Name LIKE ? OR Description LIKE ?',
             [`%${searchQuery}%`, `%${searchQuery}%`]

@@ -557,107 +557,90 @@ async function fetchlaptops() {
                             text: "An error occurred while signing up. Please try again.",
                         });
                     });
+                });
             });
-        });
-    </script>
-    <footer class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Contact Us</h5>
-                    <p>123 Business St, Suite 456</p>
-                    <p>City, Country, 12345</p>
-                    <p>Email: contact@yourcompany.com</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="../index.html" class="text-white">Home</a></li>
-                        <li><a href="./products.html" class="text-white">Products</a></li>
-                        <li><a href="./about.html" class="text-white">About Us</a></li>
-
-window.onload = () => {
-    fetchlaptops();
-    fetchmonitors();
-    fetchPCtowers();
-    fetchaccessories();
-    displayProducts();
-};
-// Add to cart function
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', async (event) => {
-        const productId = event.target.dataset.productId;
-        const userId = 1; // Get logged-in user ID dynamically
-        const quantity = 1;
-
-        try {
-            const response = await fetch('http://localhost:3030/cart/add', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId, productId, quantity })
+            window.onload = () => {
+                fetchlaptops();
+                fetchmonitors();
+                fetchPCtowers();
+                fetchaccessories();
+                displayProducts();
+            };
+            // Add to cart function
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', async (event) => {
+                    const productId = event.target.dataset.productId;
+                    const userId = 1; // Get logged-in user ID dynamically
+                    const quantity = 1;
+            
+                    try {
+                        const response = await fetch('http://localhost:3030/cart/add', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ userId, productId, quantity })
+                        });
+                        const result = await response.json();
+                        alert(result.message);
+                    } catch (error) {
+                        console.error('Error adding to cart:', error);
+                    }
+                });
             });
-            const result = await response.json();
-            alert(result.message);
-        } catch (error) {
-            console.error('Error adding to cart:', error);
-        }
-    });
-});
-
-// Displaying cart items
-async function fetchCartItems(userId) {
-    try {
-        const response = await fetch(`http://localhost:3030/cart/${userId}`);
-        const items = await response.json();
-
-        let cartHTML = '';
-        products.forEach(product => {
-            cartHTML += `
-                <div class="cart-item">
-                    <img src="${product.image}">
-                    <p>${product.name}</p>
-                    <p>Price: ${product.price}</p>
-                    <p>Quantity: <span id="quantity-${product.id}">${product.quantity}</span></p>
-                    <button onclick="increaseQuantity(${product.product_id})">+</button>
-                    <button onclick="removeFromCart(${product.product_id})">Remove</button>
-                </div>
-            `;
-        });
-
-        document.getElementById('cart-container').innerHTML = cartHTML;
-    } catch (error) {
-        console.error('Error fetching cart:', error);
-    }
-}
-
-fetchCartItems(1); // Replace with actual logged-in user ID
-
-// Removing a cart item
-
-async function removeFromCart(cartId) {
-    try {
-        const response = await fetch(`http://localhost:3030/cart/remove/${cartId}`, { method: 'DELETE' });
-        const result = await response.json();
-        alert(result.message);
-        fetchCartItems(1); // Refresh cart
-    } catch (error) {
-        console.error('Error removing item:', error);
-    }
-}
-
-// Increasing the number of items(quantity)
-
-async function increaseQuantity(cartId) {
-    try {
-        const response = await fetch(`http://localhost:3000/cart/increase/${cartId}`, { method: 'PUT' });
-        const result = await response.json();
-        alert(result.message);
-        fetchCartItems(1); // Refresh cart
-    } catch (error) {
-        console.error('Error increasing quantity:', error);
-    }
-}
-
+            
+            // Displaying cart items
+            async function fetchCartItems(userId) {
+                try {
+                    const response = await fetch(`http://localhost:3030/cart/${userId}`);
+                    const items = await response.json();
+            
+                    let cartHTML = '';
+                    products.forEach(product => {
+                        cartHTML += `
+                            <div class="cart-item">
+                                <img src="${product.image}">
+                                <p>${product.name}</p>
+                                <p>Price: ${product.price}</p>
+                                <p>Quantity: <span id="quantity-${product.id}">${product.quantity}</span></p>
+                                <button onclick="increaseQuantity(${product.product_id})">+</button>
+                                <button onclick="removeFromCart(${product.product_id})">Remove</button>
+                            </div>
+                        `;
+                    });
+            
+                    document.getElementById('cart-container').innerHTML = cartHTML;
+                } catch (error) {
+                    console.error('Error fetching cart:', error);
+                }
+            }
+            
+            fetchCartItems(1); // Replace with actual logged-in user ID
+            
+            // Removing a cart item
+            
+            async function removeFromCart(cartId) {
+                try {
+                    const response = await fetch(`http://localhost:3030/cart/remove/${cartId}`, { method: 'DELETE' });
+                    const result = await response.json();
+                    alert(result.message);
+                    fetchCartItems(1); // Refresh cart
+                } catch (error) {
+                    console.error('Error removing item:', error);
+                }
+            }
+            
+            // Increasing the number of items(quantity)
+            
+            async function increaseQuantity(cartId) {
+                try {
+                    const response = await fetch(`http://localhost:3000/cart/increase/${cartId}`, { method: 'PUT' });
+                    const result = await response.json();
+                    alert(result.message);
+                    fetchCartItems(1); // Refresh cart
+                } catch (error) {
+                    console.error('Error increasing quantity:', error);
+                }
+            }
+   
 </script>
 <footer class="bg-dark text-white py-4">
     <div class="container">

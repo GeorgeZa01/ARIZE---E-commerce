@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="../css/admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin.css" >
 </head>
 
 <body>
@@ -108,7 +107,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="editProductPrice" class="form-label">Price</label>
-                        <input type="number" class="form-control" id="editProductPrice" required>
+                        <input type="text" class="form-control" id="editProductPrice" required>
                     </div>
                     <div class="mb-3">
                         <label for="editProductQuantity" class="form-label">Quantity</label>
@@ -123,56 +122,72 @@
 
 <script>
     function openEditModal(product) {
-        document.getElementById('editProductId').value = product.product_id;
-        document.getElementById('editProductImage').value = product.image;
-        document.getElementById('editProductName').value = product.Name;
-        document.getElementById('editProductCategory').value = product.Category;
-        document.getElementById('editProductDescription').value = product.Description;
-        document.getElementById('editProductPrice').value = product.Price;
-        document.getElementById('editProductQuantity').value = product.Quantity;
-        new bootstrap.Modal(document.getElementById('editProductModal')).show();
-    }
+    document.getElementById('editProductId').value = product.product_id;
+    document.getElementById('editProductImage').value = product.image;
+    document.getElementById('editProductName').value = product.Name;
+    document.getElementById('editProductCategory').value = product.Category;
+    document.getElementById('editProductDescription').value = product.Description;
+    
+    // Remove currency symbol (R) and comma from price
+    // let cleanPrice = product.Price.replace(/[R,]/g, '');
+    // document.getElementById('editProductPrice').value = cleanPrice;
+    
+    document.getElementById('editProductQuantity').value = product.Quantity;
+    new bootstrap.Modal(document.getElementById('editProductModal')).show();
+}
+
+
 
     document.getElementById('editProductForm').onsubmit = async (e) => {
     e.preventDefault();
     
-    alert('Form submitted'); // Debugging line to check if the form is being submitted
-    
+    alert('Edit form submitted!'); // Debugging alert
+
     const productId = document.getElementById('editProductId').value;
+    console.log("Product ID:", productId); // Debugging log
+
+    if (!productId) {
+        alert("Error: No product ID found!");
+        return;
+    }
+
     const image = document.getElementById('editProductImage').value;
     const name = document.getElementById('editProductName').value;
     const category = document.getElementById('editProductCategory').value;
     const description = document.getElementById('editProductDescription').value;
-    const price = document.getElementById('editProductPrice').value;
+    const price = parseFloat(document.getElementById('editProductPrice').value);
     const quantity = document.getElementById('editProductQuantity').value;
 
     try {
-        // Make a PATCH request to update the product
-        const response = await fetch(`http://localhost:3030/products/${productId}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                image, 
-                Name: name, 
-                Category: category, 
-                Description: description, 
-                Price: price, 
-                Quantity: quantity 
-            })
-        });
+    const response = await fetch(`http://localhost:3030/products/${productId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            image, 
+            Name: name, 
+            Category: category, 
+            Description: description, 
+            Price: price, 
+            Quantity: quantity 
+        })
+    });
 
-        if (response.ok) {
-            bootstrap.Modal.getInstance(document.getElementById('editProductModal')).hide();
-            fetchProducts(); // Fetch the updated list of products
-        } else {
-            const error = await response.json();
-            alert(`Error: ${error.message}`);
-        }
-    } catch (error) {
-        console.error('Error updating product:', error);
+    const data = await response.json(); // Try to get response as JSON
+    console.log("Server Response:", data);
+
+    if (response.ok) {
+        alert("Product updated successfully!");
+        bootstrap.Modal.getInstance(document.getElementById('editProductModal')).hide();
+        fetchProducts();
+    } else {
+        console.error("Error Response:", data);
+        alert(`Error from API: ${data.message || 'Unknown error'}`);
     }
+} catch (error) {
+    console.error('Error updating product:', error);
+    alert("An error occurred while updating the product.\nCheck the console for details.");
+}
 };
-
 
 
     async function fetchProducts() {
@@ -188,7 +203,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">${product.Name}</h5>
                                 <p class="card-text"><strong>Category:</strong> ${product.Category}</p>
-                                <p class="card-text"><strong>Price:</strong> $${product.Price}</p>
+                                <p class="card-text"><strong>Price:</strong> R${product.Price}</p>
                                 <p class="card-text"><strong>Quantity:</strong> ${product.Quantity}</p>
                                 <button class="edit-btn" onclick='openEditModal(${JSON.stringify(product)})'>Edit</button>
                                 <button class="delete-btn" onclick="deleteProduct(${product.product_id})">Delete</button>
