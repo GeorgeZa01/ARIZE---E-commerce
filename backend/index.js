@@ -26,7 +26,7 @@ app.use(express.json());
 app.use('/products', productsRouter); //laptops,monitors,PCtower,accessories
 app.use("/api/authentication", forgotRouters); //forgotpassword Route
 app.use('/cart', cartRouter); //cart
-app.use('/signup', authRoutes);//signup
+app.use('/api/auth', authRoutes);//signup
 app.use('/users', userRoutes);
 // app.use('/payment', checkoutRouter)//payment gateway
 // app.use('/checkout', checkoutRouter)//checkout
