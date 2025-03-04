@@ -150,18 +150,26 @@
                     <h5 class="modal-title" id="authModalLabel">Log In</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                <div class="modal-body">
+                    <!-- Form content for login/signup -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-button" id="loginButton">Log In</button>
+                    </div>
                 </div>
-                <div class="d-flex justify-content-between">
-                    <button class="btn btn-button" id="loginButton">Log In</button>
-                </div>
-                <a href="../frontend/Html/forgot.html" class="d-block mt-3">Forgot password?</a>
+                <a href="../frontend/Html/forgot.html">forgot password</a>
             </div>
         </div>
     </div>
-</div>
+    </div>
+    </div>
 
     <!-- Sign Up -->
     <div class="modal fade" id="authModal1" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="">
@@ -199,10 +207,7 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-    <br>
+    </div><br>
     <!-- Colorful Pulsing Discord Alert -->
     <div id="discordAlert" class="alert alert-info d-flex align-items-center justify-content-between text-white mb-0"
         role="alert">
@@ -234,7 +239,6 @@
         </div>
     </div>
 </div>
-
 <h1>Monitors</h1>
 <div class="row mt-3" id="product-cards-monitors">
     <!-- Product cards will be inserted here -->
@@ -267,7 +271,6 @@
             </div>
         </div>
     </div>
-</div>
 
 
     <footer class="bg-dark text-white py-4">
@@ -371,24 +374,24 @@
             return;
         }
 
-        const price = item.price ? item.price : 0; 
-        subtotal += price * item.cart_quantity;
+        const price = item.Price ? item.Price : 0; 
+        subtotal += price * item.quantity;
 
         const cartItem = document.createElement("div");
         cartItem.classList.add("cart-item");
 
         cartItem.innerHTML = `
-            
+            <img class="cart-img" src="${item.image}"  "alt="${item.Name}">
             <div class="item-details">
                 <h3>${item.Name}</h3>
-                <p class="item-price">R ${price.toFixed(2)}</p>
+                <p class="item-price">R ${(item.Price * item.quantity)}</p>
             </div>
             <div class="quantity-controls">
-                <button class="quantity-btn" onclick="changeQuantity(${item.id}, -1)">-</button>
-                <span>${item.cart_quantity}</span>
-                <button class="quantity-btn" onclick="changeQuantity(${item.id}, 1)">+</button>
+                <button class="quantity-btn" onclick="changeQuantity(${item.cart_id}, -1)">-</button>
+                <span>${item.quantity}</span>
+                <button class="quantity-btn" onclick="changeQuantity(${item.cart_id}, 1)">+</button>
             </div>
-            <button class="remove-btn" onclick="removeFromCart(${item.id})">🗑️</button>
+            <button class="remove-btn" onclick="removeFromCart(${item.cart_id})">🗑️</button>
         `;
             console.log(cartItem);
             
@@ -438,7 +441,7 @@
                     ? `http://localhost:3030/cart/update/increase/${cartId}`
                     : `http://localhost:3030/cart/update/decrease/${cartId}`;
                     
-            const response = await fetch(endpoint, { method: "PUT" });
+            const response = await fetch(endpoint, { method: "PATCH" });
             const result = await response.json();
 
             if (result.success) {
@@ -453,6 +456,8 @@
 
     // Remove item from cart
     async function removeFromCart(cartId) {
+        console.log(cartId);
+        
         try {
             console.log(`🗑️ Removing item with cartId: ${cartId}`);
             const response = await fetch(`http://localhost:3030/cart/delete/${cartId}`, { method: "DELETE" });
@@ -570,7 +575,7 @@
                         <img src="${product.image}" class="card-img-top" alt="${product.Name}">
                         <div class="card-body">
                             <h5 class="card-title">${product.Name}</h5>
-                            <p><strong>Price: </strong>${product.Price}</p>
+                            <p><strong>Price: R </strong>${product.Price}</p>
                             <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                         </div>
                     </div>
@@ -596,7 +601,7 @@
                             <div class="card-body-laptops">
                                 <img src="${product.image}">
                                 <h5 class="card-title">${product.Name}</h5>
-                                <p class="card-text">Price: ${product.Price}</p>
+                                <p class="card-text">Price: R ${product.Price}</p>
                                 <p class="card-text">Only ${product.Quantity} left in Stock</p>
                                 <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                             </div>
@@ -622,7 +627,7 @@
                             <div class="card-body-monitors">
                                 <img src="${product.image}">
                                 <h5 class="card-title">${product.Name}</h5>
-                                <p class="card-text">Price: ${product.Price}</p>
+                                <p class="card-text">Price: R ${product.Price}</p>
                                 <p class="card-text">Only ${product.Quantity} left in Stock</p>
                                 <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                             </div>
@@ -648,7 +653,7 @@
                             <div class="card-body-monitors">
                                 <img src="${product.image}" >
                                 <h5 class="card-title">${product.Name}</h5>
-                                <p class="card-text">Price: ${product.Price}</p>
+                                <p class="card-text">Price: R ${product.Price}</p>
                                 <p class="card-text">Only ${product.Quantity} left in Stock</p>
                                 <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                             </div>
@@ -674,7 +679,7 @@
                             <div class="card-body-monitors">
                                 <img src="${product.image}">
                                 <h5 class="card-title">${product.Name}</h5>          
-                                <p class="card-text">Price: ${product.Price}</p>
+                                <p class="card-text">Price: R ${product.Price}</p>
                                 <p class="card-text">Only ${product.Quantity} left in Stock</p>
                                 <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                             </div>

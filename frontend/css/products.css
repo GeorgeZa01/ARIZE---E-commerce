@@ -116,6 +116,10 @@
     border-radius: 50%;
     font-size: 14px;
   }
+  .cart-img{
+    width: 50px;
+    height: 50px;
+  }
 /* Pulsing Animation for Discord Alert */
 #discordAlert {
     background: linear-gradient(90deg, #424242, #516559, #eeeee9, #14332F
