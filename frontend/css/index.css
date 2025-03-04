@@ -370,3 +370,346 @@
 #cart-toggle:hover {
     background-color: #004fcc;
 }
+
+/* Custom Modal Background and Positioning */
+.modal-search {
+    visibility: hidden;  /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    justify-content: center;
+    align-items: center;
+    z-index: 9998; /* Overlay z-index */
+    opacity: 0;  /* Initially hidden */
+    transition: opacity 0.3s ease-in-out, visibility 0s 0.3s;  /* Smooth fade-in/out */
+    pointer-events: none; /* Disable interactions when modal is hidden */
+}
+
+/* Modal Dialog Box */
+.modal-dialog {
+    background-color: white;
+    border-radius: 12px;
+    width: 85%;
+    max-width: 900px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.4s ease-in-out;
+    z-index: 9999; /* Ensure modal is above the overlay */
+    position: relative;  /* Makes sure modal is positioned correctly above the overlay */
+}
+
+/* Modal Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 20px;
+}
+
+/* Modal Body */
+.modal-body {
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Search Results Container */
+.results-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Spacious grid */
+    gap: 20px;
+    padding: 10px;
+    justify-items: center;
+}
+
+/* Modal Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .modal-dialog {
+        width: 90%;
+    }
+
+    .modal-title {
+        font-size: 1.7rem;
+    }
+
+    .result-item {
+        max-width: 100%;
+        padding: 15px;
+    }
+}
+.modal-backdrop {
+    --bs-backdrop-zindex: 0;
+    --bs-backdrop-bg: #000;
+    --bs-backdrop-opacity: 0.5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--bs-backdrop-zindex);
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bs-backdrop-bg);
+}
+
+.button {
+    --main-focus: #2d8cf0;
+    --font-color: #dedede;
+    --bg-color-sub: #222;
+    --bg-color: #323232;
+    --main-color: #dedede;
+    position: relative;
+    width: 180px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .button, .button__icon, .button__text {
+    transition: all 0.3s;
+  }
+  
+  .button .button__text {
+    transform: translateX(20px);
+    color: var(--font-color);
+    font-weight: 550;
+  }
+  
+  .button .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 60px;
+    background-color: var(--bg-color-sub);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button .svg {
+    width: 40px;
+    stroke: var(--main-color);
+    
+  }
+  
+  .button:hover {
+    background: var(--bg-color);
+  }
+  
+  .button:hover .button__text {
+    color: transparent;
+  }
+  
+  .button:hover .button__icon {
+    width: 180px;
+    transform: translateX(0);
+  }
+  
+  .button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px var(--main-color);
+  }
+  .product-btn {
+    --purple: #9B7EDA;
+    font-size: 18px;
+    padding: 0.8em 3em;
+    letter-spacing: 0.08em;
+    position: relative;
+    font-family: inherit;
+    border-radius: 0.6em;
+    overflow: hidden;
+    transition: all 0.3s;
+    line-height: 1.4em;
+    border: 2px solid var(--purple);
+    background: linear-gradient(to right, rgba(155, 126, 218, 0.1) 1%, transparent 40%, transparent 60%, rgba(155, 126, 218, 0.1) 100%);
+    color: var(--purple);
+    box-shadow: inset 0 0 10px rgba(155, 126, 218, 0.4), 0 0 9px 3px rgba(155, 126, 218, 0.1);
+  }
+  
+  .product-btn:hover {
+    color: #BFA3F3;
+    box-shadow: inset 0 0 10px rgba(155, 126, 218, 0.6), 0 0 9px 3px rgba(155, 126, 218, 0.2);
+  }
+  
+  .product-btn:before {
+    content: "";
+    position: absolute;
+    left: -4em;
+    width: 4em;
+    height: 100%;
+    top: 0;
+    transition: transform .4s ease-in-out;
+    background: linear-gradient(to right, transparent 1%, rgba(155, 126, 218, 0.1) 40%, rgba(155, 126, 218, 0.1) 60%, transparent 100%);
+  }
+  
+  .product-btn:hover:before {
+    transform: translateX(15em);
+  }
+
+  /* Cookie Modal styling */
+.cookie-modal {
+    display: none; /* Hide modal by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black backdrop */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Make sure it's on top */
+}
+
+/* Cookie Card Styling */
+.cookie-card {
+    width: 400px; 
+    height: 320px; 
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    padding: 20px 30px;
+    gap: 20px; 
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.062);
+    z-index: 10000;
+}
+
+
+/* Cookie Image Styling */
+.cookieImage {
+    width: 120px; 
+    height: auto; /* Keep the aspect ratio intact */
+}
+
+
+#cookieSvg {
+    width: 80px; /* Reduced width */
+}
+
+.cookieHeading {
+    font-size: 1.8em; /* Slightly smaller font */
+    font-weight: 800;
+    color: rgb(26, 26, 26);
+}
+
+.cookieDescription {
+    text-align: center;
+    font-size: 0.9em; /* Reduced font size */
+    font-weight: 600;
+    color: rgb(99, 99, 99);
+    line-height: 1.5;
+}
+
+.cookieDescription a {
+    --tw-text-opacity: 1;
+    color: rgb(59 130 246);
+}
+
+.cookieDescription a:hover {
+    -webkit-text-decoration-line: underline;
+    text-decoration-line: underline;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 15px; /* Reduced gap */
+    flex-direction: row;
+}
+
+.acceptButton, .declineButton {
+    width: 90px; /* Reduced width */
+    height: 28px; /* Reduced height */
+    border: none;
+    font-weight: 600;
+    border-radius: 20px;
+    transition: all .6s ease;
+}
+
+.acceptButton {
+    width: 95px; /* Reduced width */
+    height: 30px; /* Reduced height */
+    background-color: #7b57ff;
+    transition-duration: .2s;
+    border: none;
+    color: rgb(241, 241, 241);
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px -1px #977ef3, 0 2px 4px -1px #977ef3;
+    transition: all .6s ease;
+}
+
+.declineButton {
+    width: 95px; /* Reduced width */
+    height: 30px; /* Reduced height */
+    background-color: #dadada;
+    transition-duration: .2s;
+    color: rgb(46, 46, 46);
+    border: none;
+    cursor: not-allowed;
+    font-weight: 600;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px -1px #bebdbd, 0 2px 4px -1px #bebdbd;
+    transition: all .6s ease;
+}
+
+.acceptButton:hover {
+    background-color: #9173ff;
+    box-shadow: 0 10px 15px -3px #977ef3;
+}
+
+.declineButton:hover {
+    background-color: #ebebeb;
+    box-shadow: 0 10px 15px -3px #bebdbd;
+}
+
+/* Login & Signup Styling */
+.modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-body .mb-3 {
+    margin-bottom: 15px;
+}
+
+.modal-body a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 0.9rem;
+}
+
+.modal-body a:hover {
+    text-decoration: underline;
+}
+
+.d-flex.justify-content-between {
+    margin-top: 15px;
+}

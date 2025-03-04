@@ -45,10 +45,7 @@
                         <a class="nav-link" href="./about.html">About Us</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                
                 <!-- Login/Signup Button -->
                 <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal">Log In</button>
                 <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1">Sign Up</button>
@@ -101,6 +98,7 @@
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-button">Log In</button>
                     </div>
+                    <a href="../frontend/Html/forgot.html" class="d-block mt-3">Forgot password?</a>
                 </div>
             </div>
         </div>
@@ -265,8 +263,8 @@
 
                 products.forEach(product => {
                     productCardsContainer.innerHTML += `
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-md-3">
+                    <div class="card mb-3">
                         <div class="card-body-monitors">
                             <img src=${product.image}>
                             <h5 class="card-title">${product.Name}</h5>

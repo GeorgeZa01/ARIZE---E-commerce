@@ -1,64 +1,56 @@
-import {addToCart,getCartItems,removeFromCart,increaseQuantity } from '../model/cartModel.js';
-// Add item to cart
-const addToCartCon = async (userId, productId, quantity) => {
-    try {
-        const [existing] = await pool.query(
-            'SELECT * FROM cart WHERE user_id = ? AND product_id = ?',
-            [userId, productId]
-        );
+import {getCartItems,addToCart,removeFromCart,increaseQuantity,decreaseQuantity} from '../model/cartModel.js';
 
-        if (existing.length > 0) {
-            await pool.query(
-                'UPDATE cart SET quantity = quantity + ? WHERE user_id = ? AND product_id = ?',
-                [quantity, userId, productId]
-            );
-            return { success: true, message: 'Cart updated' };
-        } else {
-            await pool.query(
-                'INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)',
-                [userId, productId, quantity]
-            );
-            return { success: true, message: 'Product added to cart' };
-        }
+export const getCartItemsCon = async (req, res) => {
+    try {
+        const { userId } = req.params;  // Extract userId from the URL parameter
+        console.log('User ID:', req.params); // Log the user_id to check if it's passed correctly
+        const rows = await getCartItems(userId);
+        console.log(rows);
+          // Pass it to the model function
+        res.json(rows);  // Return the results
     } catch (error) {
-        throw error;
+        console.error(error);  // Log the error for easier debugging
+        res.status(500).send('Error fetching cart items');
     }
 };
 
-// View all items in cart
-const getCartItemsCon = async (userId) => {
+export const handleAddToCart = async (req, res) => {
     try {
-        const [rows] = await pool.query(
-            `SELECT cart.id, cart.quantity, products.name, products.price, products.image
-             FROM cart 
-             JOIN products ON cart.product_id = products.id
-             WHERE cart.user_id = ?`,
-            [userId]
-        );
-        return rows;
+        const { userId, productId, quantity } = req.body;
+        const result = await addToCart(userId, productId, quantity);
+        res.json(result);
     } catch (error) {
-        throw error;
+        res.status(500).json({ error: 'Failed to add to cart' });
     }
 };
 
-// Remove item from cart
-const removeFromCartCon = async (cartId) => {
+export const handleRemoveFromCart = async (req, res) => {
     try {
-        await pool.query('DELETE FROM cart WHERE id = ?', [cartId]);
-        return { success: true, message: 'Item removed from cart' };
+        const { cartId } = req.params;
+        const result = await removeFromCart(cartId);
+        res.json(result);
     } catch (error) {
-        throw error;
+        res.status(500).json({ error: 'Failed to remove item from cart' });
     }
 };
 
-// Increase quantity by 1
-const increaseQuantityCon = async (cartId) => {
+export const handleIncreaseQuantity = async (req, res) => {
     try {
-        await pool.query('UPDATE cart SET quantity = quantity + 1 WHERE id = ?', [cartId]);
-        return { success: true, message: 'Quantity increased' };
+        const { cartId } = req.params;
+        const result = await increaseQuantity(cartId);
+        res.json(result);
     } catch (error) {
-        throw error;
+        res.status(500).json({ error: 'Failed to increase quantity' });
     }
 };
 
-export{addToCartCon,getCartItemsCon,removeFromCartCon,increaseQuantityCon}
+export const handleDecreaseQuantity = async (req, res) => {
+    try {
+        const { cartId } = req.params;
+        const result = await decreaseQuantity(cartId);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to decrease quantity' });
+    }
+};
+

@@ -1,10 +1,18 @@
-import express from "express"
+import express from 'express';
+import {
+    
+    handleAddToCart,
+    handleRemoveFromCart,
+    handleIncreaseQuantity,
+    handleDecreaseQuantity,
+    getCartItemsCon
+} from '../controller/cartController.js';
+
 const router = express.Router();
-import {addToCartCon,getCartItemsCon,removeFromCartCon,increaseQuantityCon} from '../controller/cartController.js';
+router.get('/:userId', getCartItemsCon); // Get cart items
+router.post('/add', handleAddToCart); // Add to cart
+router.delete('/delete/:cartId', handleRemoveFromCart); // Remove item
+router.patch('/update/increase/:cartId', handleIncreaseQuantity); // Increase quantity
+router.patch('/update/decrease/:cartId', handleDecreaseQuantity); // Decrease quantity
 
-router.post('/', addToCartCon);
-router.get('/:userId', getCartItemsCon);
-router.delete('/:cartId', removeFromCartCon);
-router.put('/increase/:cartId', increaseQuantityCon);
-
-export default router
+export default router;

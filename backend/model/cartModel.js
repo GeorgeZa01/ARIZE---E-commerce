@@ -1,7 +1,23 @@
 import { pool } from '../config/config.js';
 
-// Add item to cart
-const addToCart = async (userId, productId, quantity) => {
+// Get cart items for a user
+const getCartItems = async (user_id) => {
+    try {
+        console.log('User ID:', user_id);  // Log the userId to check the value
+        const [rows] = await pool.query(
+            `SELECT * FROM arize_db.cart INNER JOIN arize_db.products on arize_db.cart.product_id = arize_db.products.product_id where user_id = ?;
+`,
+            [user_id],
+        );
+        return rows;
+    } catch (error) {
+        console.error('Error fetching cart items:', error);  // Log the error details for better debugging
+        throw error;
+    }
+};
+
+// Add item to cart or update quantity
+async function addToCart(userId, productId, quantity) {
     try {
         const [existing] = await pool.query(
             'SELECT * FROM cart WHERE user_id = ? AND product_id = ?',
@@ -24,42 +40,45 @@ const addToCart = async (userId, productId, quantity) => {
     } catch (error) {
         throw error;
     }
-};
+}
 
-// View all items in cart
-const getCartItems = async (userId) => {
-    try {
-        const [rows] = await pool.query(
-            `SELECT cart.id, cart.quantity, products.name, products.price, products.image
-             FROM cart 
-             JOIN products ON cart.product_id = products.id
-             WHERE cart.user_id = ?`,
-            [userId]
-        );
-        return rows;
-    } catch (error) {
-        throw error;
-    }
-};
+
 
 // Remove item from cart
 const removeFromCart = async (cartId) => {
     try {
-        await pool.query('DELETE FROM cart WHERE id = ?', [cartId]);
+        await pool.query('DELETE FROM cart WHERE cart_id = ?', [cartId]);
         return { success: true, message: 'Item removed from cart' };
     } catch (error) {
         throw error;
     }
 };
 
-// Increase quantity by 1
+// Increase quantity
 const increaseQuantity = async (cartId) => {
     try {
-        await pool.query('UPDATE cart SET quantity = quantity + 1 WHERE id = ?', [cartId]);
+        await pool.query('UPDATE cart SET quantity = quantity + 1 WHERE cart_id = ?', [cartId]);
         return { success: true, message: 'Quantity increased' };
     } catch (error) {
         throw error;
     }
 };
 
-export {addToCart,getCartItems,removeFromCart,increaseQuantity}
+// Decrease quantity
+const decreaseQuantity = async (cartId) => {
+    try {
+        const [result] = await pool.query('SELECT quantity FROM cart WHERE cart_id = ?', [cartId]);
+
+        if (result.length > 0 && result[0].quantity > 1) {
+            await pool.query('UPDATE cart SET quantity = quantity - 1 WHERE cart_id = ?', [cartId]);
+            return { success: true, message: 'Quantity decreased' };
+        } else {
+            await removeFromCart(cartId); // Remove if quantity is 1
+            return { success: true, message: 'Item removed from cart' };
+        }
+    } catch (error) {
+        throw error;
+    }
+};
+
+export { getCartItems, addToCart, removeFromCart, increaseQuantity, decreaseQuantity };
