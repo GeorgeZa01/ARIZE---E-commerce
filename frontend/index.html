@@ -45,25 +45,28 @@
                     </li>
                 </ul>
                 <form class="d-flex" role="search" id="searchForm">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        id="searchInput">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <!-- Modal for displaying search results -->
-<div class="modal fade" id="searchResultsModal" tabindex="-1" aria-labelledby="searchResultsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="searchResultsModalLabel">Search Results</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div id="searchResultsContainer" class="row">
-                    <!-- Dynamic product results will go here -->
+                <div class="modal fade" id="searchResultsModal" tabindex="-1" aria-labelledby="searchResultsModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="searchResultsModalLabel">Search Results</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="searchResultsContainer" class="row">
+                                    <!-- Dynamic product results will go here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
 
                 <!-- Login/Signup Button -->
                 <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal">Log In</button>
@@ -93,7 +96,7 @@
         </div>
     </nav>
 
-    <!-- Modal for Login -->
+    <!-- Login Modal -->
     <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -102,19 +105,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Form content for login/signup -->
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-button" id="loginButton">Log In</button>
-                    </div>
-                    <a href="../frontend/Html/forgot.html">forgot password</a>
+                    <!-- Login Form -->
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter your password"
+                                required>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-button" id="loginButton">Log In</button>
+                        </div>
+                    </form>
+                    <a href="../frontend/Html/forgot.html">Forgot password?</a>
                 </div>
             </div>
         </div>
@@ -285,51 +291,51 @@
 
 
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const searchForm = document.getElementById("searchForm");
-    const searchInput = document.getElementById("searchInput");
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchForm = document.getElementById("searchForm");
+            const searchInput = document.getElementById("searchInput");
 
-    // Handle search form submission
-    searchForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        const query = searchInput.value.trim();
+            // Handle search form submission
+            searchForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                const query = searchInput.value.trim();
 
-        if (query) {
-            searchProducts(query);
-        } else {
-            alert("Please enter a search term.");
-        }
-    });
-
-    // Function to search products
-    function searchProducts(query) {
-        fetch(`http://localhost:3030/products/search?query=${query}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.length > 0) {
-                    displaySearchResults(data);
+                if (query) {
+                    searchProducts(query);
                 } else {
-                    alert("No products found.");
+                    alert("Please enter a search term.");
                 }
-            })
-            .catch(error => {
-                console.error("Error searching products:", error);
-                alert("An error occurred while searching.");
             });
-    }
 
-    // Function to display search results in the modal
-    function displaySearchResults(products) {
-        const modal = new bootstrap.Modal(document.getElementById('searchResultsModal'));
-        const container = document.getElementById("searchResultsContainer");
-        
-        container.innerHTML = ''; // Clear previous results
+            // Function to search products
+            function searchProducts(query) {
+                fetch(`http://localhost:3030/products/search?query=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data && data.length > 0) {
+                            displaySearchResults(data);
+                        } else {
+                            alert("No products found.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error searching products:", error);
+                        alert("An error occurred while searching.");
+                    });
+            }
 
-        products.forEach(product => {
-            const productCard = document.createElement("div");
-            productCard.classList.add("col-md-4", "mb-3");
+            // Function to display search results in the modal
+            function displaySearchResults(products) {
+                const modal = new bootstrap.Modal(document.getElementById('searchResultsModal'));
+                const container = document.getElementById("searchResultsContainer");
 
-            productCard.innerHTML = `
+                container.innerHTML = ''; // Clear previous results
+
+                products.forEach(product => {
+                    const productCard = document.createElement("div");
+                    productCard.classList.add("col-md-4", "mb-3");
+
+                    productCard.innerHTML = `
                 <div class="card">
                     <img src="${product.image}" class="card-img-top" alt="${product.Name}">
                     <div class="card-body">
@@ -340,12 +346,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                 </div>
             `;
-            container.appendChild(productCard);
-        });
+                    container.appendChild(productCard);
+                });
 
-        modal.show(); // Show the modal
-    }
-});
+                modal.show(); // Show the modal
+            }
+        });
 
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -471,7 +477,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 title: "Signup Failed",
                                 text: data.message || "An error occurred during signup.",
                             });
-                            
+
                         } else {
                             Swal.fire({
                                 icon: "success",
@@ -491,6 +497,53 @@ document.addEventListener("DOMContentLoaded", function () {
                             text: "An error occurred while signing up. Please try again.",
                         });
                     });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginForm = document.getElementById("loginForm");
+
+            loginForm.addEventListener("submit", async function (event) {
+                event.preventDefault();
+
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                if (!email || !password) {
+                    alert("Please enter both email and password.");
+                    return;
+                }
+
+                try {
+                    const response = await fetch("http://127.0.0.1:3030/users/login", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email, password }),
+                        credentials: "include", // Important to send cookies
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        localStorage.setItem("accessToken", data.accessToken);
+
+                        Swal.fire({
+                            icon: "success",
+                            title: "Login Successful!",
+                            text: "You are now logged in.",
+                        }).then(() => {
+                            window.location.href = "./index.html";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Login Failed",
+                            text: data.message,
+                        });
+                    }
+                } catch (error) {
+                    console.error("Login error:", error);
+                }
             });
         });
     </script>
