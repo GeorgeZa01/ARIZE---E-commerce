@@ -1,6 +1,8 @@
-import {deleteUser, updateUser, createUser, getUsers} from '../model/userModel.js';
+import {findUserByEmail, deleteUser, updateUser, createUser, getUsers} from '../model/userModel.js';
+import { generateAccessToken, generateRefreshToken  } from '../utils/jwtUtils.js';
+import { compare } from 'bcrypt'
 
-
+//User registration
 export const createUserCon = async (req, res) => {
     try {
         const userData = req.body;
@@ -12,6 +14,65 @@ export const createUserCon = async (req, res) => {
     }
 };
 
+//Login for users
+export const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Find user by email
+        const user = await findUserByEmail(email);
+        if (user.length === 0) {
+            return res.status(400).json({ success: false, message: "Invalid email or password." });
+        }
+
+        const foundUser = user;
+        console.log(password)
+        // Compare passwords
+        const isPasswordValid = await compare(password, foundUser.password);
+        
+        if (!isPasswordValid) {
+            return res.status(400).json({ success: false, message: "Invalid email or password." });
+        }
+
+        // Generate tokens
+        const accessToken = generateAccessToken(foundUser.user_id);
+        const refreshToken = generateRefreshToken(foundUser.user_id);
+
+        // Store refresh token in HTTP-only cookie
+        res.cookie("refreshToken", refreshToken, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "Strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        });
+
+        res.status(200).json({
+            success: true,
+            message: "Login successful!",
+            accessToken,
+        });
+    } catch (error) {
+        console.error("Error logging in:", error);
+        res.status(500).json({ success: false, message: "Server error." });
+    }
+};
+
+//Refresh token function
+export const refreshAccessToken = (req, res) => {
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) {
+        return res.status(403).json({ success: false, message: "No refresh token provided." });
+    }
+
+    try {
+        const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
+        const newAccessToken = generateAccessToken(decoded.userId);
+
+        res.status(200).json({ success: true, accessToken: newAccessToken });
+    } catch (error) {
+        res.status(403).json({ success: false, message: "Invalid refresh token." });
+    }
+};
 
  
 export const getUsersCon = async (req, res) => {
@@ -69,3 +130,16 @@ export const updateUserCon = async (req, res) => {
     }
 };
 
+export const getProtectedData = async (req, res) => {
+    try {
+        const userId = req.userId; // Retrieved from the authenticated token
+
+        // Fetch data specific to the authenticated user
+        const data = await fetchDataForUser(userId);
+
+        res.status(200).json({ success: true, data });
+    } catch (error) {
+        console.error('Error fetching protected data:', error);
+        res.status(500).json({ success: false, message: 'An error occurred while fetching data.' });
+    }
+};
