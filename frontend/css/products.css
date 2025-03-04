@@ -886,9 +886,36 @@ h1 {
   background: #eeeee9;
 }
 
-.col-md-3{
-  width: 20%;
+/* Default: 5 items on large screens */
+.col-md-3 {
+  width: 20%; /* 100% / 5 items = 20% */
 }
+
+/* For smaller screens, adjust to show fewer items */
+@media (max-width: 1200px) {
+  .col-md-3 {
+    width: 25%; /* 4 items on medium screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .col-md-3 {
+    width: 33.33%; /* 3 items on small screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .col-md-3 {
+    width: 50%; /* 2 items on extra small screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .col-md-3 {
+    width: 100%; /* 1 item on very small screens */
+  }
+}
+
 
 /* Login & Signup Styling  */
 .modal-body {
