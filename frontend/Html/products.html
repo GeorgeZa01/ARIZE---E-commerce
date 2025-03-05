@@ -92,7 +92,7 @@
                     <div class="cart-footer">
                         <div class="total-section">
                             <p>Subtotal: <span id="subtotal">R 0.00</span></p>
-                            <h1>Total: <span id="total">R 0.00</span></h1>
+                            <h3>Total: <span id="total">R 0.00</span></h3>
                         </div>
                         <a href="./checkout.html">
 
@@ -245,59 +245,44 @@
             </div>
         </div>
     </div>
-</div>
-<h1>Monitors</h1>
-<div class="row mt-3" id="product-cards-monitors">
-    <!-- Product cards will be inserted here -->
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                Loading products...
+
+    <h1>Monitors</h1>
+    <div class="row mt-3" id="product-cards-monitors">
+        <!-- Product cards will be inserted here -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    Loading products...
+                </div>
             </div>
         </div>
     </div>
-</div>
-<h1>PC Towers</h1>
-<div class="row mt-3" id="product-cards-pctower">
-    <!-- Product cards will be inserted here -->
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                Loading products...
+    <h1>PC Towers</h1>
+    <div class="row mt-3" id="product-cards-pctower">
+        <!-- Product cards will be inserted here -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    Loading products...
+                </div>
             </div>
         </div>
     </div>
-</div>
-<h1>Accessories</h1>
-<div class="row mt-3" id="product-cards-accessories">
-    <!-- Product cards will be inserted here -->
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                Loading products...
+    <h1>Accessories</h1>
+    <div class="row mt-3" id="product-cards-accessories">
+        <!-- Product cards will be inserted here -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    Loading products...
+                </div>
             </div>
         </div>
     </div>
 
-
+    
     <footer class="bg-dark text-white py-4">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Contact Us</h5>
-                    <p>123 Business St, Suite 456</p>
-                    <p>City, Country, 12345</p>
-                    <p>Email: contact@yourcompany.com</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="../index.html" class="text-white">Home</a></li>
-                        <li><a href="./products.html" class="text-white">Products</a></li>
-                        <li><a href="./about.html" class="text-white">About Us</a></li>
-
-                        <footer class="bg-dark text-white py-4">
-    <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <h5>Contact Us</h5>
@@ -576,8 +561,6 @@
                     detailsList.innerHTML = `
                  <li><strong>Description:</strong> ${product.Description}</li>
                  <br>
-                 <li><strong>Stock:</strong> ${product.Quantity} left</li>
-                 <br>
                  <button type="button" class="button add-to-cart" data-product-id="${product.product_id}">
       <span class="button__text">Add to Cart</span>
       <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
@@ -685,7 +668,6 @@
                                 <img src="${product.image}">
                                 <h5 class="card-title">${product.Name}</h5>
                                 <p class="card-text">Price: R ${product.Price}</p>
-                                <p class="card-text">Only ${product.Quantity} left in Stock</p>
                                 <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                             </div>
                         </div>
@@ -716,7 +698,6 @@
                                 <img src="${product.image}">
                                 <h5 class="card-title">${product.Name}</h5>
                                 <p class="card-text">Price: R ${product.Price}</p>
-                                <p class="card-text">Only ${product.Quantity} left in Stock</p>
                                 <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                             </div>
                         </div>
@@ -747,7 +728,6 @@
                                 <img src="${product.image}" >
                                 <h5 class="card-title">${product.Name}</h5>
                                 <p class="card-text">Price: R ${product.Price}</p>
-                                <p class="card-text">Only ${product.Quantity} left in Stock</p>
                                 <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                             </div>
                         </div>
@@ -779,7 +759,6 @@
                                 <img src="${product.image}">
                                 <h5 class="card-title">${product.Name}</h5>          
                                 <p class="card-text">Price: R ${product.Price}</p>
-                                <p class="card-text">Only ${product.Quantity} left in Stock</p>
                                 <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                             </div>
                         </div>
