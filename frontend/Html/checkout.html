@@ -52,9 +52,12 @@
             <!-- Order Summary -->
             <div class="col-md-8">
                 <h4>Your Order</h4>
-                <div id="cart-items"></div>
-
+                
                 <div class="total-section mt-4">
+                    <div id="cart-items">
+
+                    </div>
+
                     <p>Subtotal: <span id="subtotal">R 0.00</span></p>
                     <p>Shipping: <span id="shipping">Free</span></p>
                     <h3>Total: <span id="total">R 0.00</span></h3>
@@ -124,36 +127,93 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const cartItemsSummary = document.getElementById("cart-items-summary");
-            const subtotalEl = document.getElementById("subtotal");
-            const totalEl = document.getElementById("total");
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const cartItemsContainer = document.getElementById("cart-items");
+    const subtotalEl = document.getElementById("subtotal");
+    const totalEl = document.getElementById("total");
 
-            let subtotal = 0;
+    const userId = 2; // Replace with the actual authenticated user ID
 
-            if (cart.length === 0) {
-                cartItemsSummary.innerHTML = "<p>Your cart is empty</p>";
-            } else {
-                cart.forEach((item) => {
-                    subtotal += item.price * item.quantity;
-                    const cartItemSummary = document.createElement("div");
-                    cartItemSummary.classList.add("cart-item-summary");
-                    cartItemSummary.innerHTML = `
-                        <p>${item.name} (${item.quantity} x R ${item.price.toFixed(2)})</p>
-                    `;
-                    cartItemsSummary.appendChild(cartItemSummary);
-                });
+    // Fetch cart items from backend
+    async function fetchCartItems() {
+        try {
+            console.log("🔄 Fetching cart items...");
+            const response = await fetch(`http://localhost:3030/cart/${userId}`);
+            
+            if (!response.ok) {
+                throw new Error("Failed to fetch cart items.");
             }
 
-            subtotalEl.textContent = `R ${subtotal.toFixed(2)}`;
-            totalEl.textContent = `R ${subtotal.toFixed(2)}`;
+            let cart = await response.json();
+
+            if (!Array.isArray(cart) || cart.error) {
+                console.warn("⚠️ Cart data is empty or invalid:", cart);
+                cart = []; // Set empty cart if data is invalid
+            }
+
+            updateCartDisplay(cart);
+        } catch (error) {
+            console.error("❌ Error fetching cart:", error);
+            cartItemsContainer.innerHTML = "<p class='error-message'>Failed to load cart.</p>";
+        }
+    }
+
+    // Update cart display
+    function updateCartDisplay(cart) {
+        if (!cartItemsContainer || !subtotalEl || !totalEl) {
+            console.error("❌ Cart elements not found in the DOM.");
+            return;
+        }
+
+        cartItemsContainer.innerHTML = "";
+        let subtotal = 0;
+
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = "<p class='empty-cart'>Your order is empty.</p>";
+            subtotalEl.textContent = "R 0.00";
+            totalEl.textContent = "R 0.00";
+            return;
+        }
+
+        console.log("📦 Cart Data Received:", cart);
+
+        cart.forEach((item) => {
+            if (!item.product_id || !item.Name || item.Price === undefined) {
+                console.error("⚠️ Invalid cart item:", item);
+                return;
+            }
+
+            const price = item.Price ? item.Price : 0;
+            subtotal += price * item.quantity;
+
+            const cartItem = document.createElement("div");
+            cartItem.classList.add("cart-item");
+
+            cartItem.innerHTML = `
+            
+                <img class="cart-img" src="${item.image ? item.image : 'default-image.jpg'}"><p> ${item.Name}</p><br>
+            
+            <div>
+                <p class="item-price"> R${(item.Price * item.quantity)}</p>
+            </div>
+            `;
+
+            cartItemsContainer.appendChild(cartItem);
         });
-    </script>
+
+        subtotalEl.textContent = `R ${subtotal.toFixed(2)}`;
+        const tax = subtotal * 0.15;
+        totalEl.textContent = `R ${(subtotal + tax).toFixed(2)}`;
+    }
+
+    // Ensure fetchCartItems() is called when the page loads
+    fetchCartItems();
+    });
+</script>
      
 </body>
-<script>
+<script defer>
     function redirectToPayment() {
     // Get the selected payment method
     const paymentMethod = document.getElementById('payment-method').value;
@@ -168,79 +228,79 @@
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-            const signupSubmitButton = document.getElementById("signupSubmitButton");
+// document.addEventListener("DOMContentLoaded", function () {
+//             const signupSubmitButton = document.getElementById("signupSubmitButton");
 
-            signupSubmitButton.addEventListener("click", function () {
-                const fullName = document.getElementById("signupFullName").value;
-                const email = document.getElementById("signupEmail").value;
-                const password = document.getElementById("signupPassword").value;
-                const confirmPassword = document.getElementById("signupConfirmPassword").value;
+//             signupSubmitButton.addEventListener("click", function () {
+//                 const fullName = document.getElementById("signupFullName").value;
+//                 const email = document.getElementById("signupEmail").value;
+//                 const password = document.getElementById("signupPassword").value;
+//                 const confirmPassword = document.getElementById("signupConfirmPassword").value;
 
-                // Validation
-                if (!fullName || !email || !password || !confirmPassword) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Please fill in all fields!",
-                    });
-                    return;
-                }
+//                 // Validation
+//                 if (!fullName || !email || !password || !confirmPassword) {
+//                     Swal.fire({
+//                         icon: "error",
+//                         title: "Oops...",
+//                         text: "Please fill in all fields!",
+//                     });
+//                     return;
+//                 }
 
-                if (password !== confirmPassword) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Passwords do not match!",
-                    });
-                    return;
-                }
+//                 if (password !== confirmPassword) {
+//                     Swal.fire({
+//                         icon: "error",
+//                         title: "Oops...",
+//                         text: "Passwords do not match!",
+//                     });
+//                     return;
+//                 }
 
-                const userData = {
-                    full_name: fullName,
-                    email: email,
-                    password: password
-                };
+//                 const userData = {
+//                     full_name: fullName,
+//                     email: email,
+//                     password: password
+//                 };
 
-                // Send data to the backend
-                fetch("http://127.0.0.1:3030/api/auth/signup", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(userData),
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Show success message
-                            // Show error message based on the response
-                            Swal.fire({
-                                icon: "error",
-                                title: "Signup Failed",
-                                text: data.message || "An error occurred during signup.",
-                            });
+//                 // Send data to the backend
+//                 fetch("http://127.0.0.1:3030/api/auth/signup", {
+//                     method: "POST",
+//                     headers: {
+//                         "Content-Type": "application/json",
+//                     },
+//                     body: JSON.stringify(userData),
+//                 })
+//                     .then(response => response.json())
+//                     .then(data => {
+//                         if (data.success) {
+//                             // Show success message
+//                             // Show error message based on the response
+//                             Swal.fire({
+//                                 icon: "error",
+//                                 title: "Signup Failed",
+//                                 text: data.message || "An error occurred during signup.",
+//                             });
                             
-                        } else {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Signup Successful!",
-                                text: "You have successfully signed up.",
-                            }).then(() => {
-                                // Optionally, redirect the user or close the modal
-                                window.location.href = "./index.html"; // Redirect if needed
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error signing up:", error);
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "An error occurred while signing up. Please try again.",
-                        });
-                    });
-            });
-        });
+//                         } else {
+//                             Swal.fire({
+//                                 icon: "success",
+//                                 title: "Signup Successful!",
+//                                 text: "You have successfully signed up.",
+//                             }).then(() => {
+//                                 // Optionally, redirect the user or close the modal
+//                                 window.location.href = "./index.html"; // Redirect if needed
+//                             });
+//                         }
+//                     })
+//                     .catch(error => {
+//                         console.error("Error signing up:", error);
+//                         Swal.fire({
+//                             icon: "error",
+//                             title: "Oops...",
+//                             text: "An error occurred while signing up. Please try again.",
+//                         });
+//                     });
+//             });
+//         });
 </script>
 </html>

@@ -47,12 +47,16 @@ body {
 }
 
 /* Order Summary Section */
-#cart-items-summary {
+#cart-item {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+}
+
+.cart-item{
+    display: flex;
 }
 
 .total-section {
@@ -228,3 +232,7 @@ footer .container {
     max-width: 1200px;
     /* Limit the maximum width of the footer */
 }
+.cart-img{
+    width: 50px;
+    height: 50px;
+  }
