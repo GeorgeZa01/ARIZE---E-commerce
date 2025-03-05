@@ -26,7 +26,7 @@ export const loginUser = async (req, res) => {
         }
 
         const foundUser = user;
-        console.log(password)
+        
         // Compare passwords
         const isPasswordValid = await compare(password, foundUser.password);
         

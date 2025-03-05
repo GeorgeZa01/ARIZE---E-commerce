@@ -116,7 +116,7 @@
                     <input type="password" class="form-control" id="password" placeholder="Enter your password">
                 </div>
                 <div class="d-flex justify-content-between">
-                    <button class="btn btn-button" id="loginButton">Log In</button>
+                    <button type="submit" class="btn btn-button" id="loginButton">Log In</button>
                 </div>
                 <a href="../frontend/Html/forgot.html" class="d-block mt-3">Forgot password?</a>
             </div>
@@ -303,6 +303,9 @@
 
 
     <script>
+
+        console.log("hey");
+        
 document.addEventListener("DOMContentLoaded", function () {
     const searchForm = document.getElementById("searchForm");
     const searchInput = document.getElementById("searchInput");
@@ -512,9 +515,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         document.addEventListener("DOMContentLoaded", function () {
-            const loginForm = document.getElementById("loginForm");
+            const loginButton = document.getElementById("loginButton");
 
-            loginForm.addEventListener("submit", async function (event) {
+            loginButton.addEventListener("click", async function (event) {
+                
                 event.preventDefault();
 
                 const email = document.getElementById("email").value;
