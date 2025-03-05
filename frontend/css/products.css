@@ -450,6 +450,37 @@ h1 {
     transform: translate(3px, 3px);
     box-shadow: 0px 0px var(--main-color);
   }
+
+  /* Cart styling */
+
+  /* Make the cart dropdown scrollable */
+.scrollable-container {
+  max-height: 300px; /* Adjust based on your needs */
+  overflow-y: auto;
+  padding-right: 10px; /* Optional: adds some padding to the right for better scrolling */
+  position: relative;
+}
+
+/* Close button (X) */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #000;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10; /* Ensure it's on top of the content */
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+  .scrollable-container {
+    max-height: 60vh;
+  }
+}
+
   .cart-dropdown {
     position: absolute;
     top: 60px;
@@ -886,9 +917,36 @@ h1 {
   background: #eeeee9;
 }
 
-.col-md-3{
-  width: 20%;
+/* Default: 5 items on large screens */
+.col-md-3 {
+  width: 20%; /* 100% / 5 items = 20% */
 }
+
+/* For smaller screens, adjust to show fewer items */
+@media (max-width: 1200px) {
+  .col-md-3 {
+    width: 25%; /* 4 items on medium screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .col-md-3 {
+    width: 33.33%; /* 3 items on small screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .col-md-3 {
+    width: 50%; /* 2 items on extra small screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .col-md-3 {
+    width: 100%; /* 1 item on very small screens */
+  }
+}
+
 
 /* Login & Signup Styling  */
 .modal-body {
