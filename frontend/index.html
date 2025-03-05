@@ -77,24 +77,34 @@
                 <button class="btn btn-button ms-2" id="cart-toggle">
                     <i class="bi bi-cart"></i> Cart 
                 </button>
+                  <!-- cart dropdown -->
+                  <div class="cart-dropdown">
+                    <button class="close-button" onclick="closeCart()">X</button>
 
-                <!-- cart dropdown -->
-                <div class="cart-dropdown">
                     <h2>Cart</h2>
                     <p class="free-shipping">Free standard shipping</p>
 
+                    <!-- Scrollable Container for Cart Items -->
+                    <div class="scrollable-container">
+                        <div id="cart-items"></div>
+                    </div>
+                                    
                     <div id="cart-items"></div>
-
+                
                     <div class="cart-footer">
                         <div class="total-section">
                             <p>Subtotal: <span id="subtotal">R 0.00</span></p>
-                            <h3>Total: <span id="total">R 0.00</span></h3>
+                            <h1>Total: <span id="total">R 0.00</span></h1>
                         </div>
-                        <a href="../frontend/Html/checkout.html"><button class="checkout-btn">Checkout</button></a>
+                        <a href="./checkout.html">
+
+                            <button class="checkout-btn">Checkout</button>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+
     </nav>
 
 <!-- Modal for Login -->
@@ -308,6 +318,12 @@
         let script = document.createElement("script");
         script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
         document.head.appendChild(script);
+    }
+
+    
+    // the close button on cart
+    function closeCart() {
+    document.querySelector('.cart-dropdown').style.display = 'none';
     }
 
 

@@ -55,26 +55,34 @@
                     <i class="bi bi-cart"></i> Cart 
                 </button>
 
-                <!-- cart dropdown -->
-                <div class="cart-dropdown">
-                    <h2>Cart</h2>
-                    <p class="free-shipping">Free standard shipping</p>
+               <!-- cart dropdown -->
+               <div class="cart-dropdown">
+                <button class="close-button" onclick="closeCart()">X</button>
 
+                <h2>Cart</h2>
+                <p class="free-shipping">Free standard shipping</p>
+
+                <!-- Scrollable Container for Cart Items -->
+                <div class="scrollable-container">
                     <div id="cart-items"></div>
-
-                    <div class="cart-footer">
-                        <div class="total-section">
-                            <p>Subtotal: <span id="subtotal">R 0.00</span></p>
-                            <h1>Total: <span id="total">R 0.00</span></h1>
-                        </div>
-                        <a href="./checkout.html">
-
-                            <button class="checkout-btn">Checkout</button>
-                        </a>
+                </div>
+                                
+                <div id="cart-items"></div>
+            
+                <div class="cart-footer">
+                    <div class="total-section">
+                        <p>Subtotal: <span id="subtotal">R 0.00</span></p>
+                        <h1>Total: <span id="total">R 0.00</span></h1>
                     </div>
+                    <a href="./checkout.html">
+
+                        <button class="checkout-btn">Checkout</button>
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
+
     </nav>
     <!-- Modal for Login -->
     <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
@@ -224,6 +232,12 @@
         let script = document.createElement("script");
         script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
         document.head.appendChild(script);
+    }
+    
+    
+    // the close button on cart
+    function closeCart() {
+    document.querySelector('.cart-dropdown').style.display = 'none';
     }
     
         async function viewMore(productId) {
