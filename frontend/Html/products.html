@@ -319,7 +319,14 @@
         </div>
     </footer>
 <script >
-                
+    
+     // Ensure SweetAlert is included
+     if (typeof Swal === "undefined") {
+        let script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
+        document.head.appendChild(script);
+    }
+    
     document.addEventListener("DOMContentLoaded", function () {
     const cartItemsContainer = document.getElementById("cart-items");
     const subtotalEl = document.getElementById("subtotal");
@@ -341,6 +348,11 @@
             updateCartDisplay(cart);
         // } catch (error) {
             // console.error("🚨 Error fetching cart:", error);
+        //     Swal.fire({
+        //     icon: 'error',
+        //     title: 'Oops...',
+        //     text: 'An error occurred while fetching the cart!',
+        // });
         // }
     }
     // fetchCartItems()
@@ -424,13 +436,26 @@
 
                 const result = await response.json();
                 if (result.success) {
-                    alert("✅ Product added to cart!");
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Product added to cart!',
+                });
                     fetchCartItems(); // Refresh cart display
                 } else {
-                    alert("❌ Failed to add product to cart");
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Failed',
+                    text: 'Failed to add product to cart.',
+                });
                 }
             } catch (error) {
                 console.error("🚨 Error adding to cart:", error);
+                Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'An error occurred while adding to cart.',
+            });
             }
         }
     });
@@ -448,12 +473,26 @@
             const result = await response.json();
 
             if (result.success) {
+                Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Quantity updated!',
+            });
                 fetchCartItems(); // Refresh cart
             } else {
-                alert("❌ Failed to update quantity");
+                Swal.fire({
+                icon: 'error',
+                title: 'Failed',
+                text: 'Failed to update quantity.',
+            });
             }
         } catch (error) {
             console.error("🚨 Error updating cart:", error);
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while updating the quantity.',
+        });
         }
     }
 
@@ -467,12 +506,26 @@
             const result = await response.json();
 
             if (result.success) {
+                Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Item removed from cart!',
+            });
                 fetchCartItems(); // Refresh cart display
             } else {
-                alert("❌ Failed to remove item");
+                Swal.fire({
+                icon: 'error',
+                title: 'Failed',
+                text: 'Failed to remove item.',
+            });
             }
         } catch (error) {
             console.error("🚨 Error removing item:", error);
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while removing the item.',
+        });
         }
     }
 
@@ -523,6 +576,11 @@
                     productModal.show();
                 } catch (error) {
                     console.error('Error fetching product details:', error);
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while fetching the product details.',
+                });
                 }
             }
     
@@ -538,7 +596,11 @@
             if (query) {
                 searchProducts(query);
             } else {
-                alert("Please enter a search term.");
+                Swal.fire({
+                icon: 'warning',
+                title: 'Input Required',
+                text: 'Please enter a search term.',
+            });
             }
         });
     
@@ -550,12 +612,20 @@
                     if (data && data.length > 0) {
                         displaySearchResults(data);
                     } else {
-                        alert("No products found.");
+                        Swal.fire({
+                        icon: 'info',
+                        title: 'No Results',
+                        text: 'No products found.',
+                    });
                     }
                 })
                 .catch(error => {
                     console.error("Error searching products:", error);
-                    alert("An error occurred while searching.");
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Search Failed',
+                    text: 'An error occurred while searching.',
+                });
                 });
         }
     
@@ -611,6 +681,11 @@
             });
         } catch (error) {
                     console.error('Error fetching products:', error);
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Error Fetching Laptops',
+                    text: 'An error occurred while fetching the laptop products.',
+                });
                 }
             }
             async function fetchmonitors() {
@@ -637,6 +712,11 @@
                     });
                 } catch (error) {
                     console.error('Error fetching products:', error);
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Error Fetching Monitors',
+                    text: 'An error occurred while fetching the monitor products.',
+                });
                 }
             }
             async function fetchPCtowers() {
@@ -663,6 +743,12 @@
                     });
                 } catch (error) {
                     console.error('Error fetching products:', error);
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Error Fetching PC Towers',
+                    text: 'An error occurred while fetching the PC tower products.',
+                });
+
                 }
             }
             async function fetchaccessories() {
@@ -689,6 +775,11 @@
                     });
                 } catch (error) {
                     console.error('Error fetching products:', error);
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Error Fetching Accessories',
+                    text: 'An error occurred while fetching the accessory products.',
+                });
                 }
             };
     

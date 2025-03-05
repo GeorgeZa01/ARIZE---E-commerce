@@ -218,6 +218,14 @@
 
 
     <script>
+
+         // Ensure SweetAlert is included
+    if (typeof Swal === "undefined") {
+        let script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
+        document.head.appendChild(script);
+    }
+    
         async function viewMore(productId) {
             try {
                 const response = await fetch(`http://localhost:3030/products/${productId}`);
@@ -251,6 +259,11 @@
                 productModal.show();
             } catch (error) {
                 console.error('Error fetching product details:', error);
+                Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Failed to load product details. Please try again later.",
+            });
             }
         }
 
@@ -278,6 +291,11 @@
                 });
             } catch (error) {
                 console.error('Error fetching products:', error);
+                Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Failed to load monitors. Please try again later.",
+            });
             }
         }
 
@@ -362,6 +380,7 @@
             });
         });
     </script>
+
     <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="row">

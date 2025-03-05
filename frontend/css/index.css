@@ -586,108 +586,102 @@
 }
 
 /* Cookie Card Styling */
-.cookie-card {
-    width: 400px; 
-    height: 320px; 
-    background-color: rgb(255, 255, 255);
-    border-radius: 8px;
+/* Styling for the cookie modal container */
+.cookie-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);  /* Darkened overlay */
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-start; 
-    padding: 20px 30px;
-    gap: 20px; 
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.062);
-    z-index: 10000;
+    z-index: 1000;
 }
 
-
-/* Cookie Image Styling */
-.cookieImage {
-    width: 120px; 
-    height: auto; /* Keep the aspect ratio intact */
-}
-
-
-#cookieSvg {
-    width: 80px; /* Reduced width */
-}
-
-.cookieHeading {
-    font-size: 1.8em; /* Slightly smaller font */
-    font-weight: 800;
-    color: rgb(26, 26, 26);
-}
-
-.cookieDescription {
+/* Styling for modal content box */
+.cookie-content {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 30px 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
-    font-size: 0.9em; /* Reduced font size */
-    font-weight: 600;
-    color: rgb(99, 99, 99);
-    line-height: 1.5;
+    width: 400px;
+    max-width: 90%;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Styling for cookie SVG */
+#cookieSvg {
+    width: 70px;
+    height: 70px;
+    fill: #f39c12;  /* Bright yellow */
+    margin-bottom: 20px;
+}
+
+/* Cookie heading styling */
+.cookieHeading {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Cookie description styling */
+.cookieDescription {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 25px;
 }
 
 .cookieDescription a {
-    --tw-text-opacity: 1;
-    color: rgb(59 130 246);
+    color: #f39c12;
+    text-decoration: none;
 }
 
 .cookieDescription a:hover {
-    -webkit-text-decoration-line: underline;
-    text-decoration-line: underline;
+    text-decoration: underline;
 }
 
+/* Button container */
 .buttonContainer {
     display: flex;
-    gap: 15px; /* Reduced gap */
-    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
 }
 
-.acceptButton, .declineButton {
-    width: 90px; /* Reduced width */
-    height: 28px; /* Reduced height */
-    border: none;
-    font-weight: 600;
-    border-radius: 20px;
-    transition: all .6s ease;
-}
-
+/* Styling for the "Allow" button */
 .acceptButton {
-    width: 95px; /* Reduced width */
-    height: 30px; /* Reduced height */
-    background-color: #7b57ff;
-    transition-duration: .2s;
+    padding: 12px 25px;
+    font-size: 1rem;
+    background-color: #27ae60;
+    color: white;
     border: none;
-    color: rgb(241, 241, 241);
+    border-radius: 5px;
     cursor: pointer;
-    font-weight: 600;
-    border-radius: 20px;
-    box-shadow: 0 4px 6px -1px #977ef3, 0 2px 4px -1px #977ef3;
-    transition: all .6s ease;
-}
-
-.declineButton {
-    width: 95px; /* Reduced width */
-    height: 30px; /* Reduced height */
-    background-color: #dadada;
-    transition-duration: .2s;
-    color: rgb(46, 46, 46);
-    border: none;
-    cursor: not-allowed;
-    font-weight: 600;
-    border-radius: 20px;
-    box-shadow: 0 4px 6px -1px #bebdbd, 0 2px 4px -1px #bebdbd;
-    transition: all .6s ease;
+    transition: background-color 0.3s ease;
 }
 
 .acceptButton:hover {
-    background-color: #9173ff;
-    box-shadow: 0 10px 15px -3px #977ef3;
+    background-color: #2ecc71;
+}
+
+/* Styling for the "Decline" button */
+.declineButton {
+    padding: 12px 25px;
+    font-size: 1rem;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .declineButton:hover {
-    background-color: #ebebeb;
-    box-shadow: 0 10px 15px -3px #bebdbd;
+    background-color: #c0392b;
 }
 
 /* Login & Signup Styling */
