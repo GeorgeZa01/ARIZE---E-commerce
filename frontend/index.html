@@ -319,58 +319,36 @@
         script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
         document.head.appendChild(script);
     }
-
     
     // the close button on cart
     function closeCart() {
     document.querySelector('.cart-dropdown').style.display = 'none';
     }
 
+    document.addEventListener('DOMContentLoaded', () => {
+  const cookieModal = document.getElementById('cookieModal');
+  const acceptButton = document.querySelector('.acceptButton');
+  const declineButton = document.querySelector('.declineButton');
 
-    // Cookie
-    window.onload = function () {
-    var cookieModal = document.getElementById("cookieModal");
-    var acceptButton = document.querySelector(".acceptButton");
-    var declineButton = document.querySelector(".declineButton");
-
-    // Show modal if cookies haven't been accepted
-    if (localStorage.getItem("cookiesAccepted") !== "true") {
-        cookieModal.style.display = "flex";
-    }
-
-    // Accept cookies
-    acceptButton.addEventListener("click", function () {
-        cookieModal.style.display = "none";
-        localStorage.setItem("cookiesAccepted", "true");
-    });
-
-    // Decline cookies
-    declineButton.addEventListener("click", function () {
-        cookieModal.style.display = "none";
-        localStorage.setItem("cookiesAccepted", "false");
-    });
-};
-window.addEventListener('DOMContentLoaded', (event) => {
-    const cookieModal = document.getElementById('cookieModal');
-    
-    // Show the modal
+  // Only show the modal if the user hasn't made a cookie decision yet
+  if (localStorage.getItem('cookiesAccepted') === null) {
     cookieModal.style.display = 'flex';
+  } else {
+    cookieModal.style.display = 'none';
+  }
 
-    // Handle the buttons (close or accept)
-    const acceptButton = document.querySelector('.acceptButton');
-    const declineButton = document.querySelector('.declineButton');
-    
-    acceptButton.addEventListener('click', () => {
-        cookieModal.style.display = 'none';
-        // You can also set a cookie here to remember the user's choice
-    });
+  // Accept cookies: set localStorage and hide modal
+  acceptButton.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'true');
+    cookieModal.style.display = 'none';
+  });
 
-    declineButton.addEventListener('click', () => {
-        cookieModal.style.display = 'none';
-        // You can set a different cookie for declining if necessary
-    });
+  // Decline cookies: if you want to hide the modal on decline too, store the decision and hide it
+  declineButton.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'false');
+    cookieModal.style.display = 'none';
+  });
 });
-
 
 // Search Function
 document.addEventListener("DOMContentLoaded", function () {

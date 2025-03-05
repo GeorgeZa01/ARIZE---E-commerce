@@ -21,7 +21,7 @@ app.use(cors({
 })); 
 
 app.use(express.json());
-
+ 
 // Routes
 app.use('/products', productsRouter); //laptops,monitors,PCtower,accessories
 app.use("/api/authentication", forgotRouters); //forgotpassword Route
