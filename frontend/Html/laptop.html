@@ -602,6 +602,52 @@ document.addEventListener("DOMContentLoaded", function () {
                     window.changeQuantity = changeQuantity;
                     window.removeFromCart = removeFromCart;
     });
+            const loginButton = document.getElementById("loginButton");
+
+            loginButton.addEventListener("click", async function (event) {
+                
+                event.preventDefault();
+
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                if (!email || !password) {
+                    alert("Please enter both email and password.");
+                    return;
+                }
+
+                try {
+                    const response = await fetch("http://127.0.0.1:3030/users/login", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email, password }),
+                        credentials: "include", // Important to send cookies
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        localStorage.setItem("accessToken", data.accessToken);
+
+                        Swal.fire({
+                            icon: "success",
+                            title: "Login Successful!",
+                            text: "You are now logged in.",
+                        }).then(() => {
+                            window.location.href = "./index.html";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Login Failed",
+                            text: data.message,
+                        });
+                    }
+                } catch (error) {
+                    console.error("Login error:", error);
+                }
+            });
+        
 </script>
 <footer class="bg-dark text-white py-4">
     <div class="container">
