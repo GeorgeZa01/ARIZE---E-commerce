@@ -4,15 +4,16 @@ import cors from 'cors';
 import productsRouter from './routes/productsRoutes.js';
 import authRoutes from './routes/userRoutes.js';
 import forgotRouters from './routes/forgotRouter.js';
-import cartRouter from './routes/cartRouter.js'
+import cartRouter from './routes/cartRouter.js';
 import userRoutes from './routes/userRoutes.js';
+import gameRoutes from './routes/gameRoutes.js';
 
 // import checkoutRouter from './routes/checkoutRouter.js';
-
 
 config(); // Load environment variables
 const app = express();
 
+// Enable CORS before defining the routes
 app.use(cors({
     origin: "http://127.0.0.1:5500",  //  Allow your frontend origin
     credentials: true,                //  Allow cookies & authorization headers
@@ -20,25 +21,25 @@ app.use(cors({
     allowedHeaders: ["Content-Type", "Authorization"]
 })); 
 
+// Middleware for JSON parsing
 app.use(express.json());
- 
-// Routes
-app.use('/products', productsRouter); //laptops,monitors,PCtower,accessories
-app.use("/api/authentication", forgotRouters); //forgotpassword Route
-app.use('/cart', cartRouter); //cart
-app.use('/api/auth', authRoutes);//signup
+
+// Highscore route after CORS middleware
+app.use('/highscore', gameRoutes);
+
+// Routes for other endpoints
+app.use('/products', productsRouter); //laptops, monitors, PCtower, accessories
+app.use("/api/authentication", forgotRouters); // forgot password Route
+app.use('/cart', cartRouter); // cart
+app.use('/api/auth', authRoutes); // signup
 app.use('/users', userRoutes);
-// app.use('/payment', checkoutRouter)//payment gateway
-// app.use('/checkout', checkoutRouter)//checkout
-
-
+// app.use('/payment', checkoutRouter); // payment gateway
+// app.use('/checkout', checkoutRouter); // checkout
 
 // Root Route (Optional)
 app.get('/', (req, res) => {
     res.send('Welcome to Tech Store API!');
 });
-
-
 
 // Global Error Handling Middleware
 app.use((err, req, res, next) => {
@@ -51,4 +52,3 @@ const port = process.env.PORT || 3030;
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
-

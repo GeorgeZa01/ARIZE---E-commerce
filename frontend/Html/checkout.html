@@ -191,13 +191,14 @@
             cartItem.classList.add("cart-item");
 
             cartItem.innerHTML = `
-            
-                <img class="cart-img" src="${item.image ? item.image : 'default-image.jpg'}"><p> ${item.Name}</p><br>
-            
-            <div>
-                <p class="item-price"> R${(item.Price * item.quantity)}</p>
+            <div class="cart-item-content">
+                <img class="cart-img" src="${item.image ? item.image : 'default-image.jpg'}" alt="${item.Name}">
+                <div class="item-details">
+                    <p class="item-name"><i>${item.quantity}x</i> <strong>${item.Name}</strong></p>
+                    <p class="item-price">R ${(item.Price * item.quantity)}</p>
+                </div>
             </div>
-            `;
+        `;
 
             cartItemsContainer.appendChild(cartItem);
         });

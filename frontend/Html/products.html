@@ -279,7 +279,6 @@
         </div>
     </div>
 
-
     <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="row">
@@ -296,35 +295,22 @@
                         <li><a href="./products.html" class="text-white">Products</a></li>
                         <li><a href="./about.html" class="text-white">About Us</a></li>
 
-                        <footer class="bg-dark text-white py-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h5>Contact Us</h5>
-                <p>123 Business St, Suite 456</p>
-                <p>City, Country, 12345</p>
-                <p>Email: contact@yourcompany.com</p>
-            </div>
-            <div class="col-md-4">
-                <h5>Quick Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="../index.html" class="text-white">Home</a></li>
-                    <li><a href="./products.html" class="text-white">Products</a></li>
-                    <li><a href="./about.html" class="text-white">About Us</a></li>
-                    
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h5>Follow Us</h5>
-                <ul class="list-unstyled">
-                    <li><a href="https://discord.gg/8reCZG5C" class="text-white"><i class="fab fa-discord"></i>Discord</a></li>
-                </ul>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://discord.gg/8reCZG5C" class="text-white"><i
+                                    class="fab fa-discord"></i>Discord</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="text-center py-3">
             <p>&copy; 2025 Your Company Name. All rights reserved.</p>
         </div>
     </footer>
+    
 <script >
     
      // Ensure SweetAlert is included
@@ -351,7 +337,7 @@
 
     // Fetch cart items
     async function fetchCartItems() {
-        // try {
+        try {
             console.log("🔄 Fetching cart items...");
             const response = await fetch(`http://localhost:3030/cart/2`);
             let cart = await response.json();
@@ -359,14 +345,14 @@
             console.log("📦 Cart data received:", cart);
             if (cart.error) cart = []; // Handle empty cart response
             updateCartDisplay(cart);
-        // } catch (error) {
-            // console.error("🚨 Error fetching cart:", error);
-        //     Swal.fire({
-        //     icon: 'error',
-        //     title: 'Oops...',
-        //     text: 'An error occurred while fetching the cart!',
-        // });
-        // }
+        } catch (error) {
+            console.error("🚨 Error fetching cart:", error);
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'An error occurred while fetching the cart!',
+        });
+        }
     }
     // fetchCartItems()
 
@@ -482,7 +468,7 @@
                     ? `http://localhost:3030/cart/update/increase/${cartId}`
                     : `http://localhost:3030/cart/update/decrease/${cartId}`;
                     
-            const response = await fetch(endpoint, { method: "PATCH" });
+            const response = await fetch(endpoint, { method: "PUT" });
             const result = await response.json();
 
             if (result.success) {
