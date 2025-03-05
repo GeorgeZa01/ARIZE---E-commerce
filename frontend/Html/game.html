@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tetris Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #222;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        #highscore-container {
+            width: 200px;
+            padding: 10px;
+            border: 2px solid white;
+            background-color: black;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: white;
+        }
+        th, td {
+            border: 1px solid white;
+            padding: 5px;
+            text-align: center;
+        }
+        #game-container {
+            position: relative;
+            text-align: center;
+        }
+        canvas {
+            background-color: black;
+            border: 5px solid white;
+            cursor: pointer;
+        }
+        #scoreboard {
+            margin-top: 10px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="highscore-container">
+            <h3>High Scores</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody id="highscore-table">
+                    <tr><td colspan="2">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="game-container">
+            <canvas id="tetris" width="300" height="600"></canvas>
+            <div id="scoreboard">Score: <span id="score">0</span></div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchHighScores() {
+            try {
+                const response = await fetch('http://localhost:3030/highscore'); 
+                console.log(response);  
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data);
+                    const tableBody = document.getElementById('highscore-table');
+                    tableBody.innerHTML = "";
+
+                    data.forEach(({ user_id, highscore }) => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `<td>${user_id}</td><td>${highscore}</td>`;
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    throw new Error('Failed to fetch high scores');
+                }
+            } catch (error) {
+                console.error("Error fetching high scores:", error);
+                document.getElementById('highscore-table').innerHTML = "<tr><td colspan='2'>Error loading</td></tr>";
+            }
+        }
+
+        async function postHighScore() {
+            try {
+                const response = await fetch('http://localhost:3030/highscore', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        user_id: 1, // default user_id
+                        highscore: score
+                    })
+                });
+
+                if (response.ok) {
+                    console.log('High score posted successfully');
+                } else {
+                    throw new Error('Failed to post high score');
+                }
+            } catch (error) {
+                console.error('Error posting high score:', error);
+            }
+        }
+
+        fetchHighScores();
+        setInterval(fetchHighScores, 10000);
+
+        const canvas = document.getElementById("tetris");
+        const ctx = canvas.getContext("2d");
+        const scoreElement = document.getElementById("score");
+
+        const ROWS = 20;
+        const COLS = 10;
+        const BLOCK_SIZE = 30;
+        const colors = [null, "cyan", "blue", "orange", "yellow", "green", "purple", "red"];
+        let score = 0;
+        let gameRunning = false;
+
+        const SHAPES = [
+            [], 
+            [[1, 1, 1, 1]], 
+            [[1, 1], [1, 1]], 
+            [[0, 1, 0], [1, 1, 1]], 
+            [[1, 0, 0], [1, 1, 1]], 
+            [[0, 0, 1], [1, 1, 1]], 
+            [[0, 1, 1], [1, 1, 0]], 
+            [[1, 1, 0], [0, 1, 1]] 
+        ];
+
+        let board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+        let piece;
+
+        class Piece {
+            constructor(shape, color) {
+                this.shape = shape;
+                this.color = color;
+                this.x = 3;
+                this.y = 0;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                this.shape.forEach((row, r) => {
+                    row.forEach((value, c) => {
+                        if (value) {
+                            ctx.fillRect((this.x + c) * BLOCK_SIZE, (this.y + r) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+                            ctx.strokeStyle = "black";
+                            ctx.strokeRect((this.x + c) * BLOCK_SIZE, (this.y + r) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+                        }
+                    });
+                });
+            }
+
+            moveDown() {
+                this.y++;
+                if (this.collides()) {
+                    this.y--;
+                    this.merge();
+                    spawnPiece();
+                }
+            }
+
+            moveLeft() {
+                this.x--;
+                if (this.collides()) this.x++;
+            }
+
+            moveRight() {
+                this.x++;
+                if (this.collides()) this.x--;
+            }
+
+            rotate() {
+                const temp = this.shape[0].map((_, i) => this.shape.map(row => row[i])).reverse();
+                const oldShape = this.shape;
+                this.shape = temp;
+                if (this.collides()) this.shape = oldShape;
+            }
+
+            collides() {
+                return this.shape.some((row, r) => {
+                    return row.some((value, c) => {
+                        let newX = this.x + c;
+                        let newY = this.y + r;
+                        return value && (newX < 0 || newX >= COLS || newY >= ROWS || board[newY][newX]);
+                    });
+                });
+            }
+
+            merge() {
+                this.shape.forEach((row, r) => {
+                    row.forEach((value, c) => {
+                        if (value) board[this.y + r][this.x + c] = this.color;
+                    });
+                });
+                clearLines();
+            }
+        }
+
+        function spawnPiece() {
+            const index = Math.floor(Math.random() * (SHAPES.length - 1)) + 1;
+            piece = new Piece(SHAPES[index], colors[index]);
+            if (piece.collides()) {
+                alert("Game Over!");
+                postHighScore();  // Post high score when the game ends
+                resetGame();
+            }
+        }
+
+        function clearLines() {
+            board = board.filter(row => row.some(cell => !cell));
+            let clearedLines = ROWS - board.length;
+            score += clearedLines * 100;
+            scoreElement.innerText = score;
+            while (board.length < ROWS) board.unshift(Array(COLS).fill(0));
+        }
+
+        function drawBoard() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            board.forEach((row, r) => {
+                row.forEach((value, c) => {
+                    if (value) {
+                        ctx.fillStyle = value;
+                        ctx.fillRect(c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+                        ctx.strokeStyle = "black";
+                        ctx.strokeRect(c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+                    }
+                });
+            });
+            piece.draw();
+        }
+
+        function gameLoop() {
+            if (gameRunning) {
+                piece.moveDown();
+                drawBoard();
+                setTimeout(gameLoop, 500);
+            }
+        }
+
+        function resetGame() {
+            board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+            score = 0;
+            scoreElement.innerText = score;
+            gameRunning = false;
+            drawBoard();
+        }
+
+        document.addEventListener("keydown", event => {
+            if (!gameRunning) return;
+            if (event.key === "ArrowLeft") piece.moveLeft();
+            else if (event.key === "ArrowRight") piece.moveRight();
+            else if (event.key === "ArrowDown") piece.moveDown();
+            else if (event.key === "ArrowUp") piece.rotate();
+            drawBoard();
+        });
+
+        canvas.addEventListener("click", () => {
+            if (!gameRunning) {
+                gameRunning = true;
+                spawnPiece();
+                gameLoop();
+            }
+        });
+
+        resetGame();
+    </script>
+</body>
+</html>

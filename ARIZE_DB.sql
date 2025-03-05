@@ -61,16 +61,13 @@ CREATE TABLE `arize_db`.`admin` (
   `quantity` INT NOT NULL Default 1,
   PRIMARY KEY (`cart_id`));
 
-CREATE TABLE users_cred (
-    user_cred_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    reset_token VARCHAR(255) DEFAULT NULL,
-    reset_expires DATETIME DEFAULT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-);
-Insert into users_cred (email,password)
-Values
-('urswinf@gmail.com','urswinfaro'),
-('jemail75@gmail.com','Macaws01');
+CREATE TABLE `arize_db`.`game` (
+  `highscore_id` INT NOT NULL auto_increment,
+  `user_id` INT NOT NULL,
+  `highscore` INT NOT NULL,
+  PRIMARY KEY (`highscore_id`),
+  foreign key (user_id) references users (user_id)  );
+
+INSERT INTO `arize_db`.`game` (`user_id`, `highscore`) VALUES ('1', '200');
+INSERT INTO `arize_db`.`game` (`user_id`, `highscore`) VALUES ('2', '350');
+
