@@ -55,26 +55,34 @@
                     <i class="bi bi-cart"></i> Cart 
                 </button>
 
-                <!-- cart dropdown -->
-                <div class="cart-dropdown">
-                    <h2>Cart</h2>
-                    <p class="free-shipping">Free standard shipping</p>
+               <!-- cart dropdown -->
+               <div class="cart-dropdown">
+                <button class="close-button" onclick="closeCart()">X</button>
 
+                <h2>Cart</h2>
+                <p class="free-shipping">Free standard shipping</p>
+
+                <!-- Scrollable Container for Cart Items -->
+                <div class="scrollable-container">
                     <div id="cart-items"></div>
-
-                    <div class="cart-footer">
-                        <div class="total-section">
-                            <p>Subtotal: <span id="subtotal">R 0.00</span></p>
-                            <h1>Total: <span id="total">R 0.00</span></h1>
-                        </div>
-                        <a href="./checkout.html">
-
-                            <button class="checkout-btn">Checkout</button>
-                        </a>
+                </div>
+                                
+                <div id="cart-items"></div>
+            
+                <div class="cart-footer">
+                    <div class="total-section">
+                        <p>Subtotal: <span id="subtotal">R 0.00</span></p>
+                        <h1>Total: <span id="total">R 0.00</span></h1>
                     </div>
+                    <a href="./checkout.html">
+
+                        <button class="checkout-btn">Checkout</button>
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
+
     </nav>
     <!-- Modal for Login -->
     <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
@@ -218,6 +226,20 @@
 
 
     <script>
+
+         // Ensure SweetAlert is included
+    if (typeof Swal === "undefined") {
+        let script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
+        document.head.appendChild(script);
+    }
+    
+    
+    // the close button on cart
+    function closeCart() {
+    document.querySelector('.cart-dropdown').style.display = 'none';
+    }
+    
         async function viewMore(productId) {
             try {
                 const response = await fetch(`http://localhost:3030/products/${productId}`);
@@ -251,6 +273,11 @@
                 productModal.show();
             } catch (error) {
                 console.error('Error fetching product details:', error);
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'There was an error fetching the product details. Please try again later.',
+            });
             }
         }
 
@@ -278,6 +305,11 @@
                 });
             } catch (error) {
                 console.error('Error fetching products:', error);
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'There was an error fetching the PC towers. Please try again later.',
+            });
             }
         }
 
@@ -358,6 +390,53 @@
                             text: "An error occurred while signing up. Please try again.",
                         });
                     });
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginButton = document.getElementById("loginButton");
+
+            loginButton.addEventListener("click", async function (event) {
+                
+                event.preventDefault();
+
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                if (!email || !password) {
+                    alert("Please enter both email and password.");
+                    return;
+                }
+
+                try {
+                    const response = await fetch("http://127.0.0.1:3030/users/login", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email, password }),
+                        credentials: "include", // Important to send cookies
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        localStorage.setItem("accessToken", data.accessToken);
+
+                        Swal.fire({
+                            icon: "success",
+                            title: "Login Successful!",
+                            text: "You are now logged in.",
+                        }).then(() => {
+                            window.location.href = "./index.html";
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Login Failed",
+                            text: data.message,
+                        });
+                    }
+                } catch (error) {
+                    console.error("Login error:", error);
+                }
             });
         });
     </script>
