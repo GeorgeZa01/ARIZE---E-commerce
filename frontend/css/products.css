@@ -450,6 +450,37 @@ h1 {
     transform: translate(3px, 3px);
     box-shadow: 0px 0px var(--main-color);
   }
+
+  /* Cart styling */
+
+  /* Make the cart dropdown scrollable */
+.scrollable-container {
+  max-height: 300px; /* Adjust based on your needs */
+  overflow-y: auto;
+  padding-right: 10px; /* Optional: adds some padding to the right for better scrolling */
+  position: relative;
+}
+
+/* Close button (X) */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #000;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10; /* Ensure it's on top of the content */
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+  .scrollable-container {
+    max-height: 60vh;
+  }
+}
+
   .cart-dropdown {
     position: absolute;
     top: 60px;

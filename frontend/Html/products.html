@@ -77,9 +77,16 @@
 
                 <!-- cart dropdown -->
                 <div class="cart-dropdown">
+                    <button class="close-button" onclick="closeCart()">X</button>
+
                     <h2>Cart</h2>
                     <p class="free-shipping">Free standard shipping</p>
-                    
+
+                    <!-- Scrollable Container for Cart Items -->
+                    <div class="scrollable-container">
+                        <div id="cart-items"></div>
+                    </div>
+                                    
                     <div id="cart-items"></div>
                 
                     <div class="cart-footer">
@@ -326,6 +333,12 @@
         script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
         document.head.appendChild(script);
     }
+
+    // the close button on cart
+        function closeCart() {
+    document.querySelector('.cart-dropdown').style.display = 'none';
+    }
+
     
     document.addEventListener("DOMContentLoaded", function () {
     const cartItemsContainer = document.getElementById("cart-items");
