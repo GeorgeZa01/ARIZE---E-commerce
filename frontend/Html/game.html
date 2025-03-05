@@ -2,6 +2,10 @@
 <html>
 <head>
     <title>Tetris Game</title>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tetris Game</title>
     <style>
         body {
             display: flex;
@@ -11,6 +15,7 @@
             background-color: #222;
             color: white;
             font-family: Arial, sans-serif;
+            overflow: hidden;
         }
         #container {
             display: flex;
@@ -47,6 +52,16 @@
             margin-top: 10px;
             font-size: 20px;
         }
+        #reward-message {
+            width: 200px;
+            padding: 10px;
+            border: 2px solid yellow;
+            background-color: #ff9800;
+            color: black;
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -69,6 +84,10 @@
         <div id="game-container">
             <canvas id="tetris" width="300" height="600"></canvas>
             <div id="scoreboard">Score: <span id="score">0</span></div>
+        </div>
+
+        <div id="reward-message">
+            <p>🎁 Top player of the month wins exciting gifts & discounts! 🏆</p>
         </div>
     </div>
 
