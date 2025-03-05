@@ -55,13 +55,20 @@
                     <i class="bi bi-cart"></i> Cart 
                 </button>
 
-                <!-- cart dropdown -->
-                <div class="cart-dropdown">
+                 <!-- cart dropdown -->
+                 <div class="cart-dropdown">
+                    <button class="close-button" onclick="closeCart()">X</button>
+
                     <h2>Cart</h2>
                     <p class="free-shipping">Free standard shipping</p>
 
+                    <!-- Scrollable Container for Cart Items -->
+                    <div class="scrollable-container">
+                        <div id="cart-items"></div>
+                    </div>
+                                    
                     <div id="cart-items"></div>
-
+                
                     <div class="cart-footer">
                         <div class="total-section">
                             <p>Subtotal: <span id="subtotal">R 0.00</span></p>
@@ -75,6 +82,7 @@
                 </div>
             </div>
         </div>
+
     </nav>
 
     <!-- Modal for Login -->
@@ -218,6 +226,21 @@
 
 
     <script>
+
+         // Ensure SweetAlert is included
+    if (typeof Swal === "undefined") {
+        let script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
+        document.head.appendChild(script);
+    }
+    
+
+    
+    // the close button on cart
+    function closeCart() {
+    document.querySelector('.cart-dropdown').style.display = 'none';
+    }
+    
         async function viewMore(productId) {
             try {
                 const response = await fetch(`http://localhost:3030/products/${productId}`);
@@ -251,6 +274,11 @@
                 productModal.show();
             } catch (error) {
                 console.error('Error fetching product details:', error);
+                Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Failed to load product details. Please try again later.",
+            });
             }
         }
 
@@ -278,6 +306,11 @@
                 });
             } catch (error) {
                 console.error('Error fetching products:', error);
+                Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Failed to load monitors. Please try again later.",
+            });
             }
         }
 
@@ -362,6 +395,7 @@
             });
         });
     </script>
+
     <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="row">
