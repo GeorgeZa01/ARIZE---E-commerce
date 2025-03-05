@@ -337,7 +337,7 @@
 
     // Fetch cart items
     async function fetchCartItems() {
-        // try {
+        try {
             console.log("🔄 Fetching cart items...");
             const response = await fetch(`http://localhost:3030/cart/2`);
             let cart = await response.json();
@@ -345,14 +345,14 @@
             console.log("📦 Cart data received:", cart);
             if (cart.error) cart = []; // Handle empty cart response
             updateCartDisplay(cart);
-        // } catch (error) {
-            // console.error("🚨 Error fetching cart:", error);
-        //     Swal.fire({
-        //     icon: 'error',
-        //     title: 'Oops...',
-        //     text: 'An error occurred while fetching the cart!',
-        // });
-        // }
+        } catch (error) {
+            console.error("🚨 Error fetching cart:", error);
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'An error occurred while fetching the cart!',
+        });
+        }
     }
     // fetchCartItems()
 
@@ -468,7 +468,7 @@
                     ? `http://localhost:3030/cart/update/increase/${cartId}`
                     : `http://localhost:3030/cart/update/decrease/${cartId}`;
                     
-            const response = await fetch(endpoint, { method: "PATCH" });
+            const response = await fetch(endpoint, { method: "PUT" });
             const result = await response.json();
 
             if (result.success) {

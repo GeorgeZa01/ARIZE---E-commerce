@@ -232,7 +232,30 @@ footer .container {
     max-width: 1200px;
     /* Limit the maximum width of the footer */
 }
-.cart-img{
-    width: 50px;
-    height: 50px;
-  }
+.cart-item-content {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    text-align: justify;
+    padding: 10px;
+}
+
+.cart-img {
+    width: 80px; /* Adjust as needed */
+    height: 80px;
+    border-radius: 5px;
+}
+
+.item-details {
+    margin-top: 5px; /* Space between image and text */
+}
+
+.item-name {
+    
+    font-size: 18px;
+}
+
+.item-price {
+    color: #5a08dc;
+    font-size: 14px;
+    font-weight: 400;
+}
