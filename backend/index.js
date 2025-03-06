@@ -39,7 +39,7 @@ app.use('/users', userRoutes);
 // Root Route (Optional)
 app.get('/', (req, res) => {
     res.send('Welcome to Tech Store API!');
-});
+}); 
 
 // Global Error Handling Middleware
 app.use((err, req, res, next) => {

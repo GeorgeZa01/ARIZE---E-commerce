@@ -47,8 +47,12 @@
                 </ul>
                 
                 <!-- Login/Signup Button -->
-                <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal">Log In</button>
-                <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1">Sign Up</button>
+                <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal" btn>Log
+                    In</button>
+                <p class="userName" style="display: none; justify-content: center;"> </p> <button style="display: none;"
+                    id="logoutButton">Logout</button>
+                <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1" btn>Sign
+                    Up</button>
 
                 <!-- Cart Icon Button -->
                 <button class="btn btn-button ms-2" id="cart-toggle">
@@ -103,7 +107,7 @@
                         <input type="password" class="form-control" id="password" placeholder="Enter your password">
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button class="btn btn-button">Log In</button>
+                        <button class="btn btn-button" id="loginButton" >Log In</button>
                     </div>
                     <a href="../frontend/Html/forgot.html" class="d-block mt-3">Forgot password?</a>
                 </div>
@@ -607,11 +611,12 @@
                     window.changeQuantity = changeQuantity;
                     window.removeFromCart = removeFromCart;
     });
-        document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
             const loginButton = document.getElementById("loginButton");
+            const userDisplay = document.querySelector(".userName"); // Select the <p> tag
+            const logoutButton = document.getElementById("logoutButton"); // Logout button
 
             loginButton.addEventListener("click", async function (event) {
-                
                 event.preventDefault();
 
                 const email = document.getElementById("email").value;
@@ -634,13 +639,21 @@
 
                     if (data.success) {
                         localStorage.setItem("accessToken", data.accessToken);
+                        const name = data.name.split(" ")[0]; // Get first name
+                        localStorage.setItem("user", name);
+
+                        // Display the username
+                        userDisplay.innerText = `Welcome, ${name}!`;
+                        userDisplay.style.display = "block";
+
+                        console.log("Logged in user:", name);
 
                         Swal.fire({
                             icon: "success",
                             title: "Login Successful!",
                             text: "You are now logged in.",
                         }).then(() => {
-                            window.location.href = "./index.html";
+                            window.location.href = "./PcTowers.html"; // Reload page
                         });
                     } else {
                         Swal.fire({
@@ -653,7 +666,36 @@
                     console.error("Login error:", error);
                 }
             });
+
+            // Check if user is logged in
+            if (localStorage.getItem("accessToken")) {
+                document.querySelectorAll("[btn]").forEach((value) => {
+                    value.style.display = "none"; // Hide login button
+                });
+
+                const name = localStorage.getItem("user");
+                if (name) {
+                    userDisplay.innerText = ` Welcome, ${name}!`;
+                    userDisplay.style.display = "block"; // Show username
+                    userDisplay.style.color = "white"; // Show username in white
+                    logoutButton.style.display = "block"; // Show logout button
+                }
+            }
+
+            // Logout functionality
+            logoutButton.addEventListener("click", function () {
+                localStorage.removeItem("accessToken");
+                localStorage.removeItem("user");
+                Swal.fire({
+                    icon: "info",
+                    title: "Logged Out",
+                    text: "You have been logged out successfully.",
+                }).then(() => {
+                    window.location.href = "../index.html";
+                });
+            });
         });
+
     </script>
     <footer class="bg-dark text-white py-4">
         <div class="container">
@@ -662,7 +704,7 @@
                     <h5>Contact Us</h5>
                     <p>123 Business St, Suite 456</p>
                     <p>City, Country, 12345</p>
-                    <p>Email: contact@yourcompany.com</p>
+                    <p>Email: admin@arize.co.za</p>
                 </div>
                 <div class="col-md-4">
                     <h5>Quick Links</h5>

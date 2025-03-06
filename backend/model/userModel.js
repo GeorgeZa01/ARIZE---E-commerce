@@ -19,6 +19,11 @@ export const findUserByEmail = async (email) => {
     return users.length > 0 ? users[0] : null;
 };
 
+export const getSingleUser = async (email) => {
+    const [users] = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
+    return users.length > 0 ? users[0] : null;
+}
+
  const getUsers = async () => {
     try {
         console.log("Fetching users from DB...");

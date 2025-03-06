@@ -1,4 +1,4 @@
-import {findUserByEmail, deleteUser, updateUser, createUser, getUsers} from '../model/userModel.js';
+import {findUserByEmail, deleteUser, updateUser, createUser, getUsers, getSingleUser} from '../model/userModel.js';
 import { generateAccessToken, generateRefreshToken  } from '../utils/jwtUtils.js';
 import { compare } from 'bcrypt'
 
@@ -27,6 +27,8 @@ export const loginUser = async (req, res) => {
 
         const foundUser = user;
         
+
+        
         // Compare passwords
         const isPasswordValid = await compare(password, foundUser.password);
         
@@ -45,11 +47,12 @@ export const loginUser = async (req, res) => {
             sameSite: "Strict",
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
-
+        let name = user.full_name
         res.status(200).json({
             success: true,
             message: "Login successful!",
             accessToken,
+            name
         });
     } catch (error) {
         console.error("Error logging in:", error);
@@ -74,6 +77,16 @@ export const refreshAccessToken = (req, res) => {
     }
 };
 
+export const getSingleUserCon = async (req, res) => {
+    try {
+        const email = req.params.email;
+        const user = await getSingleUser(email);
+        res.json(user);
+    } catch (error) {
+        console.error('Error in getSingleUserCon:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
  
 export const getUsersCon = async (req, res) => {
     try {

@@ -45,10 +45,15 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+
                 <!-- Login/Signup Button -->
-                <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal">Log In</button>
-                <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1">Sign Up</button>
-                 
+                <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal" btn>Log
+                    In</button>
+                <p class="userName" style="display: none; justify-content: center;"> </p> <button style="display: none;"
+                    id="logoutButton">Logout</button>
+                <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1" btn>Sign
+                    Up</button> 
+
                  <!-- Cart Icon Button -->
                 
                     <button class="btn btn-button ms-2" id="cart-toggle">
@@ -370,6 +375,92 @@
                     });
             });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginButton = document.getElementById("loginButton");
+            const userDisplay = document.querySelector(".userName"); // Select the <p> tag
+            const logoutButton = document.getElementById("logoutButton"); // Logout button
+
+            loginButton.addEventListener("click", async function (event) {
+                event.preventDefault();
+
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                if (!email || !password) {
+                    alert("Please enter both email and password.");
+                    return;
+                }
+
+                try {
+                    const response = await fetch("http://127.0.0.1:3030/users/login", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email, password }),
+                        credentials: "include", // Important to send cookies
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        localStorage.setItem("accessToken", data.accessToken);
+                        const name = data.name.split(" ")[0]; // Get first name
+                        localStorage.setItem("user", name);
+
+                        // Display the username
+                        userDisplay.innerText = `Welcome, ${name}!`;
+                        userDisplay.style.display = "block";
+
+                        console.log("Logged in user:", name);
+
+                        Swal.fire({
+                            icon: "success",
+                            title: "Login Successful!",
+                            text: "You are now logged in.",
+                        }).then(() => {
+                            window.location.href = "./about.html"; // Reload page
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Login Failed",
+                            text: data.message,
+                        });
+                    }
+                } catch (error) {
+                    console.error("Login error:", error);
+                }
+            });
+
+            // Check if user is logged in
+            if (localStorage.getItem("accessToken")) {
+                document.querySelectorAll("[btn]").forEach((value) => {
+                    value.style.display = "none"; // Hide login button
+                });
+
+                const name = localStorage.getItem("user");
+                if (name) {
+                    userDisplay.innerText = ` Welcome, ${name}!`;
+                    userDisplay.style.display = "block"; // Show username
+                    userDisplay.style.color = "white"; // Show username in white
+                    logoutButton.style.display = "block"; // Show logout button
+                }
+            }
+
+            // Logout functionality
+            logoutButton.addEventListener("click", function () {
+                localStorage.removeItem("accessToken");
+                localStorage.removeItem("user");
+                Swal.fire({
+                    icon: "info",
+                    title: "Logged Out",
+                    text: "You have been logged out successfully.",
+                }).then(() => {
+                    window.location.href = "../index.html";
+                });
+            });
+        });
+
     </script>
 
 <footer class="bg-dark text-white py-4">
@@ -379,7 +470,7 @@
                 <h5>Contact Us</h5>
                 <p>123 Business St, Suite 456</p>
                 <p>City, Country, 12345</p>
-                <p>Email: contact@yourcompany.com</p>
+                <p>Email: admin@arize.co.za</p>
             </div>
             <div class="col-md-4">
                 <h5>Quick Links</h5>
