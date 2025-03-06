@@ -44,6 +44,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./about.html">About Us</a>
                         </li>               
+                        <li class="nav-item">
+                            <a class="nav-link" href="./game.html"><img width="30" height="30" src="https://img.icons8.com/glyph-neue/64/FFFFFF/ps-controller.png" alt="ps-controller"/></a>
+                        </li>               
                     </ul>
                     <form class="d-flex" role="search" id="searchForm">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
@@ -58,7 +61,7 @@
                 <h5 class="modal-title" id="searchResultsModalLabel">Search Results</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 200vh; overflow-y: auto;">
                 <div id="searchResultsContainer" class="row">
                     <!-- Dynamic product results will go here -->
                 </div>
@@ -96,7 +99,7 @@
                     <div class="cart-footer">
                         <div class="total-section">
                             <p>Subtotal: <span id="subtotal">R 0.00</span></p>
-                            <h1>Total: <span id="total">R 0.00</span></h1>
+                            <h3>Total: <span id="total">R 0.00</span></h3>
                         </div>
                         <a href="./checkout.html">
 
@@ -249,36 +252,37 @@
             </div>
         </div>
     </div>
-</div>
-<h1>Monitors</h1>
-<div class="row mt-3" id="product-cards-monitors">
-    <!-- Product cards will be inserted here -->
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                Loading products...
+
+    <h1>Monitors</h1>
+    <div class="row mt-3" id="product-cards-monitors">
+        <!-- Product cards will be inserted here -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    Loading products...
+                </div>
             </div>
         </div>
     </div>
-</div>
-<h1>PC Towers</h1>
-<div class="row mt-3" id="product-cards-pctower">
-    <!-- Product cards will be inserted here -->
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                Loading products...
+    <h1>PC Towers</h1>
+    <div class="row mt-3" id="product-cards-pctower">
+        <!-- Product cards will be inserted here -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    Loading products...
+                </div>
             </div>
         </div>
     </div>
-</div>
-<h1>Accessories</h1>
-<div class="row mt-3" id="product-cards-accessories">
-    <!-- Product cards will be inserted here -->
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                Loading products...
+    <h1>Accessories</h1>
+    <div class="row mt-3" id="product-cards-accessories">
+        <!-- Product cards will be inserted here -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    Loading products...
+                </div>
             </div>
         </div>
     </div>
@@ -553,7 +557,7 @@
     
                     // Populate modal fields
                     document.getElementById('productTitle').textContent = product.Name;
-                    document.getElementById('productPrice').textContent = `${product.Price}`;
+                    document.getElementById('productPrice').textContent =`R${product.Price}`;
                     document.getElementById('productCategory').textContent = product.Category;
     
                     // Update product image
@@ -565,8 +569,6 @@
                     const detailsList = document.getElementById('productDetails');
                     detailsList.innerHTML = `
                  <li><strong>Description:</strong> ${product.Description}</li>
-                 <br>
-                 <li><strong>Stock:</strong> ${product.Quantity} left</li>
                  <br>
                  <button type="button" class="button add-to-cart" data-product-id="${product.product_id}">
       <span class="button__text">Add to Cart</span>
@@ -648,7 +650,7 @@
                         <img src="${product.image}" class="card-img-top" alt="${product.Name}">
                         <div class="card-body">
                             <h5 class="card-title">${product.Name}</h5>
-                            <p><strong>Price: R </strong>${product.Price}</p>
+                            <p>Price: R${product.Price}</p>
                             <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                         </div>
                     </div>
@@ -675,7 +677,6 @@
                                 <img src="${product.image}">
                                 <h5 class="card-title">${product.Name}</h5>
                                 <p class="card-text">Price: R ${product.Price}</p>
-                                <p class="card-text">Only ${product.Quantity} left in Stock</p>
                                 <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                             </div>
                         </div>
@@ -706,7 +707,6 @@
                                 <img src="${product.image}">
                                 <h5 class="card-title">${product.Name}</h5>
                                 <p class="card-text">Price: R ${product.Price}</p>
-                                <p class="card-text">Only ${product.Quantity} left in Stock</p>
                                 <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                             </div>
                         </div>
@@ -737,7 +737,6 @@
                                 <img src="${product.image}" >
                                 <h5 class="card-title">${product.Name}</h5>
                                 <p class="card-text">Price: R ${product.Price}</p>
-                                <p class="card-text">Only ${product.Quantity} left in Stock</p>
                                 <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                             </div>
                         </div>
@@ -769,7 +768,6 @@
                                 <img src="${product.image}">
                                 <h5 class="card-title">${product.Name}</h5>          
                                 <p class="card-text">Price: R ${product.Price}</p>
-                                <p class="card-text">Only ${product.Quantity} left in Stock</p>
                                 <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                             </div>
                         </div>

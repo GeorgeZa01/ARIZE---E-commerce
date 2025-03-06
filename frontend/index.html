@@ -43,6 +43,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../frontend/Html/about.html">About Us</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../frontend/Html/game.html"><img width="30" height="30"
+                                src="https://img.icons8.com/glyph-neue/64/FFFFFF/ps-controller.png"
+                                alt="ps-controller" /></a>
+                    </li>
                 </ul>
                 <form class="d-flex" role="search" id="searchForm">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
@@ -60,7 +65,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body" style="max-height: 200vh; overflow-y: auto;">
                                 <div id="searchResultsContainer" class="row">
                                     <!-- Dynamic product results will go here -->
                                 </div>
@@ -102,7 +107,7 @@
                             <p>Subtotal: <span id="subtotal">R 0.00</span></p>
                             <h1>Total: <span id="total">R 0.00</span></h1>
                         </div>
-                        <a href="../frontend/Html/checkout.html">
+                        <a href="./Html/checkout.html">
 
                             <button class="checkout-btn">Checkout</button>
                         </a>
@@ -218,8 +223,7 @@
             </svg>
             <p class="cookieHeading">We use cookies.</p>
             <p class="cookieDescription">We use cookies to ensure that we give you the best experience on our website.
-                <br><a href="./Html/cookie-policy.html">Read cookies policies</a>.
-            </p>
+                <br><a href="./Html/cookie-policy.html">Read cookies policies</a>.</p>
             <div class="buttonContainer">
                 <button class="acceptButton">Allow</button>
                 <button class="declineButton">Decline</button>
@@ -281,7 +285,7 @@
                             class="card-img-top" alt="Laptops">
                         <div class="card-body text-center">
                             <h5 class="card-title">Laptops</h5>
-                            <p class="card-text">Discover the latest high-performance laptops.</p>
+                            <p class="card-text">Discover high-performance laptops.</p>
                             <a href="./Html/laptop.html" class="btn btn-button">Shop Now</a>
                         </div>
                     </div>
@@ -425,7 +429,7 @@
                     <img src="${product.image}" class="card-img-top" alt="${product.Name}">
                     <div class="card-body">
                         <h5 class="card-title">${product.Name}</h5>
-                        <p><strong>Price: </strong>${product.Price}</p>
+                        <p><strong>Price: </strong>R${product.Price}</p>
                         <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                     </div>
                 </div>
@@ -465,7 +469,7 @@
                         <div class="item-details">
                             <h3>${item.name}</h3>
                             <p>${item.size ? "Size: " + item.size : ""} ${item.color ? "Color: " + item.color : ""}</p>
-                            <p class="item-price">R ${item.price.toFixed(2)}</p>
+                            <p class="item-price">R${item.price.toFixed(2)}</p>
                         </div>
                         <div class="quantity-controls">
                             <button class="quantity-btn" onclick="changeQuantity(${index}, -1)">-</button>
@@ -671,7 +675,48 @@
             });
         });
 
+        async function viewMore(productId) {
+            try {
+                const response = await fetch(`http://localhost:3030/products/${productId}`);
+                const product = await response.json();
+                console.log(product);
 
+
+                // Populate modal fields
+                document.getElementById('productTitle').textContent = product.Name;
+                document.getElementById('productPrice').textContent = `R${product.Price}`;
+                document.getElementById('productCategory').textContent = product.Category;
+
+                // Update product image
+                const productImage = document.querySelector('#productModal img');
+                productImage.src = product.image;
+                productImage.alt = product.title;
+
+                // Update details list
+                const detailsList = document.getElementById('productDetails');
+                detailsList.innerHTML = `
+                 <li><strong>Description:</strong> ${product.Description}</li>
+                 <br>
+                 <li><strong>Stock:</strong> ${product.Quantity} left</li>
+                 <br>
+                 <button type="button" class="button add-to-cart" data-product-id="${product.product_id}">
+      <span class="button__text">Add to Cart</span>
+      <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+    </button>    
+            `;
+
+                // Show the modal
+                const productModal = new bootstrap.Modal(document.getElementById('productModal'));
+                productModal.show();
+            } catch (error) {
+                console.error('Error fetching product details:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while fetching the product details.',
+                });
+            }
+        }
 
     </script>
 

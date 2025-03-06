@@ -44,6 +44,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="./about.html">About Us</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./game.html"><img width="30" height="30" src="https://img.icons8.com/glyph-neue/64/FFFFFF/ps-controller.png" alt="ps-controller"/></a>
+                    </li> 
                 </ul>
                 
                 <!-- Login/Signup Button -->
@@ -251,7 +254,7 @@
 
                 // Populate modal fields
                 document.getElementById('productTitle').textContent = product.Name;
-                document.getElementById('productPrice').textContent = `${product.Price}`;
+                document.getElementById('productPrice').textContent = `R${product.Price}`;
                 document.getElementById('productCategory').textContent = product.Category;
 
                 // Update product image
@@ -263,8 +266,6 @@
                 const detailsList = document.getElementById('productDetails');
                 detailsList.innerHTML = `
              <li><strong>Description:</strong> ${product.Description}</li>
-             <br>
-             <li><strong>Stock:</strong> ${product.Quantity} left</li>
              <br>
              <button type="button" class="button add-to-cart" data-product-id="${product.product_id}">
   <span class="button__text">Add to Cart</span>
@@ -299,8 +300,7 @@
                         <div class="card-body-monitors">
                             <img src=${product.image} >
                             <h5 class="card-title">${product.Name}</h5>
-                            <p class="card-text">Price: ${product.Price}</p>
-                            <p class="card-text">Only ${product.Quantity} left in Stock</p>
+                            <p class="card-text">Price: R${product.Price}</p>
                             <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                         </div>
                     </div>
@@ -408,7 +408,7 @@
 
     // Fetch cart items
     async function fetchCartItems() {
-        // try {
+        try {
             console.log("🔄 Fetching cart items...");
             const response = await fetch(`http://localhost:3030/cart/2`);
             let cart = await response.json();
@@ -416,14 +416,14 @@
             console.log("📦 Cart data received:", cart);
             if (cart.error) cart = []; // Handle empty cart response
             updateCartDisplay(cart);
-        // } catch (error) {
-            // console.error("🚨 Error fetching cart:", error);
-        //     Swal.fire({
-        //     icon: 'error',
-        //     title: 'Oops...',
-        //     text: 'An error occurred while fetching the cart!',
-        // });
-        // }
+        } catch (error) {
+            console.error("🚨 Error fetching cart:", error);
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'An error occurred while fetching the cart!',
+        });
+        }
     }
     // fetchCartItems()
 
