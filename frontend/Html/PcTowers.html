@@ -263,8 +263,6 @@
                 detailsList.innerHTML = `
              <li><strong>Description:</strong> ${product.Description}</li>
              <br>
-             <li><strong>Stock:</strong> ${product.Quantity} left</li>
-             <br>
              <button type="button" class="button add-to-cart" data-product-id="${product.product_id}">
   <span class="button__text">Add to Cart</span>
   <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
@@ -298,8 +296,7 @@
                         <div class="card-body-monitors">
                             <img src=${product.image} >
                             <h5 class="card-title">${product.Name}</h5>
-                            <p class="card-text">Price: ${product.Price}</p>
-                            <p class="card-text">Only ${product.Quantity} left in Stock</p>
+                            <p class="card-text">Price: R ${product.Price}</p>
                             <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                         </div>
                     </div>
@@ -407,7 +404,7 @@
 
     // Fetch cart items
     async function fetchCartItems() {
-        // try {
+        try {
             console.log("🔄 Fetching cart items...");
             const response = await fetch(`http://localhost:3030/cart/2`);
             let cart = await response.json();
@@ -415,14 +412,14 @@
             console.log("📦 Cart data received:", cart);
             if (cart.error) cart = []; // Handle empty cart response
             updateCartDisplay(cart);
-        // } catch (error) {
-            // console.error("🚨 Error fetching cart:", error);
-        //     Swal.fire({
-        //     icon: 'error',
-        //     title: 'Oops...',
-        //     text: 'An error occurred while fetching the cart!',
-        // });
-        // }
+        } catch (error) {
+            console.error("🚨 Error fetching cart:", error);
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'An error occurred while fetching the cart!',
+        });
+        }
     }
     // fetchCartItems()
 
