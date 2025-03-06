@@ -14,6 +14,54 @@
         background: #1a4d46;
     }
 
+/* logout button */
+    #logoutButton {
+        background-color: #ff4d4d; /* Red color for logout */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    
+    #logoutButton:hover {
+        background-color: #cc0000; /* Darker red on hover */
+        transform: scale(1.05);
+    }
+    
+    #logoutButton:active {
+        transform: scale(0.95);
+    }
+    /* welcome text styling */
+    .userName {
+        font-size: 24px;
+        font-weight: bold;
+        color: #4CAF50;
+        text-align: center;
+        margin-top: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+
+  
+/* styling for the logout ccontainer */
+.logoutContainer {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Adjust spacing between elements */
+}
+.nav-link:hover {
+    opacity: 0.7; /* Slight transparency on hover */
+    transform: scale(1.1); /* Slightly enlarges the icon */
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+.userName {
+    display: none;
+    justify-content: center;
+}
     .product-section {
         display: flex;
         flex-wrap: wrap;

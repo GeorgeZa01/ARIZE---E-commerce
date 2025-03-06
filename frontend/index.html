@@ -74,16 +74,16 @@
                     </div>
                 </div>
 
-
-
-                <!-- Login/Signup Button -->
-                <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal" btn>Log
-                    In</button>
-                <p class="userName" style="display: none; justify-content: center;"> </p> <button style="display: none;"
-                    id="logoutButton">Logout</button>
-                <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1" btn>Sign
-                    Up</button>
-
+                <div class="logoutContainer">
+                    <!-- Login/Signup Button -->
+                    <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal" btn>Log
+                        In</button>
+                        <p class="userName" style="display: none; justify-content: center;"></p>
+                        
+                        <button style="display: none;" id="logoutButton">Logout</button>
+                        
+                        <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1" btn>Sign Up</button>
+                </div>
                 <!-- Cart Icon Button -->
                 <button class="btn btn-button ms-2" id="cart-toggle">
                     <i class="bi bi-cart"></i> Cart
@@ -117,7 +117,43 @@
         </div>
 
     </nav>
+<!-- Product Details Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content shadow-lg rounded-3">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-4">
+                    <!-- Product Image Section -->
+                    <div class="col-md-5">
+                        <img src='' alt="Product Image" class="img-fluid rounded-3 shadow-sm">
+                    </div>
 
+                    <!-- Product Info Section -->
+                    <div class="col-md-7">
+                        <h4 id="productTitle" class="text-primary">Product Title</h4>
+                        <p id="productDescription" class="text-muted"></p>
+                        <p><strong class="text-dark">Price:</strong> <span id="productPrice"
+                                class="text-success">$99.99</span></p>
+                        <p><strong class="text-dark">Category:</strong> <span
+                                id="productCategory">Electronics</span></p>
+                        <hr>
+                        <p><strong></strong></p>
+                        <ul id="productDetails" class="list-unstyled">
+                            <li>Detail 1</li>
+                            <li>Detail 2</li>
+                            <li>Detail 3</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- Modal for Login -->
     <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -622,8 +658,9 @@
                         localStorage.setItem("user", name);
 
                         // Display the username
-                        userDisplay.innerText = `Welcome, ${name}!`;
+                        userDisplay.innerText = `Hi! ${name}!`;
                         userDisplay.style.display = "block";
+                        
 
                         console.log("Logged in user:", name);
 
@@ -654,7 +691,7 @@
 
                 const name = localStorage.getItem("user");
                 if (name) {
-                    userDisplay.innerText = ` Welcome, ${name}!`;
+                    userDisplay.innerText = ` Hi! ${name}`;
                     userDisplay.style.display = "block"; // Show username
                     userDisplay.style.color = "white"; // Show username in white
                     logoutButton.style.display = "block"; // Show logout button
