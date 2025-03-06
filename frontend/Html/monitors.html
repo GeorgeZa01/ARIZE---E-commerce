@@ -251,7 +251,7 @@
 
                 // Populate modal fields
                 document.getElementById('productTitle').textContent = product.Name;
-                document.getElementById('productPrice').textContent = `${product.Price}`;
+                document.getElementById('productPrice').textContent = `R${product.Price}`;
                 document.getElementById('productCategory').textContent = product.Category;
 
                 // Update product image
@@ -263,8 +263,6 @@
                 const detailsList = document.getElementById('productDetails');
                 detailsList.innerHTML = `
              <li><strong>Description:</strong> ${product.Description}</li>
-             <br>
-             <li><strong>Stock:</strong> ${product.Quantity} left</li>
              <br>
              <button type="button" class="button add-to-cart" data-product-id="${product.product_id}">
   <span class="button__text">Add to Cart</span>
@@ -299,8 +297,7 @@
                         <div class="card-body-monitors">
                             <img src=${product.image}>
                             <h5 class="card-title">${product.Name}</h5>
-                            <p class="card-text">Price: ${product.Price}</p>
-                            <p class="card-text">Only ${product.Quantity} left in Stock</p>
+                            <p class="card-text">Price: R${product.Price}</p>
                             <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                         </div>
                     </div>

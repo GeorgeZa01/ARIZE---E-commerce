@@ -5,7 +5,12 @@ const getCartItems = async (user_id) => {
     try {
         console.log('User ID:', user_id);  // Log the userId to check the value
         const [rows] = await pool.query(
-            `SELECT * FROM arize_db.cart INNER JOIN arize_db.products on arize_db.cart.product_id = arize_db.products.product_id where user_id = ?;
+            `SELECT * 
+FROM arize_db.cart 
+INNER JOIN arize_db.products ON arize_db.cart.product_id = arize_db.products.product_id 
+INNER JOIN arize_db.users ON arize_db.cart.user_id = arize_db.users.user_id 
+WHERE arize_db.cart.user_id = ?;
+;
 `,
             [user_id],
         );

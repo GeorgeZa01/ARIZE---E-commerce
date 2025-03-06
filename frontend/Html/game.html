@@ -160,6 +160,8 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         async function fetchHighScores() {
             try {
@@ -308,11 +310,29 @@
             const index = Math.floor(Math.random() * (SHAPES.length - 1)) + 1;
             piece = new Piece(SHAPES[index], colors[index]);
             if (piece.collides()) {
-                alert("Game Over!");
-                postHighScore();  // Post high score when the game ends
+                Swal.fire({
+            title: 'Game Over!',
+            text: 'You have lost the game. Want to play again?',
+            icon: 'error',
+            confirmButtonText: 'Play Again',
+            cancelButtonText: 'Exit',
+            showCancelButton: true,
+            reverseButtons: true
+        }).then(result => {
+            if (result.isConfirmed) {
                 resetGame();
+                gameRunning = true;
+                spawnPiece();
+                gameLoop();
+            } else {
+                // Redirecting to the exit page when the user clicks "Exit"
+                window.location.href = "../index.html";
             }
-        }
+        });
+        postHighScore();  // Post high score when the game ends
+        resetGame();
+    }
+}
 
         function clearLines() {
             board = board.filter(row => row.some(cell => !cell));

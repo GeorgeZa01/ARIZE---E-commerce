@@ -455,7 +455,7 @@
 .results-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Spacious grid */
-    gap: 20px;
+    gap: 100px;
     padding: 10px;
     justify-items: center;
 }
@@ -736,3 +736,4 @@
 .d-flex.justify-content-between {
     margin-top: 15px;
 }
+

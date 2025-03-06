@@ -65,7 +65,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body" style="max-height: 200vh; overflow-y: auto;">
                                 <div id="searchResultsContainer" class="row">
                                     <!-- Dynamic product results will go here -->
                                 </div>
@@ -466,7 +466,7 @@
                     <img src="${product.image}" class="card-img-top" alt="${product.Name}">
                     <div class="card-body">
                         <h5 class="card-title">${product.Name}</h5>
-                        <p><strong>Price: </strong>${product.Price}</p>
+                        <p><strong>Price: </strong>R${product.Price}</p>
                         <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                     </div>
                 </div>
@@ -506,7 +506,7 @@
                         <div class="item-details">
                             <h3>${item.name}</h3>
                             <p>${item.size ? "Size: " + item.size : ""} ${item.color ? "Color: " + item.color : ""}</p>
-                            <p class="item-price">R ${item.price.toFixed(2)}</p>
+                            <p class="item-price">R${item.price.toFixed(2)}</p>
                         </div>
                         <div class="quantity-controls">
                             <button class="quantity-btn" onclick="changeQuantity(${index}, -1)">-</button>
@@ -682,7 +682,7 @@
 
                 // Populate modal fields
                 document.getElementById('productTitle').textContent = product.Name;
-                document.getElementById('productPrice').textContent = `${product.Price}`;
+                document.getElementById('productPrice').textContent = `R${product.Price}`;
                 document.getElementById('productCategory').textContent = product.Category;
 
                 // Update product image

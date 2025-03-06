@@ -61,7 +61,7 @@
                 <h5 class="modal-title" id="searchResultsModalLabel">Search Results</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 200vh; overflow-y: auto;">
                 <div id="searchResultsContainer" class="row">
                     <!-- Dynamic product results will go here -->
                 </div>
@@ -553,7 +553,7 @@
     
                     // Populate modal fields
                     document.getElementById('productTitle').textContent = product.Name;
-                    document.getElementById('productPrice').textContent = `${product.Price}`;
+                    document.getElementById('productPrice').textContent =`R${product.Price}`;
                     document.getElementById('productCategory').textContent = product.Category;
     
                     // Update product image
@@ -646,7 +646,7 @@
                         <img src="${product.image}" class="card-img-top" alt="${product.Name}">
                         <div class="card-body">
                             <h5 class="card-title">${product.Name}</h5>
-                            <p><strong>Price: R </strong>${product.Price}</p>
+                            <p>Price: R${product.Price}</p>
                             <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
                         </div>
                     </div>
