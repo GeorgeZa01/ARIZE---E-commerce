@@ -69,18 +69,22 @@
         </div>
     </div>
 </div>
-                    <!-- Login/Signup Button -->
-                    <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal" btn>Log
-                        In</button>
-                    <p class="userName" style="display: none; justify-content: center;"> </p> <button style="display: none;"
-                        id="logoutButton">Logout</button>
-                    <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1" btn>Sign
-                        Up</button>
-                   
-                 <!-- Cart Icon Button -->
-                <button class="btn btn-button ms-2" id="cart-toggle">
-                    <i class="bi bi-cart"></i> Cart 
-                </button>
+
+<div class="logoutContainer">
+    <!-- Login/Signup Button -->
+    <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal" btn>Log
+        In</button>
+        <p class="userName" style="display: none; justify-content: center;"></p>
+        
+        <button style="display: none;" id="logoutButton">Logout</button>
+        
+        <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1" btn>Sign Up</button>
+        
+        <!-- Cart Icon Button -->
+        <button class="btn btn-button ms-2" id="cart-toggle">
+            <i class="bi bi-cart"></i> Cart 
+        </button>
+    </div>
 
                 <!-- cart dropdown -->
                 <div class="cart-dropdown">
@@ -898,7 +902,7 @@
                         localStorage.setItem("user", name);
 
                         // Display the username
-                        userDisplay.innerText = `Welcome, ${name}!`;
+                        userDisplay.innerText = `Hi! ${name}!`;
                         userDisplay.style.display = "block";
 
                         console.log("Logged in user:", name);
@@ -930,7 +934,7 @@
 
                 const name = localStorage.getItem("user");
                 if (name) {
-                    userDisplay.innerText = ` Welcome, ${name}!`;
+                    userDisplay.innerText = ` Hi! ${name}`;
                     userDisplay.style.display = "block"; // Show username
                     userDisplay.style.color = "white"; // Show username in white
                     logoutButton.style.display = "block"; // Show logout button
