@@ -36,15 +36,15 @@ CREATE TABLE `arize_db`.`users` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `full_name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
-  `password` VARCHAR(245) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
   `address` VARCHAR(300) NOT NULL,
+  `reset_token` varchar(255),
+  `reset_expires` DATETIME,
   PRIMARY KEY (`user_id`));
-
 INSERT INTO `arize_db`.`users` (`full_name`, `email`, `password`, `address`)
- VALUES 
+ VALUES
 ('Urswin Faro', 'urswinf@gmail.com', 'urswinfaro', '53 Giants Castle street'),
-('Jemaile Mohamed', 'jemaile75@gmail.com', 'Macaws01', '12 Johanneson rd, Penlyn Estate');
- 
+('Jemaile Mohamed', 'jemaile75@gmail.com', '$2b$10$8zwOwqxNcMHzDf4.rykw1eptxtsxQUUag4Cg093JHj.sbByOXAtum', '12 Johanneson rd, Penlyn Estate');
 
 CREATE TABLE `arize_db`.`admin` (
   `admin_id` INT NOT NULL AUTO_INCREMENT,
