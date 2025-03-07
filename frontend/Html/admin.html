@@ -170,7 +170,7 @@
 
     try {
     const response = await fetch(`http://localhost:3030/products/${productId}`, {
-        method: 'PATCH',
+        method: 'UPDATE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
             image, 

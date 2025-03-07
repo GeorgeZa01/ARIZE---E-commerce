@@ -487,67 +487,190 @@
 
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-            function updateCartDisplay() {
-                cartItemsContainer.innerHTML = "";
-                let subtotal = 0;
+     // Update Cart Display
+     function updateCartDisplay(cart) {
+    const cartItemsContainer = document.getElementById("cart-items");
+    const subtotalEl = document.getElementById("subtotal");
+    const totalEl = document.getElementById("total");
 
-                if (cart.length === 0) {
-                    cartItemsContainer.innerHTML = "<p class='empty-cart'>Your cart is empty</p>";
+    if (!cartItemsContainer || !subtotalEl || !totalEl) {
+        console.error("❌ Cart elements not found in the DOM.");
+        return;
+    }
+
+    cartItemsContainer.innerHTML = "";
+    let subtotal = 0;
+
+    if (!Array.isArray(cart) || cart.length === 0) {
+        cartItemsContainer.innerHTML = "<p class='empty-cart'>Your cart is empty</p>";
+        subtotalEl.textContent = "R 0.00";
+        totalEl.textContent = "R 0.00";
+        return;
+    }
+
+    console.log("📦 Cart Data Received:", cart);
+
+    cart.forEach((item) => {
+        if (!item.product_id || !item.Name || item.Price === undefined) {
+            console.error("⚠️ Invalid cart item:", item);
+            return;
+        }
+
+        const price = item.Price ? item.Price : 0; 
+        subtotal += price * item.quantity;
+
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+
+        cartItem.innerHTML = `
+            <img class="cart-img" src="${item.image}"  "alt="${item.Name}">
+            <div class="item-details">
+                <h3>${item.Name}</h3>
+                <p class="item-price">R ${(item.Price * item.quantity)}</p>
+            </div>
+            <div class="quantity-controls">
+                <button class="quantity-btn" onclick="changeQuantity(${item.cart_id}, -1)">-</button>
+                <span>${item.quantity}</span>
+                <button class="quantity-btn" onclick="changeQuantity(${item.cart_id}, 1)">+</button>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart(${item.cart_id})"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0,0,256,256">
+<g fill="#f90202" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M10,2l-1,1h-5v2h16v-2h-5l-1,-1zM5,7v13c0,1.1 0.9,2 2,2h10c1.1,0 2,-0.9 2,-2v-13zM8,9h2v11h-2zM14,9h2v11h-2z"></path></g></g>
+</svg></button>
+
+        `;
+            console.log(cartItem);
+            
+        cartItemsContainer.appendChild(cartItem);
+    });
+
+    subtotalEl.textContent = `R ${subtotal.toFixed(2)}`;
+    const tax = subtotal * 0.15;
+    totalEl.textContent = `R ${(subtotal + tax).toFixed(2)}`;
+}
+
+    // Add item to cart
+    document.body.addEventListener("click", async function (event) {
+        if (event.target.closest(".add-to-cart")) {
+            console.log("🛒 Add to Cart clicked!");
+
+            const button = event.target.closest(".add-to-cart");
+            const productId = button.getAttribute("data-product-id");
+            const quantity = 1;
+
+            try {
+                const response = await fetch("http://localhost:3030/cart/add", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ userId, productId, quantity }),
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Product added to cart!',
+                });
+                    fetchCartItems(); // Refresh cart display
                 } else {
-                    cart.forEach((item, index) => {
-                        subtotal += item.price * item.quantity;
-
-                        const cartItem = document.createElement("div");
-                        cartItem.classList.add("cart-item");
-
-                        cartItem.innerHTML = `
-                        <img src="${item.image}" alt="${item.name}">
-                        <div class="item-details">
-                            <h3>${item.name}</h3>
-                            <p>${item.size ? "Size: " + item.size : ""} ${item.color ? "Color: " + item.color : ""}</p>
-                            <p class="item-price">R${item.price.toFixed(2)}</p>
-                        </div>
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="changeQuantity(${index}, -1)">-</button>
-                            <span>${item.quantity}</span>
-                            <button class="quantity-btn" onclick="changeQuantity(${index}, 1)">+</button>
-                        </div>
-                        <button class="remove-btn" onclick="removeFromCart(${index})">🗑️</button>
-                    `;
-
-                        cartItemsContainer.appendChild(cartItem);
-                    });
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Failed',
+                    text: 'Failed to add product to cart.',
+                });
                 }
-
-                subtotalEl.textContent = `R ${subtotal.toFixed(2)}`;
-                // Apply any additional fees/taxes if needed
-                const tax = subtotal * 0.15; // Example 15% tax
-                const total = subtotal + tax;
-                totalEl.textContent = `R ${total.toFixed(2)}`;
-                localStorage.setItem("cart", JSON.stringify(cart));
-            }
-
-            window.changeQuantity = function (index, change) {
-                if (cart[index].quantity + change > 0) {
-                    cart[index].quantity += change;
-                } else {
-                    cart.splice(index, 1);
-                }
-                updateCartDisplay();
-            };
-
-            window.removeFromCart = function (index) {
-                cart.splice(index, 1);
-                updateCartDisplay();
-            };
-
-            // Toggle cart dropdown visibility
-            cartToggleBtn.addEventListener("click", function () {
-                cartDropdown.style.display = cartDropdown.style.display === "none" || cartDropdown.style.display === "" ? "block" : "none";
+            } catch (error) {
+                console.error("🚨 Error adding to cart:", error);
+                Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'An error occurred while adding to cart.',
             });
+            }
+        }
+    });
 
-            updateCartDisplay();
+    // Change quantity (increase/decrease)
+    async function changeQuantity(cartId, change) {
+        try {
+            console.log(`🔄 Changing quantity for cartId ${cartId}, Change: ${change}`);
+            const endpoint =
+                change > 0
+                    ? `http://localhost:3030/cart/update/increase/${cartId}`
+                    : `http://localhost:3030/cart/update/decrease/${cartId}`;
+                    
+            const response = await fetch(endpoint, { method: "PUT" });
+            const result = await response.json();
+
+            if (result.success) {
+                Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Quantity updated!',
+            });
+                fetchCartItems(); // Refresh cart
+            } else {
+                Swal.fire({
+                icon: 'error',
+                title: 'Failed',
+                text: 'Failed to update quantity.',
+            });
+            }
+        } catch (error) {
+            console.error("🚨 Error updating cart:", error);
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while updating the quantity.',
         });
+        }
+    }
+
+    // Remove item from cart
+    async function removeFromCart(cartId) {
+        console.log(cartId);
+        
+        try {
+            console.log(`🗑️ Removing item with cartId: ${cartId}`);
+            const response = await fetch(`http://localhost:3030/cart/delete/${cartId}`, { method: "DELETE" });
+            const result = await response.json();
+
+            if (result.success) {
+                Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Item removed from cart!',
+            });
+                fetchCartItems(); // Refresh cart display
+            } else {
+                Swal.fire({
+                icon: 'error',
+                title: 'Failed',
+                text: 'Failed to remove item.',
+            });
+            }
+        } catch (error) {
+            console.error("🚨 Error removing item:", error);
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while removing the item.',
+        });
+        }
+    }
+
+    // Toggle cart dropdown visibility
+    cartToggleBtn.addEventListener("click", function () {
+        cartDropdown.style.display = cartDropdown.style.display === "none" || cartDropdown.style.display === "" ? "block" : "none";
+    });
+
+    fetchCartItems();
+
+                    
+                    // Expose functions globally
+                    window.changeQuantity = changeQuantity;
+                    window.removeFromCart = removeFromCart;
+    });
 
         document.addEventListener("DOMContentLoaded", function () {
             const signupSubmitButton = document.getElementById("signupSubmitButton");
@@ -691,7 +814,7 @@
 
                 const name = localStorage.getItem("user");
                 if (name) {
-                    userDisplay.innerText = ` Hi! ${name}`;
+                    userDisplay.innerText = ` Hi!, ${name}`;
                     userDisplay.style.display = "block"; // Show username
                     userDisplay.style.color = "white"; // Show username in white
                     logoutButton.style.display = "block"; // Show logout button
@@ -733,8 +856,6 @@
                 const detailsList = document.getElementById('productDetails');
                 detailsList.innerHTML = `
                  <li><strong>Description:</strong> ${product.Description}</li>
-                 <br>
-                 <li><strong>Stock:</strong> ${product.Quantity} left</li>
                  <br>
                  <button type="button" class="button add-to-cart" data-product-id="${product.product_id}">
       <span class="button__text">Add to Cart</span>

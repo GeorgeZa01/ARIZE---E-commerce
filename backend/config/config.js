@@ -4,10 +4,10 @@ import { config } from 'dotenv';
 config();
 
 const pool = mysql.createPool({
-    host: process.env.HOST || "127.0.0.1",
-    user: process.env.USER || "root",
-    password: process.env.PASSWORD || "Shafwan@1",
-    database: process.env.DATABASE || "arize_db",
+    host: process.env.HOST,
+    user: process.env.USER ,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
