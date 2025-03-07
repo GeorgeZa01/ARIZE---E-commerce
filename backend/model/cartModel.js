@@ -3,7 +3,6 @@ import { pool } from '../config/config.js';
 // Get cart items for a user
 const getCartItems = async (user_id) => {
     try {
-        console.log('User ID:', user_id);  // Log the userId to check the value
         const [rows] = await pool.query(
             `SELECT * 
 FROM arize_db.cart 

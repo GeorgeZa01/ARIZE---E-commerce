@@ -3,9 +3,8 @@ import {getCartItems,addToCart,removeFromCart,increaseQuantity,decreaseQuantity}
 export const getCartItemsCon = async (req, res) => {
     try {
         const { userId } = req.params;  // Extract userId from the URL parameter
-        console.log('User ID:', req.params); // Log the user_id to check if it's passed correctly
         const rows = await getCartItems(userId);
-        console.log(rows);
+        
           // Pass it to the model function
         res.json(rows);  // Return the results
     } catch (error) {
