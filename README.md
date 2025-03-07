@@ -64,7 +64,7 @@ For inquiries, please email support@arize.com.
 ## Acknowledgments:
 - Thanks to the Vanilla.js and Node.js communities for their great documentation.
 
-
+##to get to admin page login use email: admin@gmai.com password: securepass123
 
 
 
