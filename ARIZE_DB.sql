@@ -43,7 +43,7 @@ CREATE TABLE `arize_db`.`users` (
   PRIMARY KEY (`user_id`));
 INSERT INTO `arize_db`.`users` (`full_name`, `email`, `password`, `address`)
  VALUES
-('Urswin Faro', 'urswinf@gmail.com', 'urswinfaro', '53 Giants Castle street'),
+('admin admin', 'admin@gmail.com', '$2b$10$zwUtCD7VLmtndTof75T4lOQdHukDusKwG6uyXVF/HHAsRRX1mBqV.', '53 business rd, business town'),
 ('Jemaile Mohamed', 'jemaile75@gmail.com', '$2b$10$8zwOwqxNcMHzDf4.rykw1eptxtsxQUUag4Cg093JHj.sbByOXAtum', '12 Johanneson rd, Penlyn Estate');
 
 CREATE TABLE `arize_db`.`admin` (
