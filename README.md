@@ -64,7 +64,10 @@ For inquiries, please email support@arize.com.
 ## Acknowledgments:
 - Thanks to the Vanilla.js and Node.js communities for their great documentation.
 
-##to get to admin page login using 
+## inorder to login
+Uses signup model to create account then login
+
+## To get to admin page login using 
 email: admin@gmail.com 
 password: securepass123
 
