@@ -74,7 +74,7 @@
                             <label for="productQuantity" class="form-label">Quantity</label>
                             <input type="number" class="form-control" id="productQuantity" required>
                         </div>
-                        <button type="submit" class="btn custom-btn" >Add Product</button>
+                        <button type="submit" class="btn custom-btn" onclick="addProduct()">Add Product</button>
                     </form>
                 </div>
             </div>
@@ -170,7 +170,7 @@
 
     try {
     const response = await fetch(`http://localhost:3030/products/${productId}`, {
-        method: 'UPDATE',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
             image, 

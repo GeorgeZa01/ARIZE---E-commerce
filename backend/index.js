@@ -17,7 +17,7 @@ const app = express();
 app.use(cors({
     origin: "http://127.0.0.1:5500",  //  Allow your frontend origin
     credentials: true,                //  Allow cookies & authorization headers
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"]
 })); 
 

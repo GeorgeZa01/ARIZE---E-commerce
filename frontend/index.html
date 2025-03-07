@@ -485,7 +485,28 @@
             const cartDropdown = document.querySelector(".cart-dropdown");
             const cartToggleBtn = document.getElementById("cart-toggle");
 
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const userId = 2; // Replace with the actual authenticated user ID
+
+// Fetch cart items
+async function fetchCartItems() {
+    try {
+        console.log("🔄 Fetching cart items...");
+        const response = await fetch(`http://localhost:3030/cart/2`);
+        let cart = await response.json();
+        
+        console.log("📦 Cart data received:", cart);
+        if (cart.error) cart = []; // Handle empty cart response
+        updateCartDisplay(cart);
+    } catch (error) {
+        console.error("🚨 Error fetching cart:", error);
+        Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'An error occurred while fetching the cart!',
+    });
+    }
+}
+// fetchCartItems()
 
      // Update Cart Display
      function updateCartDisplay(cart) {
@@ -793,7 +814,12 @@
                             title: "Login Successful!",
                             text: "You are now logged in.",
                         }).then(() => {
-                            window.location.href = "./index.html"; // Reload page
+                            if (name === "admin") {
+                                console.log("Admin logged in");
+                                window.location.href = "./Html/admin.html";
+                            }else{
+                                window.location.href = "./index.html"; // Reload page
+                            }
                         });
                     } else {
                         Swal.fire({
