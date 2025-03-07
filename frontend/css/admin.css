@@ -1,406 +1,406 @@
+ 
+
 body {
-    background-color: #f4f6f9;
-    font-family: 'Poppins', sans-serif;
-    color: #333;
+  background-color: #f4f6f9;
+  font-family: "Poppins", sans-serif;
+  color: #333;
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #2c3e50;
-    font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-weight: 600;
 }
-
+/* Card styling */
 .card {
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    overflow: hidden;
-    border: none;
-    background: linear-gradient(135deg, #ffffff, #ecf0f3);
-    display: flex;
-    flex-direction: column;
-    height: 300px;
-    max-width: 100%; 
-    
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  overflow: hidden;
+  border: none;
+  background: linear-gradient(135deg, #ffffff, #ecf0f3);
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  max-width: 100%;
 }
-
+/* User card styling */
 .user_card {
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    overflow: hidden;
-    border: none;
-    background: linear-gradient(135deg, #ffffff, #ecf0f3);
-    display: flex;
-    flex-direction: column;
-    height: 200px;
-    max-width: 100%; 
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  overflow: hidden;
+  border: none;
+  background: linear-gradient(135deg, #ffffff, #ecf0f3);
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  max-width: 100%;
 }
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .card-body {
-    flex-grow: 1;
-    overflow: hidden;
-    font-size: 16px;
-    padding: 20px;
-    border-radius: 12px;
+  flex-grow: 1;
+  overflow: hidden;
+  font-size: 16px;
+  padding: 20px;
+  border-radius: 12px;
 }
-
+/* Edit button styling */
 .edit-btn {
-    margin-top: 10px;
-    width: 100%;
-    font-weight: bold;
-    border-radius: 5px;
-    background: #3498db;
-    color: #fff;
-    transition: background 0.3s ease;
+  margin-top: 10px;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 5px;
+  background: #3498db;
+  color: #fff;
+  transition: background 0.3s ease;
 }
 
 .edit-btn:hover {
-    background: #217dbb;
+  background: #217dbb;
 }
-
+/* Canvas styling */
 canvas {
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* New Navbar Styling */
 .navbar {
-    background-color: #2c3e50; /* Dark blue-grey background */
+  background-color: #2c3e50; /* Dark blue-grey background */
 }
 
 .navbar-brand {
-    color: #ecf0f1 !important; /* Light text for brand */
-    font-weight: bold;
-    font-size: 1.8rem;
+  color: #ecf0f1 !important; /* Light text for brand */
+  font-weight: bold;
+  font-size: 1.8rem;
 }
 
 .navbar-nav .nav-link {
-    color: #ecf0f1 !important; /* Light text for links */
-    padding: 15px 25px;
-    font-size: 1.1rem;
+  color: #ecf0f1 !important; /* Light text for links */
+  padding: 15px 25px;
+  font-size: 1.1rem;
 }
 
 .navbar-nav .nav-link:hover {
-    background-color: #34495e; /* Slightly lighter background on hover */
-    border-radius: 5px;
+  background-color: #34495e; /* Slightly lighter background on hover */
+  border-radius: 5px;
 }
 
 .navbar-nav .nav-link.active {
-    background-color: #25246a; /* Greenish background when active */
-    color: #fff !important;
-    border-radius: 5px;
+  background-color: #25246a; /* Greenish background when active */
+  color: #fff !important;
+  border-radius: 5px;
 }
 
 .navbar-toggler-icon {
-    background-color: #728589; /* Light color for hamburger icon */
+  background-color: #728589; /* Light color for hamburger icon */
 }
 
 .container-fluid {
-    padding: 30px;
+  padding: 30px;
 }
 
 /* Make the navbar responsive */
 @media (max-width: 767px) {
-    .navbar-nav {
-        text-align: center;
-        width: 100%;
-    }
+  .navbar-nav {
+    text-align: center;
+    width: 100%;
+  }
 
-    .navbar-nav .nav-link {
-        padding: 15px;
-    }
+  .navbar-nav .nav-link {
+    padding: 15px;
+  }
 }
 
 /* Page Content Styling */
 .page-content {
-    padding: 20px;
+  padding: 20px;
 }
 
 /* Modal Styling */
 .modal-content {
-    border-radius: 12px;
-    border: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .modal-header {
-    background-color: #007bff;
-    color: white;
-    border-radius: 12px 12px 0 0;
+  background-color: #007bff;
+  color: white;
+  border-radius: 12px 12px 0 0;
 }
 
 .modal-header .btn-close {
-    background-color: white;
-    color: #007bff;
+  background-color: white;
+  color: #007bff;
 }
 
 .modal-body {
-    padding: 30px;
+  padding: 30px;
 }
 
 .form-label {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 /* Edit Button Styling */
 .edit-btn {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
 .edit-btn:hover {
-    background-color: #217dbb;
-    cursor: pointer;
+  background-color: #217dbb;
+  cursor: pointer;
 }
 
 .edit-btn:focus {
-    outline: none;
+  outline: none;
 }
 
 /* Responsive Design for Modal */
 @media (max-width: 576px) {
-    .modal-dialog {
-        max-width: 100%;
-    }
+  .modal-dialog {
+    max-width: 100%;
+  }
 
-    .modal-content {
-        border-radius: 8px;
-    }
+  .modal-content {
+    border-radius: 8px;
+  }
 }
-
 
 /* Enhanced Add User Button */
 .add-user-btn {
-    background-color: #007bff;
-        color: white;
-        padding: 12px 24px;
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 8px;
-        border: none;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        text-align: center;
-        width: 100%;
-    }
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
 
 /* Hover Effect for Add User Button */
 .add-user-btn:hover {
-    background-color: #0056b3;
-        cursor: pointer;
-        transform: scale(1.05);
+  background-color: #0056b3;
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 /* Focus Effect to remove outline */
 .add-user-btn:focus {
-    outline: none;
+  outline: none;
 }
 
 /* Responsive Button Styling */
 @media (max-width: 576px) {
-    .add-user-btn {
-        font-size: 14px; /* Adjust font size for smaller screens */
-        padding: 10px 20px; /* Adjust padding */
-    }
+  .add-user-btn {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    padding: 10px 20px; /* Adjust padding */
+  }
 }
 
 /* styling for the add user modal button */
-    .custom-btn {
-        background-color: #007bff;
-        color: white;
-        padding: 12px 24px;
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 8px;
-        border: none;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        width: 100%;
-        text-align: center;
-    }
+.custom-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
 
-    .custom-btn:hover {
-        background-color: #0056b3;
-        cursor: pointer;
-        transform: scale(1.05);
-    }
+.custom-btn:hover {
+  background-color: #0056b3;
+  cursor: pointer;
+  transform: scale(1.05);
+}
 
-    .custom-btn:focus {
-        outline: none;
-    }
+.custom-btn:focus {
+  outline: none;
+}
 
-    @media (max-width: 576px) {
-        .custom-btn {
-            font-size: 14px;
-            padding: 10px 20px;
-        }
-    }
+@media (max-width: 576px) {
+  .custom-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
 
 /* Custom Styling for Add Product Button in modal  */
 
-    .add-product-btn {
-        background-color: #007bff;
-        color: white;
-        padding: 12px 24px;
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 8px;
-        border: none;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        text-align: center;
-        width: 100%;
-    }
+.add-product-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
 
-    .add-product-btn:hover {
-        background-color: #0056b3;
-        cursor: pointer;
-        transform: scale(1.05);
-    }
+.add-product-btn:hover {
+  background-color: #0056b3;
+  cursor: pointer;
+  transform: scale(1.05);
+}
 
-    .add-product-btn:focus {
-        outline: none;
-    }
+.add-product-btn:focus {
+  outline: none;
+}
 
-    @media (max-width: 576px) {
-        .add-product-btn {
-            font-size: 14px;
-            padding: 10px 20px;
-        }
-    }
+@media (max-width: 576px) {
+  .add-product-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
 
-    /* styling for add product button */
-    .custom-btn {
-        background-color: #007bff;
-        color: white;
-        padding: 12px 24px;
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 8px;
-        border: none;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        width: 100%;
-        text-align: center;
-    }
+/* styling for add product button */
+.custom-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
 
-    .custom-btn:hover {
-        background-color: #0056b3;
-        cursor: pointer;
-        transform: scale(1.05);
-    }
+.custom-btn:hover {
+  background-color: #0056b3;
+  cursor: pointer;
+  transform: scale(1.05);
+}
 
-    .custom-btn:focus {
-        outline: none;
-    }
+.custom-btn:focus {
+  outline: none;
+}
 
-    @media (max-width: 576px) {
-        .custom-btn {
-            font-size: 14px;
-            padding: 10px 20px;
-        }
-    }
+@media (max-width: 576px) {
+  .custom-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
 
-   /* Container for the buttons */
+/* Container for the buttons */
 .button-container {
-    display: flex;
-    gap: 10px; /* Space between buttons */
-    justify-content: center; /* Center the buttons horizontally */
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  justify-content: center; /* Center the buttons horizontally */
 }
 
 /* Edit Button */
 .edit-btn {
-    background-color: #4CAF50; /* Green */
-    color: white;
-    padding: 6px 12px; /* Reduced padding */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px; /* Smaller font size */
-    transition: background-color 0.3s ease;
-    width: auto; /* Make the button size fit the content */
+  background-color: #4caf50; /* Green */
+  color: white;
+  padding: 6px 12px; /* Reduced padding */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px; /* Smaller font size */
+  transition: background-color 0.3s ease;
+  width: auto; /* Make the button size fit the content */
 }
 
 .edit-btn:hover {
-    background-color: #45a049; /* Darker green */
+  background-color: #45a049; /* Darker green */
 }
 
 /* Delete Button */
 .delete-btn {
-    background-color: #f44336; /* Red */
-    color: white;
-    padding: 6px 12px; /* Reduced padding */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px; /* Smaller font size */
-    transition: background-color 0.3s ease;
-    width: auto; /* Make the button size fit the content */
+  background-color: #f44336; /* Red */
+  color: white;
+  padding: 6px 12px; /* Reduced padding */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px; /* Smaller font size */
+  transition: background-color 0.3s ease;
+  width: auto; /* Make the button size fit the content */
 }
 
 .delete-btn:hover {
-    background-color: #d32f2f; /* Darker red */
+  background-color: #d32f2f; /* Darker red */
 }
+/* shipping button styling */
 .cssbuttons-io-button {
-    background: #a370f0;
-    color: white;
-    font-family: inherit;
-    padding: 0.35em;
-    padding-left: 1.2em;
-    font-size: 17px;
-    font-weight: 500;
-    border-radius: 0.9em;
-    border: none;
-    letter-spacing: 0.05em;
-    display: flex;
-    align-items: center;
-    box-shadow: inset 0 0 1.6em -0.6em #714da6;
-    overflow: hidden;
-    position: relative;
-    height: 2.8em;
-    padding-right: 3.3em;
-    cursor: pointer;
-  }
-  
-  .cssbuttons-io-button .icon {
-    background: white;
-    margin-left: 1em;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 2.2em;
-    width: 2.2em;
-    border-radius: 0.7em;
-    box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
-    right: 0.3em;
-    transition: all 0.3s;
-  }
-  
-  .cssbuttons-io-button:hover .icon {
-    width: calc(100% - 0.6em);
-  }
-  
-  .cssbuttons-io-button .icon svg {
-    width: 1.1em;
-    transition: transform 0.3s;
-    color: #7b52b9;
-  }
-  
-  .cssbuttons-io-button:hover .icon svg {
-    transform: translateX(0.1em);
-  }
-  
-  .cssbuttons-io-button:active .icon {
-    transform: scale(0.95);
-  }
-  
+  background: #a370f0;
+  color: white;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #714da6;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+}
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #7b52b9;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}

@@ -1,271 +1,407 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
     <!-- Bootstrap Icons CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-    <link href="../css/products.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-</head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+    <link href="../css/products.css" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
 
-
-<body>
-
+  <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/arize.png?raw=true" alt=""
-                    class="img-fluid" style="max-width: 150px;">
-            </a>
-            <input id="checkbox" type="checkbox">
-            <label class="toggle" for="checkbox" class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <div id="bar1" class="bars"></div>
-                <div id="bar2" class="bars"></div>
-                <div id="bar3" class="bars"></div>
-                <!-- <span class="navbar-toggler-icon"></span> -->
-            </label>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./products.html">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./about.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./game.html"><img width="30" height="30" src="https://img.icons8.com/glyph-neue/64/FFFFFF/ps-controller.png" alt="ps-controller"/></a>
-                    </li> 
-                </ul>
-                <div class="logoutContainer">
-                    <!-- Login/Signup Button -->
-                    <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal" btn>Log
-                        In</button>
-                        <p class="userName" style="display: none; justify-content: center;"></p>
-                        
-                        <button style="display: none;" id="logoutButton">Logout</button>
-                        
-                        <button class="btn btn-button ms-2" data-bs-toggle="modal" data-bs-target="#authModal1" btn>Sign Up</button>
-                        
-                        <!-- Cart Icon Button -->
-                        <button class="btn btn-button ms-2" id="cart-toggle">
-                            <i class="bi bi-cart"></i> Cart 
-                        </button>
-                    </div>
-                
-                <!-- Cart Icon Button -->
-                <button class="btn btn-button ms-2" id="cart-toggle">
-                    <i class="bi bi-cart"></i> Cart 
-                </button>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/arize.png?raw=true"
+            alt=""
+            class="img-fluid"
+            style="max-width: 150px"
+          />
+        </a>
+        <input id="checkbox" type="checkbox" />
+        <label
+          class="toggle"
+          for="checkbox"
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <div id="bar1" class="bars"></div>
+          <div id="bar2" class="bars"></div>
+          <div id="bar3" class="bars"></div>
+          <!-- <span class="navbar-toggler-icon"></span> -->
+        </label>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="../index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./game.html"
+                ><img
+                  width="30"
+                  height="30"
+                  src="https://img.icons8.com/glyph-neue/64/FFFFFF/ps-controller.png"
+                  alt="ps-controller"
+              /></a>
+            </li>
+          </ul>
+          <div class="logoutContainer">
+            <!-- Login/Signup Button -->
+            <button
+              class="btn btn-button ms-2"
+              data-bs-toggle="modal"
+              data-bs-target="#authModal"
+              btn
+            >
+              Log In
+            </button>
+            <p
+              class="userName"
+              style="display: none; justify-content: center"
+            ></p>
 
-              <!-- cart dropdown -->
-              <div class="cart-dropdown">
-                <button class="close-button" onclick="closeCart()">X</button>
+            <button style="display: none" id="logoutButton">Logout</button>
 
-                <h2>Cart</h2>
-                <p class="free-shipping">Free standard shipping</p>
+            <button
+              class="btn btn-button ms-2"
+              data-bs-toggle="modal"
+              data-bs-target="#authModal1"
+              btn
+            >
+              Sign Up
+            </button>
 
-                <!-- Scrollable Container for Cart Items -->
-                <div class="scrollable-container">
-                    <div id="cart-items"></div>
-                </div>
-                                
-                <div id="cart-items"></div>
-            
-                <div class="cart-footer">
-                    <div class="total-section">
-                        <p>Subtotal: <span id="subtotal">R 0.00</span></p>
-                        <h1>Total: <span id="total">R 0.00</span></h1>
-                    </div>
-                    <a href="./checkout.html">
+            <!-- Cart Icon Button -->
+            <button class="btn btn-button ms-2" id="cart-toggle">
+              <i class="bi bi-cart"></i> Cart
+            </button>
+          </div>
 
-                        <button class="checkout-btn">Checkout</button>
-                    </a>
-                </div>
+          <!-- Cart Icon Button -->
+          <button class="btn btn-button ms-2" id="cart-toggle">
+            <i class="bi bi-cart"></i> Cart
+          </button>
+
+          <!-- cart dropdown -->
+          <div class="cart-dropdown">
+            <button class="close-button" onclick="closeCart()">X</button>
+
+            <h2>Cart</h2>
+            <p class="free-shipping">Free standard shipping</p>
+
+            <!-- Scrollable Container for Cart Items -->
+            <div class="scrollable-container">
+              <div id="cart-items"></div>
             </div>
-        </div>
-    </div>
 
+            <div id="cart-items"></div>
+
+            <div class="cart-footer">
+              <div class="total-section">
+                <p>Subtotal: <span id="subtotal">R 0.00</span></p>
+                <h1>Total: <span id="total">R 0.00</span></h1>
+              </div>
+              <a href="./checkout.html">
+                <button class="checkout-btn">Checkout</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </nav>
 
     <!-- Modal for Login -->
-    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="authModalLabel">Log In</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Form content for login/signup -->
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-button" id="loginButton">Log In</button>
-                    </div>
-                    <a href="../frontend/Html/forgot.html" class="d-block mt-3">Forgot password?</a>
-                </div>
+    <div
+      class="modal fade"
+      id="authModal"
+      tabindex="-1"
+      aria-labelledby="authModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="authModalLabel">Log In</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!-- Form content for login/signup -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Enter your email"
+              />
             </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Enter your password"
+              />
+            </div>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-button" id="loginButton">Log In</button>
+            </div>
+            <a href="../frontend/Html/forgot.html" class="d-block mt-3"
+              >Forgot password?</a
+            >
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Sign Up -->
-    <div class="modal fade" id="authModal1" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="authModalLabel">Sign Up</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Form content for login/signup -->
-                    <div class="mb-3">
-                        <label for="text" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="eg.Mike ">
-                    </div>
-                    <div class="mb-3">
-                        <label for="text" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="eg. Oxlong">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="eg. mikeoxlong69@gmail.com">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Confirm your password">
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-button">Submit</button>
-                    </div>
-                </div>
+    <div
+      class="modal fade"
+      id="authModal1"
+      tabindex="-1"
+      aria-labelledby="authModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="authModalLabel">Sign Up</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!-- Form content for login/signup -->
+            <div class="mb-3">
+              <label for="text" class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                placeholder="eg.Mike "
+              />
             </div>
+            <div class="mb-3">
+              <label for="text" class="form-label">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                placeholder="eg. Oxlong"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="eg. mikeoxlong69@gmail.com"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Enter your password"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Confirm Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Confirm your password"
+              />
+            </div>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-button">Submit</button>
+            </div>
+          </div>
         </div>
-    </div><br>
-    <!-- Colorful Pulsing Discord Alert -->
-    <div id="discordAlert" class="alert alert-info d-flex align-items-center justify-content-between text-white mb-0"
-        role="alert">
-        <div>
-            <strong>Join our Discord Community!</strong> Click here to connect with others.
-        </div>
-        <a href="https://discord.gg/8reCZG5C" class="playstore-button">
-            <svg viewBox="0 -28.5 256 256" class="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z">
-                </path>
-            </svg>
-            <span class="texts">
-                <span class="text-1">JOIN THE</span>
-                <span class="text-2">DISCORD</span>
-            </span>
-        </a>
+      </div>
     </div>
-    <br>
-
+    <br />
+    <!-- Colorful Pulsing Discord Alert -->
+    <div
+      id="discordAlert"
+      class="alert alert-info d-flex align-items-center justify-content-between text-white mb-0"
+      role="alert"
+    >
+      <div>
+        <strong>Join our Discord Community!</strong> Click here to connect with
+        others.
+      </div>
+      <a href="https://discord.gg/8reCZG5C" class="playstore-button">
+        <svg
+          viewBox="0 -28.5 256 256"
+          class="icon"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z"
+          ></path>
+        </svg>
+        <span class="texts">
+          <span class="text-1">JOIN THE</span>
+          <span class="text-2">DISCORD</span>
+        </span>
+      </a>
+    </div>
+    <br />
 
     <h1>Accessories</h1>
     <div class="row mt-4" id="product-cards-accessories">
-        <!-- Product cards will be inserted here -->
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    Loading products...
-                </div>
-            </div>
+      <!-- Product cards will be inserted here -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">Loading products...</div>
         </div>
+      </div>
     </div>
     <!-- Product Details Modal -->
-    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content shadow-lg rounded-3">
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="productModalLabel">Product Details</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row g-4">
-                        <!-- Product Image Section -->
-                        <div class="col-md-5">
-                            <img id="productImage" src="" alt="Product Image" class="img-fluid rounded-3 shadow-sm">
-                        </div>
+    <div
+      class="modal fade"
+      id="productModal"
+      tabindex="-1"
+      aria-labelledby="productModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content shadow-lg rounded-3">
+          <div class="modal-header bg-dark text-white">
+            <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-4">
+              <!-- Product Image Section -->
+              <div class="col-md-5">
+                <img
+                  id="productImage"
+                  src=""
+                  alt="Product Image"
+                  class="img-fluid rounded-3 shadow-sm"
+                />
+              </div>
 
-                        <!-- Product Info Section -->
-                        <div class="col-md-7">
-                            <h4 id="productTitle" class="text-primary">Product Title</h4>
-                            <p id="productDescription" class="text-muted"></p>
-                            <p><strong class="text-dark"></strong> <span id="productPrice"
-                                    class="text-success">Price:</span></p>
-                            <p><strong class="text-dark"></strong> <span id="productCategory">Category:</span></p>
-                            <hr>
-                            <ul id="productDetails" class="list-unstyled"></ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer border-top-0">
-                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-                </div>
+              <!-- Product Info Section -->
+              <div class="col-md-7">
+                <h4 id="productTitle" class="text-primary">Product Title</h4>
+                <p id="productDescription" class="text-muted"></p>
+                <p>
+                  <strong class="text-dark"></strong>
+                  <span id="productPrice" class="text-success">Price:</span>
+                </p>
+                <p>
+                  <strong class="text-dark"></strong>
+                  <span id="productCategory">Category:</span>
+                </p>
+                <hr />
+                <ul id="productDetails" class="list-unstyled"></ul>
+              </div>
             </div>
+          </div>
+          <div class="modal-footer border-top-0">
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-
-         // Ensure SweetAlert is included
-    if (typeof Swal === "undefined") {
+      // Ensure SweetAlert is included
+      if (typeof Swal === "undefined") {
         let script = document.createElement("script");
         script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
         document.head.appendChild(script);
-    }
+      }
 
-    
-    // the close button on cart
-    function closeCart() {
-    document.querySelector('.cart-dropdown').style.display = 'none';
-    }
-    
-        async function viewMore(productId) {
-            try {
-                const response = await fetch(`http://localhost:3030/products/${productId}`);
-                const product = await response.json();
+      // the close button on cart
+      function closeCart() {
+        document.querySelector(".cart-dropdown").style.display = "none";
+      }
 
-                // Populate modal fields
-                document.getElementById('productTitle').textContent = product.Name;
-                document.getElementById('productPrice').textContent = `Price: R${product.Price}`;
-                document.getElementById('productCategory').textContent = `Category: ${product.Category}`;
+      async function viewMore(productId) {
+        try {
+          const response = await fetch(
+            `http://localhost:3030/products/${productId}`
+          );
+          const product = await response.json();
 
-                // Update product image
-                const productImage = document.getElementById('productImage');
-                productImage.src = product.image;
-                productImage.alt = product.Name;
+          // Populate modal fields
+          document.getElementById("productTitle").textContent = product.Name;
+          document.getElementById(
+            "productPrice"
+          ).textContent = `Price: R${product.Price}`;
+          document.getElementById(
+            "productCategory"
+          ).textContent = `Category: ${product.Category}`;
 
-                // Update details list
-                const detailsList = document.getElementById('productDetails');
-                detailsList.innerHTML = `
+          // Update product image
+          const productImage = document.getElementById("productImage");
+          productImage.src = product.image;
+          productImage.alt = product.Name;
+
+          // Update details list
+          const detailsList = document.getElementById("productDetails");
+          detailsList.innerHTML = `
             <li><strong>Description:</strong> ${product.Description}</li>
             <br>
             <button type="button" class="button add-to-cart" data-product-id="${product.product_id}">
@@ -274,28 +410,34 @@
             </button>    
         `;
 
-                // Show the modal
-                const productModal = new bootstrap.Modal(document.getElementById('productModal'));
-                productModal.show();
-            } catch (error) {
-                console.error('Error fetching product details:', error);
-                Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Failed to load product details. Please try again later.",
-            });
-    }
-            }
-        
-        async function fetchaccessories() {
-            try {
-                const response = await fetch('http://localhost:3030/products/accessories');
-                const products = await response.json();
-                const productCardsContainer = document.getElementById('product-cards-accessories');
-                productCardsContainer.innerHTML = ''; // Clear placeholder text
+          // Show the modal
+          const productModal = new bootstrap.Modal(
+            document.getElementById("productModal")
+          );
+          productModal.show();
+        } catch (error) {
+          console.error("Error fetching product details:", error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Failed to load product details. Please try again later.",
+          });
+        }
+      }
 
-                products.forEach(product => {
-                    productCardsContainer.innerHTML += `
+      async function fetchaccessories() {
+        try {
+          const response = await fetch(
+            "http://localhost:3030/products/accessories"
+          );
+          const products = await response.json();
+          const productCardsContainer = document.getElementById(
+            "product-cards-accessories"
+          );
+          productCardsContainer.innerHTML = ""; // Clear placeholder text
+
+          products.forEach((product) => {
+            productCardsContainer.innerHTML += `
                 <div class="col-md-3">
                     <div class="card mb-4">
                         <div class="card-body-monitors">
@@ -307,190 +449,198 @@
                     </div>
                 </div>
             `;
-                });
-            } catch (error) {
-                console.error('Error fetching products:', error);
+          });
+        } catch (error) {
+          console.error("Error fetching products:", error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Failed to load accessories. Please try again later.",
+          });
+        }
+      }
+
+      window.onload = () => {
+        fetchaccessories();
+      };
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const signupSubmitButton =
+          document.getElementById("signupSubmitButton");
+
+        signupSubmitButton.addEventListener("click", function () {
+          const fullName = document.getElementById("signupFullName").value;
+          const email = document.getElementById("signupEmail").value;
+          const password = document.getElementById("signupPassword").value;
+          const confirmPassword = document.getElementById(
+            "signupConfirmPassword"
+          ).value;
+
+          // Validation
+          if (!fullName || !email || !password || !confirmPassword) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Please fill in all fields!",
+            });
+            return;
+          }
+
+          if (password !== confirmPassword) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Passwords do not match!",
+            });
+            return;
+          }
+
+          const userData = {
+            full_name: fullName,
+            email: email,
+            password: password,
+          };
+
+          // Send data to the backend
+          fetch("http://127.0.0.1:3030/api/auth/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userData),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                // Show success message
+                // Show error message based on the response
                 Swal.fire({
+                  icon: "error",
+                  title: "Signup Failed",
+                  text: data.message || "An error occurred during signup.",
+                });
+              } else {
+                Swal.fire({
+                  icon: "success",
+                  title: "Signup Successful!",
+                  text: "You have successfully signed up.",
+                }).then(() => {
+                  // Optionally, redirect the user or close the modal
+                  window.location.href = "./index.html"; // Redirect if needed
+                });
+              }
+            })
+            .catch((error) => {
+              console.error("Error signing up:", error);
+              Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Failed to load accessories. Please try again later.",
-            });
-    }
-            }
-        
-        window.onload = () => {
-            fetchaccessories();
-        };
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const signupSubmitButton = document.getElementById("signupSubmitButton");
-
-            signupSubmitButton.addEventListener("click", function () {
-                const fullName = document.getElementById("signupFullName").value;
-                const email = document.getElementById("signupEmail").value;
-                const password = document.getElementById("signupPassword").value;
-                const confirmPassword = document.getElementById("signupConfirmPassword").value;
-
-                // Validation
-                if (!fullName || !email || !password || !confirmPassword) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Please fill in all fields!",
-                    });
-                    return;
-                }
-
-                if (password !== confirmPassword) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Passwords do not match!",
-                    });
-                    return;
-                }
-
-                const userData = {
-                    full_name: fullName,
-                    email: email,
-                    password: password
-                };
-
-                // Send data to the backend
-                fetch("http://127.0.0.1:3030/api/auth/signup", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(userData),
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Show success message
-                            // Show error message based on the response
-                            Swal.fire({
-                                icon: "error",
-                                title: "Signup Failed",
-                                text: data.message || "An error occurred during signup.",
-                            });
-
-                        } else {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Signup Successful!",
-                                text: "You have successfully signed up.",
-                            }).then(() => {
-                                // Optionally, redirect the user or close the modal
-                                window.location.href = "./index.html"; // Redirect if needed
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error signing up:", error);
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "An error occurred while signing up. Please try again.",
-                        });
-                    });
+                text: "An error occurred while signing up. Please try again.",
+              });
             });
         });
+      });
 
-        document.addEventListener("DOMContentLoaded", function () {
-    const cartItemsContainer = document.getElementById("cart-items");
-    const subtotalEl = document.getElementById("subtotal");
-    const totalEl = document.getElementById("total");
-    const cartToggleBtn = document.getElementById("cart-toggle");
-    const cartDropdown = document.querySelector(".cart-dropdown");
+      document.addEventListener("DOMContentLoaded", function () {
+        const cartItemsContainer = document.getElementById("cart-items");
+        const subtotalEl = document.getElementById("subtotal");
+        const totalEl = document.getElementById("total");
+        const cartToggleBtn = document.getElementById("cart-toggle");
+        const cartDropdown = document.querySelector(".cart-dropdown");
 
-    const userId = 2; // Replace with the actual authenticated user ID
+        const userId = 2; // Replace with the actual authenticated user ID
 
-    // Fetch cart items
-    async function fetchCartItems() {
-        try {
+        // Fetch cart items
+        async function fetchCartItems() {
+          try {
             console.log("🔄 Fetching cart items...");
             const response = await fetch(`http://localhost:3030/cart/2`);
             let cart = await response.json();
-            
+
             console.log("📦 Cart data received:", cart);
             if (cart.error) cart = []; // Handle empty cart response
             updateCartDisplay(cart);
-        } catch (error) {
+          } catch (error) {
             console.error("🚨 Error fetching cart:", error);
             Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'An error occurred while fetching the cart!',
-        });
+              icon: "error",
+              title: "Oops...",
+              text: "An error occurred while fetching the cart!",
+            });
+          }
         }
-    }
-    // fetchCartItems()
+        // fetchCartItems()
 
-    // Update Cart Display
-    function updateCartDisplay(cart) {
-    const cartItemsContainer = document.getElementById("cart-items");
-    const subtotalEl = document.getElementById("subtotal");
-    const totalEl = document.getElementById("total");
+        // Update Cart Display
+        function updateCartDisplay(cart) {
+          const cartItemsContainer = document.getElementById("cart-items");
+          const subtotalEl = document.getElementById("subtotal");
+          const totalEl = document.getElementById("total");
 
-    if (!cartItemsContainer || !subtotalEl || !totalEl) {
-        console.error("❌ Cart elements not found in the DOM.");
-        return;
-    }
-
-    cartItemsContainer.innerHTML = "";
-    let subtotal = 0;
-
-    if (!Array.isArray(cart) || cart.length === 0) {
-        cartItemsContainer.innerHTML = "<p class='empty-cart'>Your cart is empty</p>";
-        subtotalEl.textContent = "R 0.00";
-        totalEl.textContent = "R 0.00";
-        return;
-    }
-
-    console.log("📦 Cart Data Received:", cart);
-
-    cart.forEach((item) => {
-        if (!item.product_id || !item.Name || item.Price === undefined) {
-            console.error("⚠️ Invalid cart item:", item);
+          if (!cartItemsContainer || !subtotalEl || !totalEl) {
+            console.error("❌ Cart elements not found in the DOM.");
             return;
-        }
+          }
 
-        const price = item.Price ? item.Price : 0; 
-        subtotal += price * item.quantity;
+          cartItemsContainer.innerHTML = "";
+          let subtotal = 0;
 
-        const cartItem = document.createElement("div");
-        cartItem.classList.add("cart-item");
+          if (!Array.isArray(cart) || cart.length === 0) {
+            cartItemsContainer.innerHTML =
+              "<p class='empty-cart'>Your cart is empty</p>";
+            subtotalEl.textContent = "R 0.00";
+            totalEl.textContent = "R 0.00";
+            return;
+          }
 
-        cartItem.innerHTML = `
+          console.log("📦 Cart Data Received:", cart);
+
+          cart.forEach((item) => {
+            if (!item.product_id || !item.Name || item.Price === undefined) {
+              console.error("⚠️ Invalid cart item:", item);
+              return;
+            }
+
+            const price = item.Price ? item.Price : 0;
+            subtotal += price * item.quantity;
+
+            const cartItem = document.createElement("div");
+            cartItem.classList.add("cart-item");
+
+            cartItem.innerHTML = `
             <img class="cart-img" src="${item.image}"  "alt="${item.Name}">
             <div class="item-details">
                 <h3>${item.Name}</h3>
-                <p class="item-price">R ${(item.Price * item.quantity)}</p>
+                <p class="item-price">R ${item.Price * item.quantity}</p>
             </div>
             <div class="quantity-controls">
-                <button class="quantity-btn" onclick="changeQuantity(${item.cart_id}, -1)">-</button>
+                <button class="quantity-btn" onclick="changeQuantity(${
+                  item.cart_id
+                }, -1)">-</button>
                 <span>${item.quantity}</span>
-                <button class="quantity-btn" onclick="changeQuantity(${item.cart_id}, 1)">+</button>
+                <button class="quantity-btn" onclick="changeQuantity(${
+                  item.cart_id
+                }, 1)">+</button>
             </div>
-            <button class="remove-btn" onclick="removeFromCart(${item.cart_id})"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0,0,256,256">
+            <button class="remove-btn" onclick="removeFromCart(${
+              item.cart_id
+            })"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0,0,256,256">
 <g fill="#f90202" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M10,2l-1,1h-5v2h16v-2h-5l-1,-1zM5,7v13c0,1.1 0.9,2 2,2h10c1.1,0 2,-0.9 2,-2v-13zM8,9h2v11h-2zM14,9h2v11h-2z"></path></g></g>
 </svg></button>
 
         `;
-            
-            
-        cartItemsContainer.appendChild(cartItem);
-    });
 
-    subtotalEl.textContent = `R ${subtotal.toFixed(2)}`;
-    const tax = subtotal * 0.15;
-    totalEl.textContent = `R ${(subtotal + tax).toFixed(2)}`;
-}
+            cartItemsContainer.appendChild(cartItem);
+          });
 
-    // Add item to cart
-    document.body.addEventListener("click", async function (event) {
-        if (event.target.closest(".add-to-cart")) {
+          subtotalEl.textContent = `R ${subtotal.toFixed(2)}`;
+          const tax = subtotal * 0.15;
+          totalEl.textContent = `R ${(subtotal + tax).toFixed(2)}`;
+        }
+
+        // Add item to cart
+        document.body.addEventListener("click", async function (event) {
+          if (event.target.closest(".add-to-cart")) {
             console.log("🛒 Add to Cart clicked!");
 
             const button = event.target.closest(".add-to-cart");
@@ -498,238 +648,242 @@
             const quantity = 1;
 
             try {
-                const response = await fetch("http://localhost:3030/cart/add", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ userId, productId, quantity }),
-                });
+              const response = await fetch("http://localhost:3030/cart/add", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ userId, productId, quantity }),
+              });
 
-                const result = await response.json();
-                if (result.success) {
-                    Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: 'Product added to cart!',
-                });
-                    fetchCartItems(); // Refresh cart display
-                } else {
-                    Swal.fire({
-                    icon: 'error',
-                    title: 'Failed',
-                    text: 'Failed to add product to cart.',
-                });
-                }
-            } catch (error) {
-                console.error("🚨 Error adding to cart:", error);
+              const result = await response.json();
+              if (result.success) {
                 Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'An error occurred while adding to cart.',
-            });
+                  icon: "success",
+                  title: "Success!",
+                  text: "Product added to cart!",
+                });
+                fetchCartItems(); // Refresh cart display
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Failed",
+                  text: "Failed to add product to cart.",
+                });
+              }
+            } catch (error) {
+              console.error("🚨 Error adding to cart:", error);
+              Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "An error occurred while adding to cart.",
+              });
             }
-        }
-    });
+          }
+        });
 
-    // Change quantity (increase/decrease)
-    async function changeQuantity(cartId, change) {
-        try {
-            console.log(`🔄 Changing quantity for cartId ${cartId}, Change: ${change}`);
+        // Change quantity (increase/decrease)
+        async function changeQuantity(cartId, change) {
+          try {
+            console.log(
+              `🔄 Changing quantity for cartId ${cartId}, Change: ${change}`
+            );
             const endpoint =
-                change > 0
-                    ? `http://localhost:3030/cart/update/increase/${cartId}`
-                    : `http://localhost:3030/cart/update/decrease/${cartId}`;
-                    
+              change > 0
+                ? `http://localhost:3030/cart/update/increase/${cartId}`
+                : `http://localhost:3030/cart/update/decrease/${cartId}`;
+
             const response = await fetch(endpoint, { method: "PUT" });
             const result = await response.json();
 
             if (result.success) {
-                Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'Quantity updated!',
-            });
-                fetchCartItems(); // Refresh cart
+              Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: "Quantity updated!",
+              });
+              fetchCartItems(); // Refresh cart
             } else {
-                Swal.fire({
-                icon: 'error',
-                title: 'Failed',
-                text: 'Failed to update quantity.',
-            });
+              Swal.fire({
+                icon: "error",
+                title: "Failed",
+                text: "Failed to update quantity.",
+              });
             }
-        } catch (error) {
+          } catch (error) {
             console.error("🚨 Error updating cart:", error);
             Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'An error occurred while updating the quantity.',
-        });
+              icon: "error",
+              title: "Error",
+              text: "An error occurred while updating the quantity.",
+            });
+          }
         }
-    }
 
-    // Remove item from cart
-    async function removeFromCart(cartId) {
-        
-        
-        try {
+        // Remove item from cart
+        async function removeFromCart(cartId) {
+          try {
             console.log(`🗑️ Removing item with cartId: ${cartId}`);
-            const response = await fetch(`http://localhost:3030/cart/delete/${cartId}`, { method: "DELETE" });
+            const response = await fetch(
+              `http://localhost:3030/cart/delete/${cartId}`,
+              { method: "DELETE" }
+            );
             const result = await response.json();
 
             if (result.success) {
-                Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'Item removed from cart!',
-            });
-                fetchCartItems(); // Refresh cart display
+              Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: "Item removed from cart!",
+              });
+              fetchCartItems(); // Refresh cart display
             } else {
-                Swal.fire({
-                icon: 'error',
-                title: 'Failed',
-                text: 'Failed to remove item.',
-            });
+              Swal.fire({
+                icon: "error",
+                title: "Failed",
+                text: "Failed to remove item.",
+              });
             }
-        } catch (error) {
+          } catch (error) {
             console.error("🚨 Error removing item:", error);
             Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'An error occurred while removing the item.',
-        });
+              icon: "error",
+              title: "Error",
+              text: "An error occurred while removing the item.",
+            });
+          }
         }
-    }
 
-    // Toggle cart dropdown visibility
-    cartToggleBtn.addEventListener("click", function () {
-        cartDropdown.style.display = cartDropdown.style.display === "none" || cartDropdown.style.display === "" ? "block" : "none";
-    });
-
-    fetchCartItems();
-
-                    
-                    // Expose functions globally
-                    window.changeQuantity = changeQuantity;
-                    window.removeFromCart = removeFromCart;
-    });
-    document.addEventListener("DOMContentLoaded", function () {
-            const loginButton = document.getElementById("loginButton");
-            const userDisplay = document.querySelector(".userName"); // Select the <p> tag
-            const logoutButton = document.getElementById("logoutButton"); // Logout button
-
-            loginButton.addEventListener("click", async function (event) {
-                event.preventDefault();
-
-                const email = document.getElementById("email").value;
-                const password = document.getElementById("password").value;
-
-                if (!email || !password) {
-                    alert("Please enter both email and password.");
-                    return;
-                }
-
-                try {
-                    const response = await fetch("http://127.0.0.1:3030/users/login", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ email, password }),
-                        credentials: "include", // Important to send cookies
-                    });
-
-                    const data = await response.json();
-
-                    if (data.success) {
-                        localStorage.setItem("accessToken", data.accessToken);
-                        const name = data.name.split(" ")[0]; // Get first name
-                        localStorage.setItem("user", name);
-
-                        // Display the username
-                        userDisplay.innerText = `Hi! ${name}`;
-                        userDisplay.style.display = "block";
-
-                        console.log("Logged in user:", name);
-
-                        Swal.fire({
-                            icon: "success",
-                            title: "Login Successful!",
-                            text: "You are now logged in.",
-                        }).then(() => {
-                            window.location.href = "./accessories.html"; // Reload page
-                        });
-                    } else {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Login Failed",
-                            text: data.message,
-                        });
-                    }
-                } catch (error) {
-                    console.error("Login error:", error);
-                }
-            });
-
-            // Check if user is logged in
-            if (localStorage.getItem("accessToken")) {
-                document.querySelectorAll("[btn]").forEach((value) => {
-                    value.style.display = "none"; // Hide login button
-                });
-
-                const name = localStorage.getItem("user");
-                if (name) {
-                    userDisplay.innerText = ` Hi!, ${name}`;
-                    userDisplay.style.display = "block"; // Show username
-                    userDisplay.style.color = "white"; // Show username in white
-                    logoutButton.style.display = "block"; // Show logout button
-                }
-            }
-
-            // Logout functionality
-            logoutButton.addEventListener("click", function () {
-                localStorage.removeItem("accessToken");
-                localStorage.removeItem("user");
-                Swal.fire({
-                    icon: "info",
-                    title: "Logged Out",
-                    text: "You have been logged out successfully.",
-                }).then(() => {
-                    window.location.href = "../index.html";
-                });
-            });
+        // Toggle cart dropdown visibility
+        cartToggleBtn.addEventListener("click", function () {
+          cartDropdown.style.display =
+            cartDropdown.style.display === "none" ||
+            cartDropdown.style.display === ""
+              ? "block"
+              : "none";
         });
 
-        
+        fetchCartItems();
+
+        // Expose functions globally
+        window.changeQuantity = changeQuantity;
+        window.removeFromCart = removeFromCart;
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginButton = document.getElementById("loginButton");
+        const userDisplay = document.querySelector(".userName"); // Select the <p> tag
+        const logoutButton = document.getElementById("logoutButton"); // Logout button
+
+        loginButton.addEventListener("click", async function (event) {
+          event.preventDefault();
+
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          if (!email || !password) {
+            alert("Please enter both email and password.");
+            return;
+          }
+
+          try {
+            const response = await fetch("http://127.0.0.1:3030/users/login", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password }),
+              credentials: "include", // Important to send cookies
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+              localStorage.setItem("accessToken", data.accessToken);
+              const name = data.name.split(" ")[0]; // Get first name
+              localStorage.setItem("user", name);
+
+              // Display the username
+              userDisplay.innerText = `Hi! ${name}`;
+              userDisplay.style.display = "block";
+
+              console.log("Logged in user:", name);
+
+              Swal.fire({
+                icon: "success",
+                title: "Login Successful!",
+                text: "You are now logged in.",
+              }).then(() => {
+                window.location.href = "./accessories.html"; // Reload page
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Login Failed",
+                text: data.message,
+              });
+            }
+          } catch (error) {
+            console.error("Login error:", error);
+          }
+        });
+
+        // Check if user is logged in
+        if (localStorage.getItem("accessToken")) {
+          document.querySelectorAll("[btn]").forEach((value) => {
+            value.style.display = "none"; // Hide login button
+          });
+
+          const name = localStorage.getItem("user");
+          if (name) {
+            userDisplay.innerText = ` Hi!, ${name}`;
+            userDisplay.style.display = "block"; // Show username
+            userDisplay.style.color = "white"; // Show username in white
+            logoutButton.style.display = "block"; // Show logout button
+          }
+        }
+
+        // Logout functionality
+        logoutButton.addEventListener("click", function () {
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("user");
+          Swal.fire({
+            icon: "info",
+            title: "Logged Out",
+            text: "You have been logged out successfully.",
+          }).then(() => {
+            window.location.href = "../index.html";
+          });
+        });
+      });
     </script>
     <footer class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Contact Us</h5>
-                    <p>123 Business St, Suite 456</p>
-                    <p>City, Country, 12345</p>
-                    <p>Email: admin@arize.co.za</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="../index.html" class="text-white">Home</a></li>
-                        <li><a href="./products.html" class="text-white">Products</a></li>
-                        <li><a href="./about.html" class="text-white">About Us</a></li>
-
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Follow Us</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="https://discord.gg/8reCZG5C" class="text-white"><i
-                                    class="fab fa-discord"></i>Discord</a></li>
-                    </ul>
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Contact Us</h5>
+            <p>123 Business St, Suite 456</p>
+            <p>City, Country, 12345</p>
+            <p>Email: admin@arize.co.za</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="../index.html" class="text-white">Home</a></li>
+              <li><a href="./products.html" class="text-white">Products</a></li>
+              <li><a href="./about.html" class="text-white">About Us</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Follow Us</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="https://discord.gg/8reCZG5C" class="text-white"
+                  ><i class="fab fa-discord"></i>Discord</a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="text-center py-3">
-            <p>&copy; 2025 Your Company Name. All rights reserved.</p>
-        </div>
+      </div>
+      <div class="text-center py-3">
+        <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+      </div>
     </footer>
-
-</body>
-
+  </body>
 </html>

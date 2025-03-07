@@ -1,184 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payment | Arize</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="../Css/payment.css" rel="stylesheet">
-</head>
-<body>
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link href="../Css/payment.css" rel="stylesheet" />
+  </head>
+  <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/arize.png?raw=true" alt="" class="img-fluid" style="max-width: 150px;">
-            </a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./products.html">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./about.html">About Us</a>
-                    </li>
-                </ul>
-            </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/arize.png?raw=true"
+            alt=""
+            class="img-fluid"
+            style="max-width: 150px"
+          />
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="../index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./about.html">About Us</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
 
     <!-- Payment Page Content -->
-     
-    <div class=" container py-5">
-        <h2 class="text-center mb-4">Payment</h2>
-        <div class="row">
-            <!-- Payment Method Selection -->
-            <div class="text-center">
-                <h4>Select Payment Method</h4>
-                <select class="form-select" id="payment-method" required>
-                    <option value="credit-card">Credit Card</option>
-                    <option value="paypal">PayPal</option>
-                </select>
+
+    <div class="container py-5">
+      <h2 class="text-center mb-4">Payment</h2>
+      <div class="row">
+        <!-- Payment Method Selection -->
+        <div class="text-center">
+          <h4>Select Payment Method</h4>
+          <select class="form-select" id="payment-method" required>
+            <option value="credit-card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <!-- Credit Card Payment Form -->
+        <div
+          id="credit-card-section"
+          class="text-center payment-method-section"
+        >
+          <h4>Credit Card Payment</h4>
+          <form id="credit-card-form">
+            <div class="form-group">
+              <label for="card-number">Card Number</label>
+              <input
+                type="text"
+                class="form-control"
+                id="card-number"
+                placeholder="Enter card number"
+                required
+              />
             </div>
+            <div class="form-group">
+              <label for="expiry-date">Expiry Date</label>
+              <input
+                type="text"
+                class="form-control"
+                id="expiry-date"
+                placeholder="MM/YY"
+                pattern="(0[1-9]|1[0-2])\/\d{2}"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV</label>
+              <input
+                type="text"
+                class="form-control"
+                id="cvv"
+                placeholder="CVV"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-dark w-100 mt-3">
+              Pay Now
+            </button>
+          </form>
         </div>
 
-        <div class="row mt-4">
-            <!-- Credit Card Payment Form -->
-            <div id="credit-card-section" class="text-center payment-method-section">
-                <h4>Credit Card Payment</h4>
-                <form id="credit-card-form">
-                    <div class="form-group">
-                        <label for="card-number">Card Number</label>
-                        <input type="text" class="form-control" id="card-number" placeholder="Enter card number" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="expiry-date">Expiry Date</label>
-                        <input type="text" class="form-control" id="expiry-date" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/\d{2}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cvv">CVV</label>
-                        <input type="text" class="form-control" id="cvv" placeholder="CVV" required>
-                    </div>
-                    <button type="submit" class="btn btn-dark w-100 mt-3">Pay Now</button>
-                </form>
+        <!-- PayPal Payment Form -->
+        <div
+          id="paypal-section"
+          class="text-center payment-method-section"
+          style="display: none"
+        >
+          <h4>PayPal Payment</h4>
+          <form id="paypal-form">
+            <div class="form-group">
+              <label for="paypal-email">PayPal Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="paypal-email"
+                placeholder="Enter PayPal email"
+                required
+              />
             </div>
-
-            <!-- PayPal Payment Form -->
-            <div id="paypal-section" class="text-center payment-method-section" style="display: none;">
-                <h4>PayPal Payment</h4>
-                <form id="paypal-form">
-                    <div class="form-group">
-                        <label for="paypal-email">PayPal Email</label>
-                        <input type="email" class="form-control" id="paypal-email" placeholder="Enter PayPal email" required>
-                    </div>
-                    <button type="submit" class="btn btn-dark w-100 mt-3">Pay with PayPal</button>
-                </form>
-            </div>
+            <button type="submit" class="btn btn-dark w-100 mt-3">
+              Pay with PayPal
+            </button>
+          </form>
         </div>
+      </div>
     </div>
 
     <!-- Footer -->
     <footer class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Contact Us</h5>
-                    <p>123 Business St, Suite 456</p>
-                    <p>City, Country, 12345</p>
-                    <p>Email: admin@arize.co.za</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="../index.html" class="text-white">Home</a></li>
-                        <li><a href="./products.html" class="text-white">Products</a></li>
-                        <li><a href="./about.html" class="text-white">About Us</a></li>
-                       
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Follow Us</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white"><i class="bi bi-facebook"></i> Facebook</a></li>
-                        <li><a href="#" class="text-white"><i class="bi bi-twitter"></i> Twitter</a></li>
-                        <li><a href="#" class="text-white"><i class="bi bi-instagram"></i> Instagram</a></li>
-                    </ul>
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Contact Us</h5>
+            <p>123 Business St, Suite 456</p>
+            <p>City, Country, 12345</p>
+            <p>Email: admin@arize.co.za</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="../index.html" class="text-white">Home</a></li>
+              <li><a href="./products.html" class="text-white">Products</a></li>
+              <li><a href="./about.html" class="text-white">About Us</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Follow Us</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#" class="text-white"
+                  ><i class="bi bi-facebook"></i> Facebook</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-white"
+                  ><i class="bi bi-twitter"></i> Twitter</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-white"
+                  ><i class="bi bi-instagram"></i> Instagram</a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="text-center py-3">
-            <p>&copy; 2025 Your Company Name. All rights reserved.</p>
-        </div>
+      </div>
+      <div class="text-center py-3">
+        <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+      </div>
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    const paymentMethodSelect = document.getElementById("payment-method");
-    const creditCardSection = document.getElementById("credit-card-section");
-    const paypalSection = document.getElementById("paypal-section");
-    // Toggle payment sections based on selected method
-    paymentMethodSelect.addEventListener("change", function () {
-        if (paymentMethodSelect.value === "credit-card") {
+      document.addEventListener("DOMContentLoaded", function () {
+        const paymentMethodSelect = document.getElementById("payment-method");
+        const creditCardSection = document.getElementById(
+          "credit-card-section"
+        );
+        const paypalSection = document.getElementById("paypal-section");
+        // Toggle payment sections based on selected method
+        paymentMethodSelect.addEventListener("change", function () {
+          if (paymentMethodSelect.value === "credit-card") {
             creditCardSection.style.display = "block";
             paypalSection.style.display = "none";
-        } else {
+          } else {
             creditCardSection.style.display = "none";
             paypalSection.style.display = "block";
-        }
-    });
-    // Handle credit card payment
-    document.getElementById("credit-card-form").addEventListener("submit", function (event) {
-        event.preventDefault();
-        const cardNumber = document.getElementById("card-number").value.trim();
-        const expiryDate = document.getElementById("expiry-date").value.trim();
-        const cvv = document.getElementById("cvv").value.trim();
-        if (!cardNumber || !expiryDate || !cvv) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Incomplete Details',
-                text: 'Please fill in all the credit card details before proceeding.',
-            });
-            return;
-        }
-        // If validation passes
-        Swal.fire({
-            icon: 'success',
-            title: 'Payment Successful!',
-            text: 'Your payment has been processed successfully.',
-        }).then(() => {
-            document.getElementById("credit-card-form").reset(); // Clear form after success
+          }
         });
-    });
-    // Handle PayPal payment
-    document.getElementById("paypal-form").addEventListener("submit", function (event) {
-        event.preventDefault();
-        const paypalEmail = document.getElementById("paypal-email").value.trim();
-        if (!paypalEmail) {
+        // Handle credit card payment
+        document
+          .getElementById("credit-card-form")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            const cardNumber = document
+              .getElementById("card-number")
+              .value.trim();
+            const expiryDate = document
+              .getElementById("expiry-date")
+              .value.trim();
+            const cvv = document.getElementById("cvv").value.trim();
+            if (!cardNumber || !expiryDate || !cvv) {
+              Swal.fire({
+                icon: "warning",
+                title: "Incomplete Details",
+                text: "Please fill in all the credit card details before proceeding.",
+              });
+              return;
+            }
+            // If validation passes
             Swal.fire({
-                icon: 'warning',
-                title: 'Incomplete Details',
-                text: 'Please enter your PayPal email before proceeding.',
+              icon: "success",
+              title: "Payment Successful!",
+              text: "Your payment has been processed successfully.",
+            }).then(() => {
+              document.getElementById("credit-card-form").reset(); // Clear form after success
             });
-            return;
-        }
-        // If validation passes
-        Swal.fire({
-            icon: 'success',
-            title: 'Payment Successful!',
-            text: 'Your PayPal payment has been processed successfully.',
-        }).then(() => {
-            document.getElementById("paypal-form").reset(); // Clear form after success
-        });
-    });
-    });
-
+          });
+        // Handle PayPal payment
+        document
+          .getElementById("paypal-form")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            const paypalEmail = document
+              .getElementById("paypal-email")
+              .value.trim();
+            if (!paypalEmail) {
+              Swal.fire({
+                icon: "warning",
+                title: "Incomplete Details",
+                text: "Please enter your PayPal email before proceeding.",
+              });
+              return;
+            }
+            // If validation passes
+            Swal.fire({
+              icon: "success",
+              title: "Payment Successful!",
+              text: "Your PayPal payment has been processed successfully.",
+            }).then(() => {
+              document.getElementById("paypal-form").reset(); // Clear form after success
+            });
+          });
+      });
     </script>
-
-</body>
+  </body>
 </html>

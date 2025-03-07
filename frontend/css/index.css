@@ -1,799 +1,815 @@
+/*logout button styling */
 #logoutButton {
-    background-color: #ff4d4d; /* Red color for logout */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  background-color: #ff4d4d; /* Red color for logout */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #logoutButton:hover {
-    background-color: #cc0000; /* Darker red on hover */
-    transform: scale(1.05);
+  background-color: #cc0000; /* Darker red on hover */
+  transform: scale(1.05);
 }
 
 #logoutButton:active {
-    transform: scale(0.95);
+  transform: scale(0.95);
 }
- /* welcome text styling */
- .userName {
-    font-size: 24px;
-    font-weight: bold;
-    color: #4CAF50;
-    text-align: center;
-    margin-top: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+/* welcome text styling */
+.userName {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4caf50;
+  text-align: center;
+  margin-top: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* styling for the logout ccontainer */
 .logoutContainer {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* Adjust spacing between elements */
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Adjust spacing between elements */
 }
 
 .userName {
-    display: none;
-    justify-content: center;
+  display: none;
+  justify-content: center;
 }
 /* search bar styling */
 #searchForm {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30%; /* Adjust width as needed */
-  }
-  
-  /* Ensure the input field and button take full width */
-  #searchInput {
-    flex-grow: 1;
-  }
-
-  .nav-link:hover {
-    opacity: 0.7; /* Slight transparency on hover */
-    transform: scale(1.1); /* Slightly enlarges the icon */
-    transition: all 0.3s ease-in-out; /* Smooth transition */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
 }
 
-      .card {
-        width: 100%; /* Full width for responsiveness */
-        max-width: 320px; /* Larger cards */
-        margin: 20px auto;
-        border: none;
-        border-radius: 12px; /* Smooth rounded corners */
-        overflow: hidden;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        background: #eeeee9;
-    }
-    
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
-    }
+/* Ensure the input field and button take full width */
+#searchInput {
+  flex-grow: 1;
+}
 
+.nav-link:hover {
+  opacity: 0.7; /* Slight transparency on hover */
+  transform: scale(1.1); /* Slightly enlarges the icon */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+/* card styling */
+.card {
+  width: 100%; /* Full width for responsiveness */
+  max-width: 320px; /* Larger cards */
+  margin: 20px auto;
+  border: none;
+  border-radius: 12px; /* Smooth rounded corners */
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  background: #eeeee9;
+}
 
-    .card img {
-        width: 100%;
-        height: 220px; /* Larger images */
-        object-fit: cover;
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
-    }
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
 
-    .card-body {
-        padding: 15px;
-        text-align: center;
-    }
-    .card-title {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #14332F;
-    }
-    .card-img-top {
-        width: 100%;
-        height: 300px; 
-        object-fit: cover;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-    
+.card img {
+  width: 100%;
+  height: 220px; /* Larger images */
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
 
-    .card-text {
-        font-size: 0.95rem;
-        color: #424242;
-        margin-bottom: 15px;
-    }
+.card-body {
+  padding: 15px;
+  text-align: center;
+}
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #14332f;
+}
+.card-img-top {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
 
-    .btn-button {
-        display: inline-block;
-        padding: 8px 16px;
-        border-radius: 8px;
-        background: #14332F;
-        color: white;
-        text-decoration: none;
-        font-weight: 500;
-        transition: background 0.3s;
-    }
+.card-text {
+  font-size: 0.95rem;
+  color: #424242;
+  margin-bottom: 15px;
+}
+/* button styling */
+.btn-button {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #14332f;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s;
+}
 
-    .btn-button:hover {
-        background: #1a4d46;
-    }
+.btn-button:hover {
+  background: #1a4d46;
+}
+/* product section */
+.product-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 0;
+  background-color: #516559;
+  width: 100%;
+}
 
-    .product-section {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        padding: 40px 0;
-        background-color: #516559;
-        width: 100%;
-    }
-   
+body {
+  background-color: #eeeee9;
+}
 
-    body {
-        background-color: #eeeee9;
-    }
+/* Set the color for navbar background and text */
+.navbar {
+  position: sticky;
+  background-color: #14332f;
+  top: 0;
+  z-index: 1000; /* Ensure it stays on top of other content */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for effect */
+}
+.navbar.navbar-expand-lg {
+  padding: 10px 0; /* Optional: Adjust padding for spacing */
+}
 
-    /* Set the color for navbar background and text */
-    .navbar {
-        position: sticky;
-        background-color: #14332F;
-        top: 0;
-        z-index: 1000; /* Ensure it stays on top of other content */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for effect */
-    }
-    .navbar.navbar-expand-lg {
-    padding: 10px 0; /* Optional: Adjust padding for spacing */
-    }
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .navbar-toggler-icon {
+  color: white !important;
+  background-color: #14332f;
+  border-color: #eeeee9;
+  /* White text color for all navbar items */
+}
 
-    .navbar .navbar-brand,
-    .navbar .nav-link,
-    .navbar .navbar-toggler-icon {
-        color: white !important;
-        background-color: #14332F;
-        border-color: #eeeee9;
-        /* White text color for all navbar items */
-    }
+.navbar .navbar-toggler-icon {
+  background-color: white;
+  background-color: #14332f;
+  border-color: #eeeee9;
+  /*Change hamburger icon color to white */
+}
 
-    .navbar .navbar-toggler-icon {
-        background-color: white;
-        background-color: #14332F;
-        border-color: #eeeee9;
-       /*Change hamburger icon color to white */
-    }
+.navbar-nav .nav-link.active {
+  color: #ffd700;
+  /* Highlight active link with a gold color */
+}
 
-    .navbar-nav .nav-link.active {
-        color: #ffd700;
-        /* Highlight active link with a gold color */
-    }
+button.navbar-toggler {
+  color: white;
+  /* Dark green background for hamburger icon */
+}
+span.navbar-toggler-icon {
+  color: #eeeee9 !important;
+}
+/* styling for the carousel */
+#carouselExampleIndicators {
+  width: 100vw;
+  height: 100vh;
+  object-fit: fill;
+  display: inline-block;
+  justify-content: center;
+}
 
-    button.navbar-toggler {
-        color: white;
-        /* Dark green background for hamburger icon */
-    }
-    span.navbar-toggler-icon {
-        color: #eeeee9 !important;
-    }
+/* Custom button styles */
+.btn-button {
+  color: white;
+  /* White text color for login button */
+  background-color: #14332f;
+  /* Dark green background for login button */
+  border-color: #14332f;
+  /* Dark green border for login button */
+}
 
-    #carouselExampleIndicators{
-        width: 100vw;
-        height: 100vh;
-        object-fit: fill;
-        display: inline-block;
-        justify-content: center
-    }
+.btn-button:hover {
+  color: white;
+  background-color: #1a4d46;
+  /* Slightly darker green on hover */
+  border-color: #0f2d29;
+  /* Darker border on hover */
+}
+/* styling for the modal */
+.modal-header {
+  background-color: #14332f;
+  /* Dark green header for modal */
+  color: white;
+  /* White text in modal header */
+}
 
-    /* Custom button styles */
-    .btn-button {
-        color: white;
-        /* White text color for login button */
-        background-color: #14332F;
-        /* Dark green background for login button */
-        border-color: #14332F;
-        /* Dark green border for login button */
-    }
+.modal-footer {
+  background-color: #f8f9fa;
+  /* Light background for footer */
+}
 
-    .btn-button:hover {
-        color: white;
-        background-color: #1a4d46;
-        /* Slightly darker green on hover */
-        border-color: #0f2d29;
-        /* Darker border on hover */
-    }
+.form-label {
+  color: #14332f;
+  /* Dark green color for form labels */
+}
 
-    .modal-header {
-        background-color: #14332F;
-        /* Dark green header for modal */
-        color: white;
-        /* White text in modal header */
-    }
+.form-control {
+  border-color: #14332f;
+  /* Dark green border for form controls */
+}
 
-    .modal-footer {
-        background-color: #f8f9fa;
-        /* Light background for footer */
-    }
+.form-control:focus {
+  border-color: #0f2d29;
+  /* Darker green on focus */
+  box-shadow: 0 0 0 0.25rem rgba(20, 51, 47, 0.25);
+  /* Green focus shadow */
+}
 
-    .form-label {
-        color: #14332F;
-        /* Dark green color for form labels */
-    }
+footer {
+  background-color: #1f1f1f;
+  /* Dark background color for footer */
+  color: white;
+  /* White text color */
+}
 
-    .form-control {
-        border-color: #14332F;
-        /* Dark green border for form controls */
-    }
+footer a {
+  text-decoration: none;
+  /* Remove underlines from links */
+}
 
-    .form-control:focus {
-        border-color: #0f2d29;
-        /* Darker green on focus */
-        box-shadow: 0 0 0 0.25rem rgba(20, 51, 47, 0.25);
-        /* Green focus shadow */
-    }
+footer a:hover {
+  color: #ffd700;
+  /* Change color to gold on hover */
+}
 
-    footer {
-        background-color: #1f1f1f;
-        /* Dark background color for footer */
-        color: white;
-        /* White text color */
-    }
+footer .container {
+  max-width: 1200px;
+  /* Limit the maximum width of the footer */
+}
 
-    footer a {
-        text-decoration: none;
-        /* Remove underlines from links */
-    }
+#checkbox {
+  display: none;
+}
+.toggle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition-duration: 0.3s;
+  display: none;
+}
+/* Show the hamburger menu on smaller screens (below 768px) */
+@media (max-width: 1000px) {
+  .toggle {
+    display: flex; /* Change from block to flex for proper alignment */
+  }
+}
 
-    footer a:hover {
-        color: #ffd700;
-        /* Change color to gold on hover */
-    }
-
-    footer .container {
-        max-width: 1200px;
-        /* Limit the maximum width of the footer */
-    }
-
-    #checkbox {
-        display: none;
-      }
-      .toggle {
-        position: relative;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        transition-duration: .3s;
-        display: none;
-      }
-    /* Show the hamburger menu on smaller screens (below 768px) */
-    @media (max-width: 1000px) {
-      .toggle {
-          display: flex; /* Change from block to flex for proper alignment */
-      }
-    }
-    
-      .bars {
-        width: 100%;
-        height: 4px;
-        background-color: rgb(253, 255, 243);
-        border-radius: 5px;
-        transition-duration: .3s;
-      }
-      /* #checkbox:checked + .toggle .bars {
+.bars {
+  width: 100%;
+  height: 4px;
+  background-color: rgb(253, 255, 243);
+  border-radius: 5px;
+  transition-duration: 0.3s;
+}
+/* #checkbox:checked + .toggle .bars {
         margin-left: 13px;
       } */
-      #checkbox:checked + .toggle #bar2 {
-        transform: translateY(14px) rotate(60deg);
-        margin-left: 0;
-        transform-origin: right;
-        transition-duration: .3s;
-        z-index: 2;
-      }
-      #checkbox:checked + .toggle #bar1 {
-        transform: translateY(28px) rotate(-60deg);
-        transition-duration: .3s;
-        transform-origin: left;
-        z-index: 1;
-      }
-      #checkbox:checked + .toggle {
-        transform: rotate(-90deg);
-      }
-      /* #checkbox:checked + .toggle #bar3 {
+#checkbox:checked + .toggle #bar2 {
+  transform: translateY(14px) rotate(60deg);
+  margin-left: 0;
+  transform-origin: right;
+  transition-duration: 0.3s;
+  z-index: 2;
+}
+#checkbox:checked + .toggle #bar1 {
+  transform: translateY(28px) rotate(-60deg);
+  transition-duration: 0.3s;
+  transform-origin: left;
+  z-index: 1;
+}
+#checkbox:checked + .toggle {
+  transform: rotate(-90deg);
+}
+/* #checkbox:checked + .toggle #bar3 {
         transform: rotate(90deg);
         transition-duration: .3s;
         transform-origin:right;
-      } *//* Cart Dropdown */
+      } */ /* Cart Dropdown */
 
-  /* Cart Styling */
+/* Cart Styling */
+.scrollable-container {
+  max-height: 300px; /* Adjust based on your needs */
+  overflow-y: auto;
+  padding-right: 10px; /* Optional: adds some padding to the right for better scrolling */
+  position: relative;
+}
+
+/* Close button (X) */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #000;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10; /* Ensure it's on top of the content */
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
   .scrollable-container {
-    max-height: 300px; /* Adjust based on your needs */
-    overflow-y: auto;
-    padding-right: 10px; /* Optional: adds some padding to the right for better scrolling */
-    position: relative;
+    max-height: 60vh;
   }
-  
-  /* Close button (X) */
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    color: #000;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 10; /* Ensure it's on top of the content */
-  }
-  
-  /* Ensure responsiveness */
-  @media (max-width: 768px) {
-    .scrollable-container {
-      max-height: 60vh;
-    }
-  }
+}
 
+/* Cart Styling */
 .cart-dropdown {
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    width: 350px;
-    background: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    z-index: 1000;
-    display: none; /* Initially hidden */
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 350px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 1000;
+  display: none; /* Initially hidden */
 }
 
 .cart-dropdown h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .free-shipping {
-    font-size: 12px;
-    color: #777;
-    text-align: center;
-    background: #f4f4f4;
-    padding: 5px;
-    border-radius: 5px;
+  font-size: 12px;
+  color: #777;
+  text-align: center;
+  background: #f4f4f4;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .cart-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 15px 0;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 0;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
 }
 
 .cart-item img {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
 }
 
 .item-details {
-    flex: 1;
-    margin-left: 10px;
+  flex: 1;
+  margin-left: 10px;
 }
 
 .item-details h3 {
-    font-size: 14px;
-    margin: 0;
+  font-size: 14px;
+  margin: 0;
 }
 
 .item-details p {
-    font-size: 12px;
-    color: #777;
+  font-size: 12px;
+  color: #777;
 }
 
 .item-price {
-    font-size: 14px;
-    font-weight: bold;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .quantity-btn {
-    background: #ddd;
-    border: none;
-    padding: 5px 8px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 14px;
+  background: #ddd;
+  border: none;
+  padding: 5px 8px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
 .quantity-btn:hover {
-    background: #bbb;
+  background: #bbb;
 }
 
 .remove-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: red;
 }
 
 .cart-footer {
-    margin-top: 15px;
-    text-align: right;
+  margin-top: 15px;
+  text-align: right;
 }
 
-.total-section p, .total-section h3 {
-    margin: 5px 0;
+.total-section p,
+.total-section h3 {
+  margin: 5px 0;
 }
 
 .checkout-btn {
-    width: 100%;
-    background: #0066ff;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+  width: 100%;
+  background: #0066ff;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .checkout-btn:hover {
-    background: #004fcc;
+  background: #004fcc;
 }
 
-
-
 #cart-toggle:hover {
-    background-color: #004fcc;
+  background-color: #004fcc;
 }
 
 /* Custom Modal Background and Positioning */
 .modal-search {
-    visibility: hidden;  /* Initially hidden */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
-    justify-content: center;
-    align-items: center;
-    z-index: 9998; /* Overlay z-index */
-    opacity: 0;  /* Initially hidden */
-    transition: opacity 0.3s ease-in-out, visibility 0s 0.3s;  /* Smooth fade-in/out */
-    pointer-events: none; /* Disable interactions when modal is hidden */
+  visibility: hidden; /* Initially hidden */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+  justify-content: center;
+  align-items: center;
+  z-index: 9998; /* Overlay z-index */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease-in-out, visibility 0s 0.3s; /* Smooth fade-in/out */
+  pointer-events: none; /* Disable interactions when modal is hidden */
 }
 
 /* Modal Dialog Box */
 .modal-dialog {
-    background-color: white;
-    border-radius: 12px;
-    width: 85%;
-    max-width: 900px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.4s ease-in-out;
-    z-index: 9999; /* Ensure modal is above the overlay */
-    position: relative;  /* Makes sure modal is positioned correctly above the overlay */
+  background-color: white;
+  border-radius: 12px;
+  width: 85%;
+  max-width: 900px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.4s ease-in-out;
+  z-index: 9999; /* Ensure modal is above the overlay */
+  position: relative; /* Makes sure modal is positioned correctly above the overlay */
 }
 
 /* Modal Header */
 .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #eee;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 20px;
 }
 
 /* Modal Body */
 .modal-body {
-    max-height: 600px;
-    overflow-y: auto;
-    padding: 20px;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
 }
 
 /* Search Results Container */
 .results-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Spacious grid */
-    gap: 100px;
-    padding: 10px;
-    justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(280px, 1fr)
+  ); /* Spacious grid */
+  gap: 100px;
+  padding: 10px;
+  justify-items: center;
 }
 
 /* Modal Fade-in Animation */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .modal-dialog {
-        width: 90%;
-    }
+  .modal-dialog {
+    width: 90%;
+  }
 
-    .modal-title {
-        font-size: 1.7rem;
-    }
+  .modal-title {
+    font-size: 1.7rem;
+  }
 
-    .result-item {
-        max-width: 100%;
-        padding: 15px;
-    }
+  .result-item {
+    max-width: 100%;
+    padding: 15px;
+  }
 }
 .modal-backdrop {
-    --bs-backdrop-zindex: 0;
-    --bs-backdrop-bg: #000;
-    --bs-backdrop-opacity: 0.5;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: var(--bs-backdrop-zindex);
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--bs-backdrop-bg);
+  --bs-backdrop-zindex: 0;
+  --bs-backdrop-bg: #000;
+  --bs-backdrop-opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--bs-backdrop-zindex);
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bs-backdrop-bg);
 }
 
+/* Custom Button */
 .button {
-    --main-focus: #2d8cf0;
-    --font-color: #dedede;
-    --bg-color-sub: #222;
-    --bg-color: #323232;
-    --main-color: #dedede;
-    position: relative;
-    width: 180px;
-    height: 40px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    border: 2px solid var(--main-color);
-    box-shadow: 4px 4px var(--main-color);
-    background-color: var(--bg-color);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .button, .button__icon, .button__text {
-    transition: all 0.3s;
-  }
-  
-  .button .button__text {
-    transform: translateX(20px);
-    color: var(--font-color);
-    font-weight: 550;
-  }
-  
-  .button .button__icon {
-    position: absolute;
-    transform: translateX(109px);
-    height: 100%;
-    width: 60px;
-    background-color: var(--bg-color-sub);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .button .svg {
-    width: 40px;
-    stroke: var(--main-color);
-    
-  }
-  
-  .button:hover {
-    background: var(--bg-color);
-  }
-  
-  .button:hover .button__text {
-    color: transparent;
-  }
-  
-  .button:hover .button__icon {
-    width: 180px;
-    transform: translateX(0);
-  }
-  
-  .button:active {
-    transform: translate(3px, 3px);
-    box-shadow: 0px 0px var(--main-color);
-  }
-  .product-btn {
-    --purple: #9B7EDA;
-    font-size: 18px;
-    padding: 0.8em 3em;
-    letter-spacing: 0.08em;
-    position: relative;
-    font-family: inherit;
-    border-radius: 0.6em;
-    overflow: hidden;
-    transition: all 0.3s;
-    line-height: 1.4em;
-    border: 2px solid var(--purple);
-    background: linear-gradient(to right, rgba(155, 126, 218, 0.1) 1%, transparent 40%, transparent 60%, rgba(155, 126, 218, 0.1) 100%);
-    color: var(--purple);
-    box-shadow: inset 0 0 10px rgba(155, 126, 218, 0.4), 0 0 9px 3px rgba(155, 126, 218, 0.1);
-  }
-  
-  .product-btn:hover {
-    color: #BFA3F3;
-    box-shadow: inset 0 0 10px rgba(155, 126, 218, 0.6), 0 0 9px 3px rgba(155, 126, 218, 0.2);
-  }
-  
-  .product-btn:before {
-    content: "";
-    position: absolute;
-    left: -4em;
-    width: 4em;
-    height: 100%;
-    top: 0;
-    transition: transform .4s ease-in-out;
-    background: linear-gradient(to right, transparent 1%, rgba(155, 126, 218, 0.1) 40%, rgba(155, 126, 218, 0.1) 60%, transparent 100%);
-  }
-  
-  .product-btn:hover:before {
-    transform: translateX(15em);
-  }
+  --main-focus: #2d8cf0;
+  --font-color: #dedede;
+  --bg-color-sub: #222;
+  --bg-color: #323232;
+  --main-color: #dedede;
+  position: relative;
+  width: 180px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
 
-  /* Cookie Modal styling */
+.button,
+.button__icon,
+.button__text {
+  transition: all 0.3s;
+}
+
+.button .button__text {
+  transform: translateX(20px);
+  color: var(--font-color);
+  font-weight: 550;
+}
+
+.button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 60px;
+  background-color: var(--bg-color-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button .svg {
+  width: 40px;
+  stroke: var(--main-color);
+}
+
+.button:hover {
+  background: var(--bg-color);
+}
+
+.button:hover .button__text {
+  color: transparent;
+}
+
+.button:hover .button__icon {
+  width: 180px;
+  transform: translateX(0);
+}
+
+.button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px var(--main-color);
+}
+.product-btn {
+  --purple: #9b7eda;
+  font-size: 18px;
+  padding: 0.8em 3em;
+  letter-spacing: 0.08em;
+  position: relative;
+  font-family: inherit;
+  border-radius: 0.6em;
+  overflow: hidden;
+  transition: all 0.3s;
+  line-height: 1.4em;
+  border: 2px solid var(--purple);
+  background: linear-gradient(
+    to right,
+    rgba(155, 126, 218, 0.1) 1%,
+    transparent 40%,
+    transparent 60%,
+    rgba(155, 126, 218, 0.1) 100%
+  );
+  color: var(--purple);
+  box-shadow: inset 0 0 10px rgba(155, 126, 218, 0.4),
+    0 0 9px 3px rgba(155, 126, 218, 0.1);
+}
+
+.product-btn:hover {
+  color: #bfa3f3;
+  box-shadow: inset 0 0 10px rgba(155, 126, 218, 0.6),
+    0 0 9px 3px rgba(155, 126, 218, 0.2);
+}
+
+.product-btn:before {
+  content: "";
+  position: absolute;
+  left: -4em;
+  width: 4em;
+  height: 100%;
+  top: 0;
+  transition: transform 0.4s ease-in-out;
+  background: linear-gradient(
+    to right,
+    transparent 1%,
+    rgba(155, 126, 218, 0.1) 40%,
+    rgba(155, 126, 218, 0.1) 60%,
+    transparent 100%
+  );
+}
+
+.product-btn:hover:before {
+  transform: translateX(15em);
+}
+
+/* Cookie Modal styling */
 .cookie-modal {
-    display: none; /* Hide modal by default */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black backdrop */
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Make sure it's on top */
+  display: none; /* Hide modal by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black backdrop */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Make sure it's on top */
 }
 
 /* Cookie Card Styling */
 /* Styling for the cookie modal container */
 .cookie-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);  /* Darkened overlay */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Darkened overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 /* Styling for modal content box */
 .cookie-content {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 30px 40px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 400px;
-    max-width: 90%;
-    font-family: 'Arial', sans-serif;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 30px 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 400px;
+  max-width: 90%;
+  font-family: "Arial", sans-serif;
 }
 
 /* Styling for cookie SVG */
 #cookieSvg {
-    width: 70px;
-    height: 70px;
-    fill: #f39c12;  /* Bright yellow */
-    margin-bottom: 20px;
+  width: 70px;
+  height: 70px;
+  fill: #f39c12; /* Bright yellow */
+  margin-bottom: 20px;
 }
 
 /* Cookie heading styling */
 .cookieHeading {
-    font-size: 1.8rem;
-    color: #333;
-    font-weight: bold;
-    margin-bottom: 15px;
+  font-size: 1.8rem;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 /* Cookie description styling */
 .cookieDescription {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 25px;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 25px;
 }
 
 .cookieDescription a {
-    color: #f39c12;
-    text-decoration: none;
+  color: #f39c12;
+  text-decoration: none;
 }
 
 .cookieDescription a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* Button container */
 .buttonContainer {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
 }
 
 /* Styling for the "Allow" button */
 .acceptButton {
-    padding: 12px 25px;
-    font-size: 1rem;
-    background-color: #27ae60;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 12px 25px;
+  font-size: 1rem;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .acceptButton:hover {
-    background-color: #2ecc71;
+  background-color: #2ecc71;
 }
 
 /* Styling for the "Decline" button */
 .declineButton {
-    padding: 12px 25px;
-    font-size: 1rem;
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 12px 25px;
+  font-size: 1rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .declineButton:hover {
-    background-color: #c0392b;
+  background-color: #c0392b;
 }
 
 /* Login & Signup Styling */
 .modal-body {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-body .mb-3 {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .modal-body a {
-    text-decoration: none;
-    color: #007bff;
-    font-size: 0.9rem;
+  text-decoration: none;
+  color: #007bff;
+  font-size: 0.9rem;
 }
 
 .modal-body a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .d-flex.justify-content-between {
-    margin-top: 15px;
+  margin-top: 15px;
 }
-

@@ -1,55 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 Library -->
-    <link rel="stylesheet" href="../css/forgotpassword.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- SweetAlert2 Library -->
+    <link rel="stylesheet" href="../css/forgotpassword.css" />
     <title>Forgot Password | ARIZE</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <section>
-            <img class="logo" src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/arize.png?raw=true" alt="">
-        <h1>Forgot Password</h1>
-        <form id="forgotPasswordForm">
-            <input type="email" id="email" placeholder="Enter your email" required>
-            <button type="submit">Submit</button>
-        </form>
-
+      <img
+        class="logo"
+        src="https://github.com/Urswin-Faro/Arive_assets/blob/main/Assets/imgs/arize.png?raw=true"
+        alt=""
+      />
+      <h1>Forgot Password</h1>
+      <form id="forgotPasswordForm">
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+        />
+        <button type="submit">Submit</button>
+      </form>
     </section>
     <script>
-        document.getElementById("forgotPasswordForm").addEventListener("submit", async function (event) {
-            event.preventDefault();
+      document
+        .getElementById("forgotPasswordForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
 
-            const email = document.getElementById("email").value;
-            if (!email) {
-                Swal.fire("Error", "Please enter your email!", "error");
-                return;
+          const email = document.getElementById("email").value;
+          if (!email) {
+            Swal.fire("Error", "Please enter your email!", "error");
+            return;
+          }
+
+          try {
+            const response = await fetch(
+              "http://localhost:3030/api/authentication/forgot-password",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
+              }
+            );
+
+            const data = await response.json();
+
+            if (response.ok) {
+              Swal.fire(
+                "Success!",
+                "An email has been sent to your inbox📨.",
+                "success"
+              );
+            } else {
+              Swal.fire(
+                "Error",
+                data.message || "Something went wrong!",
+                "error"
+              );
             }
-
-            try {
-                const response = await fetch("http://localhost:3030/api/authentication/forgot-password", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email })
-                });
-
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    Swal.fire("Success!", "An email has been sent to your inbox📨.", "success");
-                } else {
-                    Swal.fire("Error", data.message || "Something went wrong!", "error");
-                }
-            } catch (error) {
-                Swal.fire("Error", "An unexpected error occurred.", "error");
-                console.error(error);
-            }
+          } catch (error) {
+            Swal.fire("Error", "An unexpected error occurred.", "error");
+            console.error(error);
+          }
         });
     </script>
-</body>
-
+  </body>
 </html>
