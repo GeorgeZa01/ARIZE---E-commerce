@@ -33,14 +33,14 @@ app.use("/api/authentication", forgotRouters); // forgot password Route
 app.use('/cart', cartRouter); // cart
 app.use('/api/auth', authRoutes); // signup
 app.use('/users', userRoutes);
-// app.use('/payment', checkoutRouter); // payment gateway
-// app.use('/checkout', checkoutRouter); // checkout
 
-// Root Route (Optional)
+
+// Root Route (Optional) 
 app.get('/', (req, res) => {
     res.send('Welcome to Tech Store API!');
 }); 
 
+ 
 // Global Error Handling Middleware
 app.use((err, req, res, next) => {
     console.error('Error:', err);
