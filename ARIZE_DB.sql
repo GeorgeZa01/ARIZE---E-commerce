@@ -41,6 +41,7 @@ CREATE TABLE `arize_db`.`users` (
   `reset_token` varchar(255),
   `reset_expires` DATETIME,
   PRIMARY KEY (`user_id`));
+  
 INSERT INTO `arize_db`.`users` (`full_name`, `email`, `password`, `address`)
  VALUES
 ('admin admin', 'admin@gmail.com', '$2b$10$zwUtCD7VLmtndTof75T4lOQdHukDusKwG6uyXVF/HHAsRRX1mBqV.', '53 business rd, business town'),
