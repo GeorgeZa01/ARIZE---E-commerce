@@ -28,6 +28,8 @@
       </form>
     </section>
     <script>
+      const API_URL = "https://arize-e-commerce.onrender.com"
+      
       document
         .getElementById("forgotPasswordForm")
         .addEventListener("submit", async function (event) {
@@ -41,7 +43,7 @@
 
           try {
             const response = await fetch(
-              "${API_URL}/api/authentication/forgot-password",
+              `${API_URL}/api/authentication/forgot-password`,
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

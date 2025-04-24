@@ -324,7 +324,8 @@
     </footer>
     
 <script >
-    
+    const API_URL = "https://arize-e-commerce.onrender.com"
+
      // Ensure SweetAlert is included
      if (typeof Swal === "undefined") {
         let script = document.createElement("script");
@@ -439,7 +440,7 @@
             const quantity = 1;
 
             try {
-                const response = await fetch("${API_URL}/cart/add", {
+                const response = await fetch(`${API_URL}/cart/add`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ userId, productId, quantity }),
@@ -668,7 +669,7 @@
     
     async function fetchlaptops() {
         try {
-            const response = await fetch('${API_URL}/products/laptops');
+            const response = await fetch(`${API_URL}/products/laptops`);
             const products = await response.json();
             const productCardsContainer = document.getElementById('product-cards-laptops');
             productCardsContainer.innerHTML = ''; // Clear placeholder text
@@ -698,7 +699,7 @@
             }
             async function fetchmonitors() {
                 try {
-                    const response = await fetch('${API_URL}/products/monitors');
+                    const response = await fetch(`${API_URL}/products/monitors`);
                     const products = await response.json();
                     const productCardsContainer = document.getElementById('product-cards-monitors');
                     productCardsContainer.innerHTML = ''; // Clear placeholder text
@@ -728,7 +729,7 @@
             }
             async function fetchPCtowers() {
                 try {
-                    const response = await fetch('${API_URL}/products/pctower');
+                    const response = await fetch(`${API_URL}/products/pctower`);
                     const products = await response.json();
                     const productCardsContainer = document.getElementById('product-cards-pctower');
                     productCardsContainer.innerHTML = ''; // Clear placeholder text
@@ -759,7 +760,7 @@
             }
             async function fetchaccessories() {
                 try {
-                    const response = await fetch('${API_URL}/products/accessories');
+                    const response = await fetch(`${API_URL}/products/accessories`);
                     const products = await response.json();
                     const productCardsContainer = document.getElementById('product-cards-accessories');
                     productCardsContainer.innerHTML = ''; // Clear placeholder text
@@ -831,7 +832,7 @@
                     };
     
                     // Send data to the backend
-                    fetch("http://127.0.0.1:3030/api/auth/signup", {
+                    fetch(`${API_URL}/api/auth/signup`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -887,7 +888,7 @@
                 }
 
                 try {
-                    const response = await fetch("http://127.0.0.1:3030/users/login", {
+                    const response = await fetch(`${API_URL}/users/login`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ email, password }),

@@ -59,7 +59,7 @@
       async function fetchCartItems() {
         try {
           console.log("🔄 Fetching cart items...");
-          const response = await fetch("${API_URL}/cart/2");
+          const response = await fetch(`${API_URL}/cart/2`);
           let cart = await response.json();
 
           console.log("📦 Cart data received:", cart);

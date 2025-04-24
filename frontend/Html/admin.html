@@ -245,6 +245,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+const API_URL = "https://arize-e-commerce.onrender.com"
+
       function openEditModal(product) {
         document.getElementById("editProductId").value = product.product_id;
         document.getElementById("editProductImage").value = product.image;
@@ -340,7 +342,7 @@
 
       async function fetchProducts() {
         try {
-          const response = await fetch("http://127.0.0.1:3030/products");
+          const response = await fetch(`${API_URL}/products`);
           const products = await response.json();
           const productList = document.getElementById("product-list");
           productList.innerHTML = "";
@@ -389,7 +391,7 @@
         const price = document.getElementById("productPrice").value;
         const quantity = document.getElementById("productQuantity").value;
         try {
-          const response = await fetch("${API_URL}/products", {
+          const response = await fetch(`${API_URL}/products`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

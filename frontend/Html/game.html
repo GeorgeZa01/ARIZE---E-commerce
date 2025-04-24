@@ -179,9 +179,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+      const API_URL = "https://arize-e-commerce.onrender.com"
+      
       async function fetchHighScores() {
         try {
-          const response = await fetch("${API_URL}/highscore");
+          const response = await fetch(`${API_URL}/highscore`);
           console.log(response);
 
           if (response.ok) {
@@ -207,7 +209,7 @@
 
       async function postHighScore() {
         try {
-          const response = await fetch("${API_URL}/highscore", {
+          const response = await fetch(`${API_URL}/highscore`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

@@ -366,6 +366,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+      const API_URL = "https://arize-e-commerce.onrender.com"
+
       // Ensure SweetAlert is included
       if (typeof Swal === "undefined") {
         let script = document.createElement("script");
@@ -428,7 +430,7 @@
       async function fetchaccessories() {
         try {
           const response = await fetch(
-            "${API_URL}/products/accessories"
+            `${API_URL}/products/accessories`
           );
           const products = await response.json();
           const productCardsContainer = document.getElementById(
@@ -502,7 +504,7 @@
           };
 
           // Send data to the backend
-          fetch("http://127.0.0.1:3030/api/auth/signup", {
+          fetch(`${API_URL}/api/auth/signup`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -648,7 +650,7 @@
             const quantity = 1;
 
             try {
-              const response = await fetch("${API_URL}/cart/add", {
+              const response = await fetch(`${API_URL}/cart/add`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ userId, productId, quantity }),
@@ -784,7 +786,7 @@
           }
 
           try {
-            const response = await fetch("http://127.0.0.1:3030/users/login", {
+            const response = await fetch(`${API_URL}/users/login`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ email, password }),
