@@ -9,9 +9,9 @@ import userRoutes from './routes/userRoutes.js';
 import gameRoutes from './routes/gameRoutes.js';
 
 // import checkoutRouter from './routes/checkoutRouter.js';
-
+ 
 config(); // Load environment variables
-const app = express();
+const app = express(); 
 
 // Enable CORS before defining the routes
 app.use(cors({
