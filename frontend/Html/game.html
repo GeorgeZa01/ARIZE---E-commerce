@@ -181,7 +181,7 @@
     <script>
       async function fetchHighScores() {
         try {
-          const response = await fetch("http://localhost:3030/highscore");
+          const response = await fetch("${API_URL}/highscore");
           console.log(response);
 
           if (response.ok) {
@@ -207,7 +207,7 @@
 
       async function postHighScore() {
         try {
-          const response = await fetch("http://localhost:3030/highscore", {
+          const response = await fetch("${API_URL}/highscore", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

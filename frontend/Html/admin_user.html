@@ -109,7 +109,7 @@
       // Fetch and display users
       async function fetchUsers() {
         try {
-          const response = await fetch("http://localhost:3030/users");
+          const response = await fetch("${API_URL}/users");
           const users = await response.json();
           const userList = document.getElementById("user-list");
           userList.innerHTML = "";
@@ -148,7 +148,7 @@
 
           try {
             const response = await fetch(
-              `http://localhost:3030/users/${userId}`,
+              `${API_URL}/users/${userId}`,
               {
                 method: "PATCH",
                 headers: {
@@ -208,7 +208,7 @@
         if (!result.isConfirmed) return;
         try {
           const response = await fetch(
-            `http://localhost:3030/users/${userId}`,
+            `${API_URL}/users/${userId}`,
             {
               method: "DELETE",
             }

@@ -14,3 +14,5 @@ const pool = mysql.createPool({
 });
 
 export { pool };
+
+export const API_URL = "https://arize-e-commerce.onrender.com"

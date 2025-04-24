@@ -59,7 +59,7 @@
       async function fetchCartItems() {
         try {
           console.log("🔄 Fetching cart items...");
-          const response = await fetch("http://localhost:3030/cart/2");
+          const response = await fetch("${API_URL}/cart/2");
           let cart = await response.json();
 
           console.log("📦 Cart data received:", cart);
@@ -135,7 +135,7 @@
         try {
           console.log(`🗑️ Removing item with cartId: ${cartId}`);
           const response = await fetch(
-            `http://localhost:3030/cart/delete/${cartId}`,
+            `${API_URL}/cart/delete/${cartId}`,
             { method: "DELETE" }
           );
           const result = await response.json();

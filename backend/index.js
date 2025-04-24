@@ -7,6 +7,7 @@ import forgotRouters from './routes/forgotRouter.js';
 import cartRouter from './routes/cartRouter.js';
 import userRoutes from './routes/userRoutes.js';
 import gameRoutes from './routes/gameRoutes.js';
+import {API_URL} from './config/config.js'
 
 // import checkoutRouter from './routes/checkoutRouter.js';
  
@@ -15,7 +16,7 @@ const app = express();
 
 // Enable CORS before defining the routes
 app.use(cors({
-    origin: "http://127.0.0.1:5500",  //  Allow your frontend origin
+    origin: API_URL,  //  Allow your frontend origin
     credentials: true,                //  Allow cookies & authorization headers
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"]

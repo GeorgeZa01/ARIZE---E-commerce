@@ -384,7 +384,7 @@
       async function viewMore(productId) {
         try {
           const response = await fetch(
-            `http://localhost:3030/products/${productId}`
+            `${API_URL}/products/${productId}`
           );
           const product = await response.json();
 
@@ -430,7 +430,7 @@
       async function fetchPCtowers() {
         try {
           const response = await fetch(
-            "http://localhost:3030/products/pctower"
+            "${API_URL}/products/pctower"
           );
           const products = await response.json();
           const productCardsContainer = document.getElementById(
@@ -556,7 +556,7 @@
         async function fetchCartItems() {
           try {
             console.log("🔄 Fetching cart items...");
-            const response = await fetch(`http://localhost:3030/cart/2`);
+            const response = await fetch(`${API_URL}/cart/2`);
             let cart = await response.json();
 
             console.log("📦 Cart data received:", cart);
@@ -650,7 +650,7 @@
             const quantity = 1;
 
             try {
-              const response = await fetch("http://localhost:3030/cart/add", {
+              const response = await fetch("${API_URL}/cart/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ userId, productId, quantity }),
@@ -690,8 +690,8 @@
             );
             const endpoint =
               change > 0
-                ? `http://localhost:3030/cart/update/increase/${cartId}`
-                : `http://localhost:3030/cart/update/decrease/${cartId}`;
+                ? `${API_URL}/cart/update/increase/${cartId}`
+                : `${API_URL}/cart/update/decrease/${cartId}`;
 
             const response = await fetch(endpoint, { method: "PUT" });
             const result = await response.json();
@@ -725,7 +725,7 @@
           try {
             console.log(`🗑️ Removing item with cartId: ${cartId}`);
             const response = await fetch(
-              `http://localhost:3030/cart/delete/${cartId}`,
+              `${API_URL}/cart/delete/${cartId}`,
               { method: "DELETE" }
             );
             const result = await response.json();

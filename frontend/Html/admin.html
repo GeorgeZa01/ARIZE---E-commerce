@@ -291,7 +291,7 @@
 
         try {
           const response = await fetch(
-            `http://localhost:3030/products/${productId}`,
+            `${API_URL}/products/${productId}`,
             {
               method: "PATCH",
               headers: { "Content-Type": "application/json" },
@@ -389,7 +389,7 @@
         const price = document.getElementById("productPrice").value;
         const quantity = document.getElementById("productQuantity").value;
         try {
-          const response = await fetch("http://localhost:3030/products", {
+          const response = await fetch("${API_URL}/products", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -439,7 +439,7 @@
         if (!result.isConfirmed) return;
         try {
           const response = await fetch(
-            `http://localhost:3030/products/${productId}`,
+            `${API_URL}/products/${productId}`,
             { method: "DELETE" }
           );
           if (response.ok) {

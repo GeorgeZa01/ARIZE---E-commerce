@@ -351,7 +351,7 @@
     async function fetchCartItems() {
         try {
             console.log("🔄 Fetching cart items...");
-            const response = await fetch(`http://localhost:3030/cart/2`);
+            const response = await fetch(`${API_URL}/cart/2`);
             let cart = await response.json();
             
             console.log("📦 Cart data received:", cart);
@@ -439,7 +439,7 @@
             const quantity = 1;
 
             try {
-                const response = await fetch("http://localhost:3030/cart/add", {
+                const response = await fetch("${API_URL}/cart/add", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ userId, productId, quantity }),
@@ -477,8 +477,8 @@
             console.log(`🔄 Changing quantity for cartId ${cartId}, Change: ${change}`);
             const endpoint =
                 change > 0
-                    ? `http://localhost:3030/cart/update/increase/${cartId}`
-                    : `http://localhost:3030/cart/update/decrease/${cartId}`;
+                    ? `${API_URL}/cart/update/increase/${cartId}`
+                    : `${API_URL}/cart/update/decrease/${cartId}`;
                     
             const response = await fetch(endpoint, { method: "PUT" });
             const result = await response.json();
@@ -513,7 +513,7 @@
         
         try {
             console.log(`🗑️ Removing item with cartId: ${cartId}`);
-            const response = await fetch(`http://localhost:3030/cart/delete/${cartId}`, { method: "DELETE" });
+            const response = await fetch(`${API_URL}/cart/delete/${cartId}`, { method: "DELETE" });
             const result = await response.json();
 
             if (result.success) {
@@ -556,7 +556,7 @@
         
     async function viewMore(productId) {
         try {
-            const response = await fetch(`http://localhost:3030/products/${productId}`);
+            const response = await fetch(`${API_URL}/products/${productId}`);
             const product = await response.json();
     
                     // Populate modal fields
@@ -615,7 +615,7 @@
     
         // Function to search products
         function searchProducts(query) {
-            fetch(`http://localhost:3030/products/search?query=${query}`)
+            fetch(`${API_URL}/products/search?query=${query}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data && data.length > 0) {
@@ -668,7 +668,7 @@
     
     async function fetchlaptops() {
         try {
-            const response = await fetch('http://localhost:3030/products/laptops');
+            const response = await fetch('${API_URL}/products/laptops');
             const products = await response.json();
             const productCardsContainer = document.getElementById('product-cards-laptops');
             productCardsContainer.innerHTML = ''; // Clear placeholder text
@@ -698,7 +698,7 @@
             }
             async function fetchmonitors() {
                 try {
-                    const response = await fetch('http://localhost:3030/products/monitors');
+                    const response = await fetch('${API_URL}/products/monitors');
                     const products = await response.json();
                     const productCardsContainer = document.getElementById('product-cards-monitors');
                     productCardsContainer.innerHTML = ''; // Clear placeholder text
@@ -728,7 +728,7 @@
             }
             async function fetchPCtowers() {
                 try {
-                    const response = await fetch('http://localhost:3030/products/pctower');
+                    const response = await fetch('${API_URL}/products/pctower');
                     const products = await response.json();
                     const productCardsContainer = document.getElementById('product-cards-pctower');
                     productCardsContainer.innerHTML = ''; // Clear placeholder text
@@ -759,7 +759,7 @@
             }
             async function fetchaccessories() {
                 try {
-                    const response = await fetch('http://localhost:3030/products/accessories');
+                    const response = await fetch('${API_URL}/products/accessories');
                     const products = await response.json();
                     const productCardsContainer = document.getElementById('product-cards-accessories');
                     productCardsContainer.innerHTML = ''; // Clear placeholder text

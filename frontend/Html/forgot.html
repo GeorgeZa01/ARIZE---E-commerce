@@ -41,7 +41,7 @@
 
           try {
             const response = await fetch(
-              "http://localhost:3030/api/authentication/forgot-password",
+              "${API_URL}/api/authentication/forgot-password",
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
