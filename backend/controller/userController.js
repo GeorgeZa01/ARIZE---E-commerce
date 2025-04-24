@@ -1,6 +1,6 @@
 import {findUserByEmail, deleteUser, updateUser, createUser, getUsers, getSingleUser} from '../model/userModel.js';
 import { generateAccessToken, generateRefreshToken  } from '../utils/jwtUtils.js';
-import { compare } from 'bcrypt'
+import { compare } from 'bcryptjs'
 
 //User registration
 export const createUserCon = async (req, res) => {

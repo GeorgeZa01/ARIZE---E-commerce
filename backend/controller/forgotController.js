@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import crypto from "crypto";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import dotenv from "dotenv";
 import { findUserByEmail, storeResetToken, findUserByToken, updatePassword, getusers_db } from "../model/forgotModel.js";
 
@@ -64,7 +64,7 @@ export const resetPassword = async (req, res) => {
     const user = await findUserByToken(token);
     if (!user) return res.status(400).json({ message: "Invalid or expired token" });
 
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const hashedPassword = await bcryptjs.hash(newPassword, 10);
     await updatePassword(user.email, hashedPassword);
 
     res.json({ message: "Password reset successfully" });

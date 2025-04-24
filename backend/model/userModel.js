@@ -1,5 +1,5 @@
 import { pool } from "../config/config.js";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 
 
 // Function to create a new user
@@ -8,7 +8,7 @@ export const createUser = async ({full_name, email, password, address}) => {
     if (existingUser) {
         throw new Error("User already exists");
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcryptjs.hash(password, 10);
     const [rows] = await pool.query("INSERT INTO users (full_name, email, password, address) VALUES (?, ?, ?,?)", [full_name, email, hashedPassword, address]);
     return rows.insertId;
 };
