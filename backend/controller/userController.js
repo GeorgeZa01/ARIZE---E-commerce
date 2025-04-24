@@ -1,6 +1,6 @@
 import {findUserByEmail, deleteUser, updateUser, createUser, getUsers, getSingleUser} from '../model/userModel.js';
 import { generateAccessToken, generateRefreshToken  } from '../utils/jwtUtils.js';
-import { compare } from 'bcryptjs'
+import bcryptjs from 'bcryptjs'
 
 //User registration
 export const createUserCon = async (req, res) => {
@@ -29,7 +29,7 @@ export const loginUser = async (req, res) => {
 
         
         // Compare passwords
-        const isPasswordValid = await compare(password, foundUser.password);
+        const isPasswordValid = await bcryptjs.compare(password, foundUser.password);
         
         if (!isPasswordValid) {
             return res.status(400).json({ success: false, message: "Invalid email or password." });
