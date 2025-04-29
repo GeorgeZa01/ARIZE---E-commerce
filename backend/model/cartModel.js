@@ -5,10 +5,10 @@ const getCartItems = async (user_id) => {
     try {
         const [rows] = await pool.query(
             `SELECT * 
-FROM arize_db.cart 
-INNER JOIN arize_db.products ON arize_db.cart.product_id = arize_db.products.product_id 
-INNER JOIN arize_db.users ON arize_db.cart.user_id = arize_db.users.user_id 
-WHERE arize_db.cart.user_id = ?;
+FROM bxs5waahvka4quoqwk7p.cart 
+INNER JOIN bxs5waahvka4quoqwk7p.products ON bxs5waahvka4quoqwk7p.cart.product_id = bxs5waahvka4quoqwk7p.products.product_id 
+INNER JOIN bxs5waahvka4quoqwk7p.users ON bxs5waahvka4quoqwk7p.cart.user_id = bxs5waahvka4quoqwk7p.users.user_id 
+WHERE bxs5waahvka4quoqwk7p.cart.user_id = ?;
 ;
 `,
             [user_id],
