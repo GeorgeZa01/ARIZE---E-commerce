@@ -659,7 +659,7 @@
 
         // Function to search products
         function searchProducts(query) {
-          fetch(`${API_URL}/products/search?query=${query}`)
+          fetch(`https://arize-e-commerce.onrender.com/products/search?query=${query}`)
             .then((response) => response.json())
             .then((data) => {
               if (data && data.length > 0) {
@@ -725,7 +725,7 @@
         async function fetchCartItems() {
           try {
             console.log("🔄 Fetching cart items...");
-            const response = await fetch(`${API_URL}/cart/2`);
+            const response = await fetch(`https://arize-e-commerce.onrender.com/cart/2`);
             let cart = await response.json();
 
             console.log("📦 Cart data received:", cart);
