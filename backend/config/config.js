@@ -16,3 +16,5 @@ const pool = mysql.createPool({
 export { pool };
 
 export const API_URL = "https://arize-e-commerce.onrender.com"
+
+export const Frontend_URL = "https://vercel.com/georgeza01s-projects/arize-e-commerce/6A61i9B9HBCY56qjh56pXvyr7rDm"
