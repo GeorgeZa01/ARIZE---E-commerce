@@ -15,12 +15,20 @@ config(); // Load environment variables
 const app = express(); 
 
 // Enable CORS before defining the routes
-app.use(cors({
-    origin: Frontend_URL,  //  Allow your frontend origin
-    credentials: true,                //  Allow cookies & authorization headers
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowedHeaders: ["Content-Type", "Authorization"]
-})); 
+// app.use(cors({
+//     origin: Frontend_URL,  //  Allow your frontend origin
+//     credentials: true,                //  Allow cookies & authorization headers
+//     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+//     allowedHeaders: ["Content-Type", "Authorization"]
+// })); 
+
+const corsOptions = {
+    origin: "https://vercel.com/georgeza01s-projects/arize-e-commerce/6A61i9B9HBCY56qjh56pXvyr7rDm", // ✅ replace with your actual frontend URL
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  };
+  
+  app.use(cors(corsOptions));
 
 // Middleware for JSON parsing
 app.use(express.json());
