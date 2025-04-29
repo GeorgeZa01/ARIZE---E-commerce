@@ -324,170 +324,639 @@
     </footer>
     
 <script >
-    const API_URL = "https://arize-e-commerce.onrender.com";
+    const API_URL = "https://arize-e-commerce.onrender.com"
 
-    // Improved fetch with error handling
-    async function fetchWithRetry(url, options = {}, retries = 3) {
-        try {
-            const response = await fetch(url, options);
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            return await response.json();
-        } catch (error) {
-            if (retries > 0) {
-                console.log(`Retrying... ${retries} attempts left`);
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                return fetchWithRetry(url, options, retries - 1);
-            }
-            throw error;
-        }
+     // Ensure SweetAlert is included
+     if (typeof Swal === "undefined") {
+        let script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
+        document.head.appendChild(script);
     }
 
-    // Enhanced fetchCartItems with CORS mode
+    // the close button on cart
+        function closeCart() {
+    document.querySelector('.cart-dropdown').style.display = 'none';
+    }
+
+    
+    document.addEventListener("DOMContentLoaded", function () {
+    const cartItemsContainer = document.getElementById("cart-items");
+    const subtotalEl = document.getElementById("subtotal");
+    const totalEl = document.getElementById("total");
+    const cartToggleBtn = document.getElementById("cart-toggle");
+    const cartDropdown = document.querySelector(".cart-dropdown");
+
+    const userId = 2; // Replace with the actual authenticated user ID
+
+    // Fetch cart items
     async function fetchCartItems() {
         try {
             console.log("🔄 Fetching cart items...");
-            const response = await fetch(`${API_URL}/cart/2`, {
-                mode: 'cors',
-                credentials: 'include'
-            });
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
+            const response = await fetch(`${API_URL}/cart/2`);
             let cart = await response.json();
+            
             console.log("📦 Cart data received:", cart);
-            updateCartDisplay(cart || []);
+            if (cart.error) cart = []; // Handle empty cart response
+            updateCartDisplay(cart);
         } catch (error) {
             console.error("🚨 Error fetching cart:", error);
             Swal.fire({
-                icon: 'error',
-                title: 'Cart Error',
-                text: 'Could not load cart items. Please try again later.'
-            });
+            icon: 'error',
+            title: 'Oops...',
+            text: 'An error occurred while fetching the cart!',
+        });
         }
     }
+    // fetchCartItems()
 
-    // Improved product fetching functions
-    async function fetchProductCategory(category, containerId) {
-        try {
-            const products = await fetchWithRetry(`${API_URL}/products/${category}`);
-            const container = document.getElementById(containerId);
+    // Update Cart Display
+    function updateCartDisplay(cart) {
+    const cartItemsContainer = document.getElementById("cart-items");
+    const subtotalEl = document.getElementById("subtotal");
+    const totalEl = document.getElementById("total");
+
+    if (!cartItemsContainer || !subtotalEl || !totalEl) {
+        console.error("❌ Cart elements not found in the DOM.");
+        return;
+    }
+
+    cartItemsContainer.innerHTML = "";
+    let subtotal = 0;
+
+    if (!Array.isArray(cart) || cart.length === 0) {
+        cartItemsContainer.innerHTML = "<p class='empty-cart'>Your cart is empty</p>";
+        subtotalEl.textContent = "R 0.00";
+        totalEl.textContent = "R 0.00";
+        return;
+    }
+
+    console.log("📦 Cart Data Received:", cart);
+
+    cart.forEach((item) => {
+        if (!item.product_id || !item.Name || item.Price === undefined) {
+            console.error("⚠️ Invalid cart item:", item);
+            return;
+        }
+
+        const price = item.Price ? item.Price : 0; 
+        subtotal += price * item.quantity;
+
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+
+        cartItem.innerHTML = `
+            <img class="cart-img" src="${item.image}"  "alt="${item.Name}">
+            <div class="item-details">
+                <h3>${item.Name}</h3>
+                <p class="item-price">R ${(item.Price * item.quantity)}</p>
+            </div>
+            <div class="quantity-controls">
+                <button class="quantity-btn" onclick="changeQuantity(${item.cart_id}, -1)">-</button>
+                <span>${item.quantity}</span>
+                <button class="quantity-btn" onclick="changeQuantity(${item.cart_id}, 1)">+</button>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart(${item.cart_id})"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0,0,256,256">
+<g fill="#f90202" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M10,2l-1,1h-5v2h16v-2h-5l-1,-1zM5,7v13c0,1.1 0.9,2 2,2h10c1.1,0 2,-0.9 2,-2v-13zM8,9h2v11h-2zM14,9h2v11h-2z"></path></g></g>
+</svg></button>
+
+        `;
             
-            if (!container) {
-                console.error(`Container ${containerId} not found`);
-                return;
-            }
-
-            container.innerHTML = products.map(product => `
-                <div class="col-md-3">
-                    <div class="card mb-3">
-                        <div class="card-body-${category}">
-                            <img src="${product.image || 'https://via.placeholder.com/150'}" 
-                                 alt="${product.Name}" 
-                                 onerror="this.src='https://via.placeholder.com/150'">
-                            <h5 class="card-title">${product.Name}</h5>
-                            <p class="card-text">Price: R ${product.Price?.toFixed(2) || '0.00'}</p>
-                            <button class='product-btn' onclick="viewMore(${product.product_id})">
-                                View More
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        } catch (error) {
-            console.error(`Error fetching ${category}:`, error);
-            const container = document.getElementById(containerId);
-            if (container) {
-                container.innerHTML = `
-                    <div class="col-12">
-                        <div class="alert alert-warning">
-                            Failed to load ${category}. Please refresh the page.
-                        </div>
-                    </div>
-                `;
-            }
-            Swal.fire({
-                icon: 'error',
-                title: `Error Loading ${category.charAt(0).toUpperCase() + category.slice(1)}`,
-                text: 'Please check your connection and try again.'
-            });
-        }
-    }
-
-    // Consolidated product fetchers
-    async function fetchAllProducts() {
-        try {
-            await Promise.all([
-                fetchProductCategory('laptops', 'product-cards-laptops'),
-                fetchProductCategory('monitors', 'product-cards-monitors'),
-                fetchProductCategory('pctower', 'product-cards-pctower'),
-                fetchProductCategory('accessories', 'product-cards-accessories')
-            ]);
-        } catch (error) {
-            console.error("Error fetching products:", error);
-        }
-    }
-
-    // Enhanced viewMore function
-    async function viewMore(productId) {
-        try {
-            const product = await fetchWithRetry(`${API_URL}/products/${productId}`);
-            const modal = document.getElementById('productModal');
             
-            if (modal) {
-                modal.querySelector('#productTitle').textContent = product.Name;
-                modal.querySelector('#productPrice').textContent = `R${product.Price?.toFixed(2) || '0.00'}`;
-                modal.querySelector('#productCategory').textContent = product.Category || 'Uncategorized';
-                
-                const img = modal.querySelector('img');
-                img.src = product.image || 'https://via.placeholder.com/300';
-                img.alt = product.Name;
-                
-                modal.querySelector('#productDetails').innerHTML = `
-                    <li><strong>Description:</strong> ${product.Description || 'No description available'}</li>
-                    <button type="button" class="button add-to-cart" data-product-id="${product.product_id}">
-                        <span class="button__text">Add to Cart</span>
-                        <span class="button__icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" 
-                                 stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" 
-                                 fill="none" class="svg">
-                                <line y2="19" y1="5" x2="12" x1="12"></line>
-                                <line y2="12" y1="12" x2="19" x1="5"></line>
-                            </svg>
-                        </span>
-                    </button>
-                `;
-                
-                new bootstrap.Modal(modal).show();
-            }
-        } catch (error) {
-            console.error('Error fetching product details:', error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Product Error',
-                text: 'Could not load product details. Please try again.'
-            });
-        }
-    }
-
-    // Initialize everything when DOM is loaded
-    document.addEventListener("DOMContentLoaded", function() {
-        // Load all products
-        fetchAllProducts();
-        
-        // Load cart
-        fetchCartItems();
-        
-        // [Rest of your existing DOMContentLoaded code remains the same]
+        cartItemsContainer.appendChild(cartItem);
     });
 
-    // Make functions available globally
-    window.fetchCartItems = fetchCartItems;
-    window.viewMore = viewMore;
-    window.changeQuantity = changeQuantity;
-    window.removeFromCart = removeFromCart;
-</script>
+    subtotalEl.textContent = `R ${subtotal.toFixed(2)}`;
+    const tax = subtotal * 0.15;
+    totalEl.textContent = `R ${(subtotal + tax).toFixed(2)}`;
+}
+
+    // Add item to cart
+    document.body.addEventListener("click", async function (event) {
+        if (event.target.closest(".add-to-cart")) {
+            console.log("🛒 Add to Cart clicked!");
+
+            const button = event.target.closest(".add-to-cart");
+            const productId = button.getAttribute("data-product-id");
+            const quantity = 1;
+
+            try {
+                const response = await fetch(`${API_URL}/cart/add`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ userId, productId, quantity }),
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Product added to cart!',
+                });
+                    fetchCartItems(); // Refresh cart display
+                } else {
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Failed',
+                    text: 'Failed to add product to cart.',
+                });
+                }
+            } catch (error) {
+                console.error("🚨 Error adding to cart:", error);
+                Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'An error occurred while adding to cart.',
+            });
+            }
+        }
+    });
+
+    // Change quantity (increase/decrease)
+    async function changeQuantity(cartId, change) {
+        try {
+            console.log(`🔄 Changing quantity for cartId ${cartId}, Change: ${change}`);
+            const endpoint =
+                change > 0
+                    ? `${API_URL}/cart/update/increase/${cartId}`
+                    : `${API_URL}/cart/update/decrease/${cartId}`;
+                    
+            const response = await fetch(endpoint, { method: "PUT" });
+            const result = await response.json();
+
+            if (result.success) {
+                Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Quantity updated!',
+            });
+                fetchCartItems(); // Refresh cart
+            } else {
+                Swal.fire({
+                icon: 'error',
+                title: 'Failed',
+                text: 'Failed to update quantity.',
+            });
+            }
+        } catch (error) {
+            console.error("🚨 Error updating cart:", error);
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while updating the quantity.',
+        });
+        }
+    }
+
+    // Remove item from cart
+    async function removeFromCart(cartId) {
+        
+        
+        try {
+            console.log(`🗑️ Removing item with cartId: ${cartId}`);
+            const response = await fetch(`${API_URL}/cart/delete/${cartId}`, { method: "DELETE" });
+            const result = await response.json();
+
+            if (result.success) {
+                Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Item removed from cart!',
+            });
+                fetchCartItems(); // Refresh cart display
+            } else {
+                Swal.fire({
+                icon: 'error',
+                title: 'Failed',
+                text: 'Failed to remove item.',
+            });
+            }
+        } catch (error) {
+            console.error("🚨 Error removing item:", error);
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while removing the item.',
+        });
+        }
+    }
+
+    // Toggle cart dropdown visibility
+    cartToggleBtn.addEventListener("click", function () {
+        cartDropdown.style.display = cartDropdown.style.display === "none" || cartDropdown.style.display === "" ? "block" : "none";
+    });
+
+    fetchCartItems();
+
+                    
+                    // Expose functions globally
+                    window.changeQuantity = changeQuantity;
+                    window.removeFromCart = removeFromCart;
+    });
+                
+        
+    async function viewMore(productId) {
+        try {
+            const response = await fetch(`${API_URL}/products/${productId}`);
+            const product = await response.json();
+    
+                    // Populate modal fields
+                    document.getElementById('productTitle').textContent = product.Name;
+                    document.getElementById('productPrice').textContent =`R${product.Price}`;
+                    document.getElementById('productCategory').textContent = product.Category;
+    
+                    // Update product image
+                    const productImage = document.querySelector('#productModal img');
+                    productImage.src = product.image;
+                    productImage.alt = product.title;
+    
+                    // Update details list
+                    const detailsList = document.getElementById('productDetails');
+                    detailsList.innerHTML = `
+                 <li><strong>Description:</strong> ${product.Description}</li>
+                 <br>
+                 <button type="button" class="button add-to-cart" data-product-id="${product.product_id}">
+      <span class="button__text">Add to Cart</span>
+      <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+    </button>    
+            `;
+    
+                    // Show the modal
+                    const productModal = new bootstrap.Modal(document.getElementById('productModal'));
+                    productModal.show();
+                } catch (error) {
+                    console.error('Error fetching product details:', error);
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while fetching the product details.',
+                });
+                }
+            }
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchForm = document.getElementById("searchForm");
+        const searchInput = document.getElementById("searchInput");
+    
+        // Handle search form submission
+        searchForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const query = searchInput.value.trim();
+    
+            if (query) {
+                searchProducts(query);
+            } else {
+                Swal.fire({
+                icon: 'warning',
+                title: 'Input Required',
+                text: 'Please enter a search term.',
+            });
+            }
+        });
+    
+        // Function to search products
+        function searchProducts(query) {
+            fetch(`${API_URL}/products/search?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.length > 0) {
+                        displaySearchResults(data);
+                    } else {
+                        Swal.fire({
+                        icon: 'info',
+                        title: 'No Results',
+                        text: 'No products found.',
+                    });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error searching products:", error);
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Search Failed',
+                    text: 'An error occurred while searching.',
+                });
+                });
+        }
+    
+        // Function to display search results in the modal
+        function displaySearchResults(products) {
+            const modal = new bootstrap.Modal(document.getElementById('searchResultsModal'));
+            const container = document.getElementById("searchResultsContainer");
+            
+            container.innerHTML = ''; // Clear previous results
+            
+            products.forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.classList.add("col-md-4", "mb-3");
+    
+                productCard.innerHTML = `
+                    <div class="card-search">
+                        <img src="${product.image}" class="card-img-top" alt="${product.Name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.Name}</h5>
+                            <p>Price: R${product.Price}</p>
+                            <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
+                        </div>
+                    </div>
+                    `;
+                container.appendChild(productCard);
+            });
+    
+            modal.show(); // Show the modal
+        }
+    });
+    
+    async function fetchlaptops() {
+        try {
+            const response = await fetch(`${API_URL}/products/laptops`);
+            const products = await response.json();
+            const productCardsContainer = document.getElementById('product-cards-laptops');
+            productCardsContainer.innerHTML = ''; // Clear placeholder text
+    
+            products.forEach(product => {
+                productCardsContainer.innerHTML += `
+                    <div class="col-md-3">
+                        <div class="card mb-3">
+                            <div class="card-body-laptops">
+                                <img src="${product.image}">
+                                <h5 class="card-title">${product.Name}</h5>
+                                <p class="card-text">Price: R ${product.Price}</p>
+                                <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
+                            </div>
+                        </div>
+                        </div>
+                `;
+            });
+        } catch (error) {
+                    console.error('Error fetching products:', error);
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Error Fetching Laptops',
+                    text: 'An error occurred while fetching the laptop products.',
+                });
+                }
+            }
+            async function fetchmonitors() {
+                try {
+                    const response = await fetch(`${API_URL}/products/monitors`);
+                    const products = await response.json();
+                    const productCardsContainer = document.getElementById('product-cards-monitors');
+                    productCardsContainer.innerHTML = ''; // Clear placeholder text
+    
+            products.forEach(product => {
+                productCardsContainer.innerHTML += `
+                    <div class="col-md-3">
+                        <div class="card mb-3">
+                            <div class="card-body-monitors">
+                                <img src="${product.image}">
+                                <h5 class="card-title">${product.Name}</h5>
+                                <p class="card-text">Price: R ${product.Price}</p>
+                                <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    });
+                } catch (error) {
+                    console.error('Error fetching products:', error);
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Error Fetching Monitors',
+                    text: 'An error occurred while fetching the monitor products.',
+                });
+                }
+            }
+            async function fetchPCtowers() {
+                try {
+                    const response = await fetch(`${API_URL}/products/pctower`);
+                    const products = await response.json();
+                    const productCardsContainer = document.getElementById('product-cards-pctower');
+                    productCardsContainer.innerHTML = ''; // Clear placeholder text
+    
+            products.forEach(product => {
+                productCardsContainer.innerHTML += `
+                    <div class="col-md-3">
+                        <div class="card mb-3">
+                            <div class="card-body-monitors">
+                                <img src="${product.image}" >
+                                <h5 class="card-title">${product.Name}</h5>
+                                <p class="card-text">Price: R ${product.Price}</p>
+                                <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    });
+                } catch (error) {
+                    console.error('Error fetching products:', error);
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Error Fetching PC Towers',
+                    text: 'An error occurred while fetching the PC tower products.',
+                });
+
+                }
+            }
+            async function fetchaccessories() {
+                try {
+                    const response = await fetch(`${API_URL}/products/accessories`);
+                    const products = await response.json();
+                    const productCardsContainer = document.getElementById('product-cards-accessories');
+                    productCardsContainer.innerHTML = ''; // Clear placeholder text
+    
+            products.forEach(product => {
+                productCardsContainer.innerHTML += `
+                    <div class="col-md-3">
+                        <div class="card mb-3">
+                            <div class="card-body-monitors">
+                                <img src="${product.image}">
+                                <h5 class="card-title">${product.Name}</h5>          
+                                <p class="card-text">Price: R ${product.Price}</p>
+                                <button class='product-btn' onclick="viewMore(${product.product_id})">View More</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    });
+                } catch (error) {
+                    console.error('Error fetching products:', error);
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Error Fetching Accessories',
+                    text: 'An error occurred while fetching the accessory products.',
+                });
+                }
+            };
+    
+            window.onload = () => {
+                fetchlaptops();
+                fetchmonitors();
+                fetchPCtowers();
+                fetchaccessories();
+                // displaySearchResults();
+            };
+    
+            document.addEventListener("DOMContentLoaded", function () {
+                const signupSubmitButton = document.getElementById("signupSubmitButton");
+    
+                signupSubmitButton.addEventListener("click", function () {
+                    const fullName = document.getElementById("signupFullName").value;
+                    const email = document.getElementById("signupEmail").value;
+                    const password = document.getElementById("signupPassword").value;
+                    const confirmPassword = document.getElementById("signupConfirmPassword").value;
+    
+                    // Validation
+                    if (!fullName || !email || !password || !confirmPassword) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Please fill in all fields!",
+                        });
+                        return;
+                    }
+    
+                    if (password !== confirmPassword) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Passwords do not match!",
+                        });
+                        return;
+                    }
+    
+                    const userData = {
+                        full_name: fullName,
+                        email: email,
+                        password: password
+                    };
+    
+                    // Send data to the backend
+                    fetch(`${API_URL}/api/auth/signup`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(userData),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Show success message
+                                // Show error message based on the response
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Signup Failed",
+                                    text: data.message || "An error occurred during signup.",
+                                });
+    
+                            } else {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Signup Successful!",
+                                    text: "You have successfully signed up.",
+                                }).then(() => {
+                                    // Optionally, redirect the user or close the modal
+                                    window.location.href = "./index.html"; // Redirect if needed
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error signing up:", error);
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "An error occurred while signing up. Please try again.",
+                            });
+                        });
+                });
+            });
+            document.addEventListener("DOMContentLoaded", function () {
+            const loginButton = document.getElementById("loginButton");
+            const userDisplay = document.querySelector(".userName"); // Select the <p> tag
+            const logoutButton = document.getElementById("logoutButton"); // Logout button
+
+            loginButton.addEventListener("click", async function (event) {
+                event.preventDefault();
+
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                if (!email || !password) {
+                    alert("Please enter both email and password.");
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`${API_URL}/users/login`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email, password }),
+                        credentials: "include", // Important to send cookies
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        localStorage.setItem("accessToken", data.accessToken);
+                        const name = data.name.split(" ")[0]; // Get first name
+                        localStorage.setItem("user", name);
+
+                        // Display the username
+                        userDisplay.innerText = `Hi!, ${name}!`;
+                        userDisplay.style.display = "block";
+
+                        console.log("Logged in user:", name);
+
+                        Swal.fire({
+                            icon: "success",
+                            title: "Login Successful!",
+                            text: "You are now logged in.",
+                        }).then(() => {
+                            window.location.href = "./products.html"; // Reload page
+                        });
+                        } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Login Failed",
+                            text: data.message,
+                        });
+                    }
+                } catch (error) {
+                    console.error("Login error:", error);
+                }
+            });
+
+            // Check if user is logged in
+            if (localStorage.getItem("accessToken")) {
+                document.querySelectorAll("[btn]").forEach((value) => {
+                    value.style.display = "none"; // Hide login button
+                });
+
+                const name = localStorage.getItem("user");
+                if (name) {
+                    userDisplay.innerText = ` Hi! ${name}`;
+                    userDisplay.style.display = "block"; // Show username
+                    userDisplay.style.color = "white"; // Show username in white
+                    logoutButton.style.display = "block"; // Show logout button
+                }
+            }
+
+            // Logout functionality
+            logoutButton.addEventListener("click", function () {
+                localStorage.removeItem("accessToken");
+                localStorage.removeItem("user");
+                Swal.fire({
+                    icon: "info",
+                    title: "Logged Out",
+                    text: "You have been logged out successfully.",
+                }).then(() => {
+                    window.location.href = "../index.html";
+                });
+            });
+        });
+
+        </script>
 </body>
 
 </html>
