@@ -14,7 +14,6 @@ import {API_URL, Frontend_URL} from './config/config.js'
 config(); // Load environment variables
 const app = express(); 
 
-res.setHeader('Access-Control-Allow-Origin', 'https://arize-e-commerce.vercel.app');
 // Enable CORS before defining the routes
 app.use(cors({
     origin: Frontend_URL,  //  Allow your frontend origin
@@ -23,6 +22,7 @@ app.use(cors({
     allowedHeaders: ["Content-Type", "Authorization"]
 })); 
 
+res.setHeader('Access-Control-Allow-Origin', Frontend_URL);
 
 // Middleware for JSON parsing
 app.use(express.json());
