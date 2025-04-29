@@ -4,7 +4,7 @@ import { pool } from '../config/config.js';
 const searchProducts = async (searchQuery) => {
     try {  
         const [rows] = await pool.query(
-            'SELECT * FROM bxs5waahvka4quoqwk7p.products WHERE Name LIKE ? OR Description LIKE ?',
+            'SELECT * FROM products WHERE Name LIKE ? OR Description LIKE ?',
             [`%${searchQuery}%`, `%${searchQuery}%`]
         );
         return rows;
@@ -16,7 +16,7 @@ const searchProducts = async (searchQuery) => {
 
 const getProducts = async () => {
     try {
-        const [rows] = await pool.query('SELECT * FROM bxs5waahvka4quoqwk7p.products');
+        const [rows] = await pool.query('SELECT * FROM products');
         return rows;
     } catch (error) {
         console.error('Database error:', error);
@@ -26,7 +26,7 @@ const getProducts = async () => {
 
 const getLaptops = async () => {
     try {
-        const [rows] = await pool.query('SELECT * FROM bxs5waahvka4quoqwk7p.products WHERE Category = "Laptop"');
+        const [rows] = await pool.query('SELECT * FROM products WHERE Category = "Laptop"');
         return rows;
     } catch (error) {
         console.error('Database error:', error);
@@ -36,7 +36,7 @@ const getLaptops = async () => {
 
 const getMonitors = async () => {
     try {
-        const [rows] = await pool.query('SELECT * FROM bxs5waahvka4quoqwk7p.products WHERE Category = "Monitors"');
+        const [rows] = await pool.query('SELECT * FROM products WHERE Category = "Monitors"');
         return rows;
     } catch (error) {
         console.error('Database error:', error);
@@ -46,7 +46,7 @@ const getMonitors = async () => {
 
 const getPCtower = async () => {
     try {
-        const [rows] = await pool.query('SELECT * FROM bxs5waahvka4quoqwk7p.products WHERE Category = "PC Tower"');
+        const [rows] = await pool.query('SELECT * FROM products WHERE Category = "PC Tower"');
         return rows;
     } catch (error) {
         console.error('Database error:', error);
@@ -56,7 +56,7 @@ const getPCtower = async () => {
 
 const getAccessories = async () => {
     try {
-        const [rows] = await pool.query('SELECT * FROM bxs5waahvka4quoqwk7p.products WHERE Category = "Accessories"');
+        const [rows] = await pool.query('SELECT * FROM products WHERE Category = "Accessories"');
         return rows;
     } catch (error) {
         console.error('Database error:', error);
@@ -66,7 +66,7 @@ const getAccessories = async () => {
 
 const deleteProduct = async (productId) => {
     try {
-        const [result] = await pool.query('DELETE FROM bxs5waahvka4quoqwk7p.products WHERE product_id = ?', [productId]);
+        const [result] = await pool.query('DELETE FROM products WHERE product_id = ?', [productId]);
 
         if (result.affectedRows === 0) {
             throw new Error(`No product found with ID: ${productId}`);
@@ -81,7 +81,7 @@ const deleteProduct = async (productId) => {
 
 const addProduct = async (product) => {
     try {
-        const [result] = await pool.query('INSERT INTO bxs5waahvka4quoqwk7p.products SET ?', [product]);
+        const [result] = await pool.query('INSERT INTO products SET ?', [product]);
         return result;
     } catch (error) {
         console.error('Database error:', error);
@@ -92,7 +92,7 @@ const addProduct = async (product) => {
 const updateProduct = async (productId, productData) => {
     try {
         const [result] = await pool.query(
-            "UPDATE bxs5waahvka4quoqwk7p.products SET ? WHERE product_id = ?",
+            "UPDATE products SET ? WHERE product_id = ?",
             [productData, productId]
         );
         return result;
@@ -107,7 +107,7 @@ const getSingleProduct = async (productId) => {
         if (!productId || isNaN(productId)) {
             throw new Error('Invalid product ID');
         }
-        const [rows] = await pool.query('SELECT * FROM bxs5waahvka4quoqwk7p.products WHERE product_id = ?', [productId]);
+        const [rows] = await pool.query('SELECT * FROM products WHERE product_id = ?', [productId]);
         if (rows.length === 0) {
             throw new Error(`Product with ID ${productId} not found`);
         }

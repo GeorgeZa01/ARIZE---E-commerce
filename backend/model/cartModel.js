@@ -5,10 +5,10 @@ const getCartItems = async (user_id) => {
     try {
         const [rows] = await pool.query(
             `SELECT * 
-FROM bxs5waahvka4quoqwk7p.cart 
-INNER JOIN bxs5waahvka4quoqwk7p.products ON bxs5waahvka4quoqwk7p.cart.product_id = bxs5waahvka4quoqwk7p.products.product_id 
-INNER JOIN bxs5waahvka4quoqwk7p.users ON bxs5waahvka4quoqwk7p.cart.user_id = bxs5waahvka4quoqwk7p.users.user_id 
-WHERE bxs5waahvka4quoqwk7p.cart.user_id = ?;
+FROM cart 
+INNER JOIN products ON cart.product_id = products.product_id 
+INNER JOIN users ON cart.user_id = users.user_id 
+WHERE cart.user_id = ?;
 ;
 `,
             [user_id],

@@ -27,7 +27,7 @@ export const getSingleUser = async (email) => {
  const getUsers = async () => {
     try {
         console.log("Fetching users from DB...");
-        const [rows] = await pool.query('SELECT * FROM bxs5waahvka4quoqwk7p.users');
+        const [rows] = await pool.query('SELECT * FROM users');
         console.log("Users fetched:", rows);
         return rows;
     } catch (error) {
@@ -38,7 +38,7 @@ export const getSingleUser = async (email) => {
 
 const deleteUser = async (userId) => {
     try {
-        const [result] = await pool.query('DELETE FROM bxs5waahvka4quoqwk7p.users WHERE user_id = ?', [userId]);
+        const [result] = await pool.query('DELETE FROM users WHERE user_id = ?', [userId]);
 
         if (result.affectedRows === 0) {
             throw new Error(`No user found with ID: ${userId}`);
@@ -53,7 +53,7 @@ const deleteUser = async (userId) => {
 
 const updateUser = async (userId, userData) => {
     try {
-        const [result] = await pool.query('UPDATE bxs5waahvka4quoqwk7p.users SET ? WHERE user_id = ?', [userData, userId]);
+        const [result] = await pool.query('UPDATE users SET ? WHERE user_id = ?', [userData, userId]);
         if (result.affectedRows === 0) {
             throw new Error(`No user found with ID: ${userId}`);
         }
@@ -66,7 +66,7 @@ const updateUser = async (userId, userData) => {
 
 export const fetchDataForUser = async (userId) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM bxs5waahvka4quoqwk7p.users WHERE user_id = ?', [userId]);
+        const [rows] = await pool.query('SELECT * FROM users WHERE user_id = ?', [userId]);
         return rows[0];
     } catch (error) {
         console.error('Database error:', error);
