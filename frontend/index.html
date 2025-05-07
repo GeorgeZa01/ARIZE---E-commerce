@@ -597,7 +597,7 @@
     </section>
 
     <script>
-      const API_URL = "http://localhost:3030" 
+      const API_URL = "https://arize-e-commerce.onrender.com" 
 
       // Ensure SweetAlert is included
       if (typeof Swal === "undefined") {
@@ -659,7 +659,7 @@
 
         // Function to search products
         function searchProducts(query) {
-          fetch(`http://localhost:3030/products/search?query=${query}`)
+          fetch(`https://arize-e-commerce.onrender.com/products/search?query=${query}`)
             .then((response) => response.json())
             .then((data) => {
               if (data && data.length > 0) {
@@ -725,7 +725,7 @@
         async function fetchCartItems() {
           try {
             console.log("🔄 Fetching cart items...");
-            const response = await fetch(`http://localhost:3030/cart/2`);
+            const response = await fetch(`https://arize-e-commerce.onrender.com/cart/2`);
             let cart = await response.json();
 
             console.log("📦 Cart data received:", cart);

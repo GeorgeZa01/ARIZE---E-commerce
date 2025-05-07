@@ -39,7 +39,7 @@ ARIZE is an e-commerce platform for tech products, providing an easy-to-use shop
 4. Start the development servers:
    - Frontend: `npm run dev`
    - Backend: `npm start`
-5. Visit `http://localhost:3030` to view the website locally.
+5. Visit `https://arize-e-commerce.onrender.com` to view the website locally.
 
    ## How to Use:
 - Navigate to the homepage to browse products.
