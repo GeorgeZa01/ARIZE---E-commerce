@@ -6,6 +6,7 @@ import bcryptjs from 'bcryptjs'
 export const createUserCon = async (req, res) => {
     try {
         const userData = req.body;
+        console.log(userData);
         const result = await createUser(userData);
         res.json(result);
     } catch (error) {
@@ -16,11 +17,13 @@ export const createUserCon = async (req, res) => {
 
 //Login for users
 export const loginUser = async (req, res) => {
-    try {
+    // try {
         const { email, password } = req.body;
 
         // Find user by email
         const user = await findUserByEmail(email);
+        console.log('user:'+email);
+        
         if (user.length === 0) {
             return res.status(400).json({ success: false, message: "Invalid email or password." });
         }
@@ -30,6 +33,7 @@ export const loginUser = async (req, res) => {
         
         // Compare passwords
         const isPasswordValid = await bcryptjs.compare(password, foundUser.password);
+        console.log('password valid'+isPasswordValid);
         
         if (!isPasswordValid) {
             return res.status(400).json({ success: false, message: "Invalid email or password." });
@@ -38,7 +42,8 @@ export const loginUser = async (req, res) => {
         // Generate tokens
         const accessToken = generateAccessToken(foundUser.user_id);
         const refreshToken = generateRefreshToken(foundUser.user_id);
-
+        console.log(`Refresh Token: ${accessToken}`);
+        
         // Store refresh token in HTTP-only cookie
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
@@ -53,10 +58,10 @@ export const loginUser = async (req, res) => {
             accessToken,
             name
         });
-    } catch (error) {
-        console.error("Error logging in:", error);
-        res.status(500).json({ success: false, message: "Server error." });
-    }
+    // } catch (error) {
+    //     console.error("Error logging in:", error);
+    //     res.status(500).json({ success: false, message: "Server error." });
+    // }
 };
 
 //Refresh token function

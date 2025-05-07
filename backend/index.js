@@ -16,20 +16,23 @@ const app = express();
 const allowedOrigins = [
     'https://arize-e-commerce.vercel.app',
     'https://vercel.com/georgeza01s-projects/arize-e-commerce/6A61i9B9HBCY56qjh56pXvyr7rDm',
-    'http://localhost:3030' // For local development
+    'http://127.0.0.1:5500' // For local development
 ];
 
 app.use(cors({
     origin: function (origin, callback) {
         // Allow requests with no origin (like mobile apps or curl requests)
         if (!origin) return callback(null, true);
+        console.log(allowedOrigins.includes(origin));
         
         if (allowedOrigins.includes(origin)) {
+            console.log('hoya papi');
+            
             return callback(null, true);
-        } else {
-            console.log('Blocked by CORS:', origin);
-            return callback(new Error('Not allowed by CORS'), false);
-        }
+    }// }else {
+        //     console.log('Blocked by CORS:', origin);
+        //     return callback(new Error('Not allowed by CORS'), false);
+        // }
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],

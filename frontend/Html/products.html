@@ -324,7 +324,7 @@
     </footer>
     
 <script >
-    const API_URL = "https://arize-e-commerce.onrender.com"
+    const API_URL = "http://localhost:3030"
 
      // Ensure SweetAlert is included
      if (typeof Swal === "undefined") {
@@ -352,7 +352,7 @@
     async function fetchCartItems() {
         try {
             console.log("🔄 Fetching cart items...");
-            const response = await fetch(`https://arize-e-commerce.onrender.com/cart/2`);
+            const response = await fetch(`http://localhost:3030/cart/2`);
             let cart = await response.json();
             
             console.log("📦 Cart data received:", cart);
@@ -440,7 +440,7 @@
             const quantity = 1;
 
             try {
-                const response = await fetch(`https://arize-e-commerce.onrender.com/cart/add`, {
+                const response = await fetch(`http://localhost:3030/cart/add`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ userId, productId, quantity }),
@@ -478,8 +478,8 @@
             console.log(`🔄 Changing quantity for cartId ${cartId}, Change: ${change}`);
             const endpoint =
                 change > 0
-                    ? `https://arize-e-commerce.onrender.com/cart/update/increase/${cartId}`
-                    : `https://arize-e-commerce.onrender.com/cart/update/decrease/${cartId}`;
+                    ? `http://localhost:3030/cart/update/increase/${cartId}`
+                    : `http://localhost:3030/cart/update/decrease/${cartId}`;
                     
             const response = await fetch(endpoint, { method: "PUT" });
             const result = await response.json();
@@ -514,7 +514,7 @@
         
         try {
             console.log(`🗑️ Removing item with cartId: ${cartId}`);
-            const response = await fetch(`https://arize-e-commerce.onrender.com/cart/delete/${cartId}`, { method: "DELETE" });
+            const response = await fetch(`http://localhost:3030/cart/delete/${cartId}`, { method: "DELETE" });
             const result = await response.json();
 
             if (result.success) {
@@ -557,7 +557,7 @@
         
     async function viewMore(productId) {
         try {
-            const response = await fetch(`https://arize-e-commerce.onrender.com/products/${productId}`);
+            const response = await fetch(`http://localhost:3030/products/${productId}`);
             const product = await response.json();
     
                     // Populate modal fields
@@ -616,7 +616,7 @@
     
         // Function to search products
         function searchProducts(query) {
-            fetch(`https://arize-e-commerce.onrender.com/products/search?query=${query}`)
+            fetch(`http://localhost:3030/products/search?query=${query}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data && data.length > 0) {
@@ -669,7 +669,7 @@
     
     async function fetchlaptops() {
         try {
-            const response = await fetch(`https://arize-e-commerce.onrender.com/products/laptops`);
+            const response = await fetch(`http://localhost:3030/products/laptops`);
             const products = await response.json();
             const productCardsContainer = document.getElementById('product-cards-laptops');
             productCardsContainer.innerHTML = ''; // Clear placeholder text
@@ -699,7 +699,7 @@
             }
             async function fetchmonitors() {
                 try {
-                    const response = await fetch(`https://arize-e-commerce.onrender.com/products/monitors`);
+                    const response = await fetch(`http://localhost:3030/products/monitors`);
                     const products = await response.json();
                     const productCardsContainer = document.getElementById('product-cards-monitors');
                     productCardsContainer.innerHTML = ''; // Clear placeholder text
@@ -729,7 +729,7 @@
             }
             async function fetchPCtowers() {
                 try {
-                    const response = await fetch(`https://arize-e-commerce.onrender.com/products/pctower`);
+                    const response = await fetch(`http://localhost:3030/products/pctower`);
                     const products = await response.json();
                     const productCardsContainer = document.getElementById('product-cards-pctower');
                     productCardsContainer.innerHTML = ''; // Clear placeholder text
@@ -760,7 +760,7 @@
             }
             async function fetchaccessories() {
                 try {
-                    const response = await fetch(`https://arize-e-commerce.onrender.com/products/accessories`);
+                    const response = await fetch(`http://localhost:3030/products/accessories`);
                     const products = await response.json();
                     const productCardsContainer = document.getElementById('product-cards-accessories');
                     productCardsContainer.innerHTML = ''; // Clear placeholder text
@@ -832,7 +832,7 @@
                     };
     
                     // Send data to the backend
-                    fetch(`https://arize-e-commerce.onrender.com/api/auth/signup`, {
+                    fetch(`http://localhost:3030/api/auth/signup`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -888,7 +888,7 @@
                 }
 
                 try {
-                    const response = await fetch(`https://arize-e-commerce.onrender.com/users/login`, {
+                    const response = await fetch(`http://localhost:3030/users/login`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ email, password }),

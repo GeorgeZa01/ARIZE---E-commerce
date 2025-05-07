@@ -3,19 +3,22 @@ import bcryptjs from "bcryptjs";
 
 
 // Function to create a new user
-export const createUser = async ({full_name, email, password, address}) => {
+export const createUser = async ({full_name, email, password}) => {
     const existingUser = await findUserByEmail(email);
     if (existingUser) {
         throw new Error("User already exists");
     }
     const hashedPassword = await bcryptjs.hash(password, 10);
-    const [rows] = await pool.query("INSERT INTO users (full_name, email, password, address) VALUES (?, ?, ?,?)", [full_name, email, hashedPassword, address]);
+    const [rows] = await pool.query("INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)", [full_name, email, hashedPassword]);
     return rows.insertId;
 };
 
 
+
 export const findUserByEmail = async (email) => {
     const [users] = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
+    console.log(users);
+    
     return users.length > 0 ? users[0] : null;
 };
 
