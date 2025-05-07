@@ -1,16 +1,18 @@
 import {getCartItems,addToCart,removeFromCart,increaseQuantity,decreaseQuantity} from '../model/cartModel.js';
 
 export const getCartItemsCon = async (req, res) => {
-    try {
+    // try {
+    console.log('hola from controller');
+    
         const { userId } = req.params;  // Extract userId from the URL parameter
         const rows = await getCartItems(userId);
         
           // Pass it to the model function
         res.json(rows);  // Return the results
-    } catch (error) {
-        console.error(error);  // Log the error for easier debugging
-        res.status(500).send('Error fetching cart items');
-    }
+    // } catch (error) {
+    //     console.error(error);  // Log the error for easier debugging
+    //     res.status(500).send('Error fetching cart items');
+    // }
 };
 
 export const handleAddToCart = async (req, res) => {

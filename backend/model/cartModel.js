@@ -2,7 +2,9 @@ import { pool } from '../config/config.js';
 
 // Get cart items for a user
 const getCartItems = async (user_id) => {
-    try {
+    // try {
+    console.log('Hello from model');
+    
         const [rows] = await pool.query(
             `SELECT * 
 FROM cart 
@@ -13,11 +15,12 @@ WHERE cart.user_id = ?;
 `,
             [user_id],
         );
+        console.log('Dont worry the model ran');
         return rows;
-    } catch (error) {
-        console.error('Error fetching cart items:', error);  // Log the error details for better debugging
-        throw error;
-    }
+    // } catch (error) {
+    //     console.error('Error fetching cart items:', error);  // Log the error details for better debugging
+    //     throw error;
+    // }
 };
 
 // Add item to cart or update quantity
