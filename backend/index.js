@@ -15,7 +15,6 @@ const app = express();
 // Enhanced CORS configuration
 const allowedOrigins = [
     'https://arize-e-commerce.vercel.app',
-    'https://vercel.com/georgeza01s-projects/arize-e-commerce/6A61i9B9HBCY56qjh56pXvyr7rDm',
     'http://127.0.0.1:5500' // For local development
 ];
 
