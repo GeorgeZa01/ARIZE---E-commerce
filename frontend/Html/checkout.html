@@ -9,7 +9,236 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="../Css/index.css" rel="stylesheet">
 </head>
+<style>
+    .checkout-heading {
+  font-size: 2.5rem;
+  color: #333;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
 
+.section-heading {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Order Summary Section */
+#cart-item {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  display: flex;
+}
+
+.total-section {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#subtotal,
+#total {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+/* Billing Details Section */
+form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #333;
+}
+
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-select {
+  border-radius: 5px;
+  padding: 10px;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+button:hover {
+  background-color: #0056b3;
+  cursor: pointer;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .checkout-heading {
+    font-size: 2rem;
+  }
+
+  .section-heading {
+    font-size: 1.3rem;
+  }
+}
+
+footer {
+  background-color: #343a40;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+footer p {
+  margin: 0;
+}
+/* Set the color for navbar background and text */
+.navbar {
+  position: sticky;
+  background-color: #14332f;
+  top: 0;
+  z-index: 1000; /* Ensure it stays on top of other content */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for effect */
+}
+.navbar.navbar-expand-lg {
+  padding: 10px 0; /* Optional: Adjust padding for spacing */
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .navbar-toggler-icon {
+  color: white !important;
+  background-color: #14332f;
+  border-color: #eeeee9;
+  /* White text color for all navbar items */
+}
+
+.navbar .navbar-toggler-icon {
+  background-color: white;
+  background-color: #14332f;
+  border-color: #eeeee9;
+  /*Change hamburger icon color to white */
+}
+
+.navbar-nav .nav-link.active {
+  color: #ffd700;
+  /* Highlight active link with a gold color */
+}
+
+button.navbar-toggler {
+  color: white;
+  /* Dark green background for hamburger icon */
+}
+span.navbar-toggler-icon {
+  color: #eeeee9 !important;
+}
+.modal-header {
+  background-color: #14332f;
+  /* Dark green header for modal */
+  color: white;
+  /* White text in modal header */
+}
+
+.modal-footer {
+  background-color: #f8f9fa;
+  /* Light background for footer */
+}
+
+.form-label {
+  color: #14332f;
+  /* Dark green color for form labels */
+}
+
+.form-control {
+  border-color: #14332f;
+  /* Dark green border for form controls */
+}
+
+.form-control:focus {
+  border-color: #0f2d29;
+  /* Darker green on focus */
+  box-shadow: 0 0 0 0.25rem rgba(20, 51, 47, 0.25);
+  /* Green focus shadow */
+}
+
+footer {
+  background-color: #1f1f1f;
+  /* Dark background color for footer */
+  color: white;
+  /* White text color */
+}
+
+footer a {
+  text-decoration: none;
+  /* Remove underlines from links */
+}
+
+footer a:hover {
+  color: #ffd700;
+  /* Change color to gold on hover */
+}
+
+footer .container {
+  max-width: 1200px;
+  /* Limit the maximum width of the footer */
+}
+.cart-item-content {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  text-align: justify;
+  padding: 10px;
+}
+
+.cart-img {
+  width: 80px; /* Adjust as needed */
+  height: 80px;
+  border-radius: 5px;
+}
+
+.item-details {
+  margin-top: 5px; /* Space between image and text */
+}
+
+.item-name {
+  font-size: 18px;
+}
+
+.item-price {
+  color: #5a08dc;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+</style>
 <body>
 
      <!-- Navbar -->
